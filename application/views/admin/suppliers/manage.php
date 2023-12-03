@@ -16,11 +16,12 @@
                     <div class="panel-body panel-table-full">
                         <?php
                         $table_data = [
-                            _l('Name'),
-                            _l('Email'),
+                            _l('ID'),
+                            _l('Vat Number'),
+                            _l('Company'),
                             _l('Phone Number'),
                             _l('Created At'),
-                            _l('Active'),
+                            // _l('Active'),
                         ];
                      
                         render_datatable($table_data, 'suppliers');

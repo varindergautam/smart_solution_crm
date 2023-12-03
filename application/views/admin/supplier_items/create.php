@@ -42,7 +42,7 @@
                                                 }
                                             } ?>
                                             <option value="<?php echo $suppliers_member['supplierid']; ?>" <?php echo $selected; ?>>
-                                                <?php echo ucfirst($suppliers_member['firstname']) . ' ' . ucfirst($suppliers_member['lastname']); ?></option>
+                                                <?php echo ucfirst($suppliers_member['vat_number']) . ' - ' . ucfirst($suppliers_member['company']); ?></option>
                                         <?php
                                         } ?>
                                     </select>
@@ -68,6 +68,9 @@
 
                                 <?php $value = (isset($member) ? $member->rate : ''); ?>
                                 <?php echo render_input('rate', 'Rate', $value); ?>
+
+                                <?php $value = (isset($member) ? $member->date : ''); ?>
+                                <?php echo render_input('date', 'Date', $value, 'date'); ?>
 
                             </div>
                         </div>

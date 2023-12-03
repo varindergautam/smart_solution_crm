@@ -45,7 +45,7 @@ class Supplier_item extends AdminController
                 blank_page('Supplier Not Found', 'danger');
             }
             $data['member']            = $member;
-            $title                     = $member->firstname . ' ' . $member->lastname;
+            $title                     = 'Update';
         }
         $data['suppliers_members'] = $this->suppliers_model->get('', ['active' => 1]);
         $data['item_members'] = $this->invoice_items_model->get('', ['active' => 1]);

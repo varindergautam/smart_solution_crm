@@ -13,7 +13,7 @@ class Supplier_items_model extends App_Model
 
     public function get($id = '', $where = [])
     {
-        $this->db->select('supplier_items.*, suppliers.firstname, suppliers.lastname');
+        $this->db->select('supplier_items.*, suppliers.vat_number, suppliers.company');
         $this->db->join('suppliers', 'suppliers.supplierid = supplier_items.supplier_id');
         $this->db->where($where);
 
@@ -24,7 +24,7 @@ class Supplier_items_model extends App_Model
 
             return $supplier_items;
         }
-        $this->db->order_by('firstname', 'desc');
+        $this->db->order_by('id', 'desc');
 
         return $this->db->get(db_prefix() . 'supplier_items')->result_array();
     }

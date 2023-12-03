@@ -9,10 +9,10 @@ $custom_fields = get_custom_fields('supplier_items', [
 ]);
 $aColumns = [
     db_prefix() . 'supplier_items.id',
-    "CONCAT(" . db_prefix() . "suppliers.firstname, ' ', " . db_prefix() . "suppliers.lastname) as full_name",
+    db_prefix() . 'suppliers.vat_number',
     db_prefix() . 'items.description',
     db_prefix() . 'supplier_items.rate',
-    db_prefix() . 'supplier_items.created_at',
+    db_prefix() . 'supplier_items.date',
 ];
 
 $sIndexColumn = 'id';
@@ -36,10 +36,10 @@ foreach ($rResult as $aRow) {
         } else {
             $_data = $aRow[$aColumns[$i]];
         }
-        if ($aColumns[$i] == 'created_at') {
-            $_data = $aRow['created_at'];
-        } elseif ($aColumns[$i] == "CONCAT(" . db_prefix() . "suppliers.firstname, ' ', " . db_prefix() . "suppliers.lastname) as full_name") {
-            $_data = ' <a href="' . admin_url('supplier_item/create/' . $aRow[db_prefix() . 'supplier_items.id']) . '">' . $aRow["full_name"] . '</a>';
+        if ($aColumns[$i] == 'date') {
+            $_data = $aRow['date'];
+        } elseif ($aColumns[$i] == "vat_number") {
+            $_data = ' <a href="' . admin_url('supplier_item/create/' . $aRow[db_prefix() . 'supplier_items.id']) . '">' . $aRow["vat_number"] . '</a>';
 
             $_data .= '<div class="row-options">';
             $_data .= '<a href="' . admin_url('supplier_item/create/' . $aRow[db_prefix() . 'supplier_items.id']) . '">' . _l('view') . '</a>';

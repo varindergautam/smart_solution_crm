@@ -8,6 +8,7 @@ class Suppliers extends AdminController
     {
         parent::__construct();
         $this->load->model('suppliers_model');
+        $this->load->model('currencies_model');
     }
 
     public function index()
@@ -16,7 +17,6 @@ class Suppliers extends AdminController
         if ($this->input->is_ajax_request()) {
             $this->app->get_table_data('suppliers');
         }
-        $data['suppliers_members'] = $this->suppliers_model->get('', ['active' => 1]);
         $data['title']          = _l('Suppliers');
 
         $this->load->view('admin/suppliers/manage', $data);
@@ -26,6 +26,7 @@ class Suppliers extends AdminController
     {
         if ($this->input->post()) {
             $data = $this->input->post();
+          
             if ($id == '') {
                 $id = $this->suppliers_model->add($data);
                 handle_supplier_profile_image_upload($id);
@@ -34,7 +35,7 @@ class Suppliers extends AdminController
                 redirect(admin_url('suppliers/'));
             } else {
                 handle_supplier_profile_image_upload($id);
-                $response = $this->suppliers_model->update($data, $id);
+                $this->suppliers_model->update($data, $id);
                 set_alert('success', _l('updated_successfully', _l('Supplier')));
                 redirect(admin_url('suppliers/'));
             }
@@ -47,9 +48,11 @@ class Suppliers extends AdminController
                 blank_page('Supplier Not Found', 'danger');
             }
             $data['member']            = $member;
-            $title                     = $member->firstname . ' ' . $member->lastname;
+            $title                     = 'Update';
         }
         $data['title']         = $title;
+        $data['currencies'] = $this->currencies_model->get();
+        $data['countries'] = get_all_countries();
         $this->load->view('admin/suppliers/create', $data);
     }
 

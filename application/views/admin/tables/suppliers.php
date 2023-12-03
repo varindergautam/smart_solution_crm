@@ -8,15 +8,15 @@ $custom_fields = get_custom_fields('suppliers', [
     'show_on_table' => 1,
 ]);
 $aColumns = [
-    'firstname',
-    'email',
-    'phonenumber',
+    'supplierid',
+    'vat_number',
+    'company',
+    'phone_number',
     'datecreated',
-    'active',
+    // 'active',
 ];
 $sIndexColumn = 'supplierid';
 $sTable       = db_prefix() . 'suppliers';
-$join         = ['LEFT JOIN ' . db_prefix() . 'roles ON ' . db_prefix() . 'roles.roleid = ' . db_prefix() . 'suppliers.role'];
 
 // Fix for big queries. Some hosting have max_join_limit
 if (count($custom_fields) > 4) {
@@ -25,9 +25,7 @@ if (count($custom_fields) > 4) {
 
 $where = hooks()->apply_filters('suppliers_table_sql_where', []);
 
-$result = data_tables_init($aColumns, $sIndexColumn, $sTable, $join, $where, [
-    'profile_image',
-    'lastname',
+$result = data_tables_init($aColumns, $sIndexColumn, $sTable, [], $where, [
     'supplierid',
 ]);
 
@@ -58,20 +56,18 @@ foreach ($rResult as $aRow) {
 
             // For exporting
             $_data .= '<span class="hide">' . ($checked == 'checked' ? _l('is_active_export') : _l('is_not_active_export')) . '</span>';
-        } elseif ($aColumns[$i] == 'firstname') {
-            $_data = '<a href="' . admin_url('suppliers/profile/' . $aRow['supplierid']) . '">'
-            . supplier_profile_image($aRow['supplierid'], [
-                'staff-profile-image-small',
-                ]) .
-            '</a>';
-            $_data .= ' <a href="' . admin_url('suppliers/create/' . $aRow['supplierid']) . '">' . $aRow['firstname'] . ' ' . $aRow['lastname'] . '</a>';
+        } elseif ($aColumns[$i] == 'vat_number') {
+            $_data = ' <a href="' . admin_url('suppliers/create/' . $aRow['supplierid']) . '">' . $aRow['vat_number'] . ' - ' . $aRow['company'] . '</a>';
 
             $_data .= '<div class="row-options">';
             $_data .= '<a href="' . admin_url('suppliers/create/' . $aRow['supplierid']) . '">' . _l('view') . '</a>';
 
             $_data .= '</div>';
-        } elseif ($aColumns[$i] == 'email') {
-            $_data = '<a href="mailto:' . $_data . '">' . $_data . '</a>';
+        } elseif ($aColumns[$i] == 'company') {
+            $_data = $aRow['company'];
+        }
+        elseif ($aColumns[$i] == 'supplierid') {
+            $_data = $aRow['supplierid'];
         } else {
             if (strpos($aColumns[$i], 'date_picker_') !== false) {
                 $_data = (strpos($_data, ' ') !== false ? _dt($_data) : _d($_data));

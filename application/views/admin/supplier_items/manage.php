@@ -20,7 +20,7 @@
                             _l('Supplier'),
                             _l('Item'),
                             _l('Rate'),
-                            _l('Created At'),
+                            _l('Date'),
                         ];
                      
                         render_datatable($table_data, 'supplier_items');
