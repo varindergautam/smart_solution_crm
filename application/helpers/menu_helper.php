@@ -123,6 +123,14 @@ function app_init_admin_sidebar_menu_items()
         ]);
     }
 
+    $CI->app_menu->add_sidebar_menu_item('supplier_items', [
+        'name'     => _l('Supplier Items'),
+        'href'     => admin_url('supplier_item'),
+        'position' => 5,
+        'icon'     => 'fa-regular fa-user',
+        'badge'    => [],
+    ]);
+
     if (has_permission('expenses', '', 'view') || has_permission('expenses', '', 'view_own')) {
         $CI->app_menu->add_sidebar_menu_item('expenses', [
             'name'     => _l('expenses'),
