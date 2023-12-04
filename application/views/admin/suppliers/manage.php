@@ -5,13 +5,13 @@
         <div class="row">
             <div class="col-md-12">
                 <?php if (has_permission('suppliers', '', 'create')) { ?>
+                    <?php } ?>
                 <div class="tw-mb-2 sm:tw-mb-4">
                     <a href="<?php echo admin_url('suppliers/create'); ?>" class="btn btn-primary">
                         <i class="fa-regular fa-plus tw-mr-1"></i>
                         <?php echo _l('Create Supplier'); ?>
                     </a>
                 </div>
-                <?php } ?>
                 <div class="panel_s">
                     <div class="panel-body panel-table-full">
                         <?php

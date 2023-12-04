@@ -5,13 +5,14 @@
         <div class="row">
             <div class="col-md-12">
                 <?php if (has_permission('supplier_items', '', 'create')) { ?>
+                    <?php } ?>
                 <div class="tw-mb-2 sm:tw-mb-4">
                     <a href="<?php echo admin_url('supplier_item/create'); ?>" class="btn btn-primary">
                         <i class="fa-regular fa-plus tw-mr-1"></i>
                         <?php echo _l('Create Supplier Item'); ?>
                     </a>
                 </div>
-                <?php } ?>
+                
                 <div class="panel_s">
                     <div class="panel-body panel-table-full">
                         <?php

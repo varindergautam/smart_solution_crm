@@ -10,6 +10,7 @@ class Estimates extends AdminController
     {
         parent::__construct();
         $this->load->model('estimates_model');
+        $this->load->model('supplier_items_model');
     }
 
     /* Get all estimates in case user go on index page */
@@ -635,5 +636,10 @@ class Estimates extends AdminController
                 echo $duedate;
             }
         }
+    }
+
+    public function supplier_items($item_id) {
+        $supplier_items = $this->supplier_items_model->byItemID($item_id);
+        echo json_encode($supplier_items);
     }
 }

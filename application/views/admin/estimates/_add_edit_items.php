@@ -111,6 +111,7 @@
                         <button type="button"
                             onclick="add_item_to_table('undefined','undefined',<?php echo $new_item; ?>); return false;"
                             class="btn pull-right btn-primary"><i class="fa fa-check"></i></button>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="margin-top: 5px;">View</button>
                     </td>
                 </tr>
                 <?php if (isset($estimate) || isset($add_items)) {
@@ -154,7 +155,8 @@
                              }
                              $table_row .= '<input type="text" placeholder="' . $unit_placeholder . '" name="' . $items_indicator . '[' . $i . '][unit]" class="form-control input-transparent text-right" value="' . $item['unit'] . '">';
                              $table_row .= '</td>';
-                             $table_row .= '<td class="rate"><input type="number" data-toggle="tooltip" title="' . _l('numbers_not_formatted_while_editing') . '" onblur="calculate_total();" onchange="calculate_total();" name="' . $items_indicator . '[' . $i . '][rate]" value="' . $item['rate'] . '" class="form-control"></td>';
+                             $table_row .= '<td class="rate"><input type="number" data-toggle="tooltip" title="' . _l('numbers_not_formatted_while_editing') . '" onblur="calculate_total();" onchange="calculate_total();" name="' . $items_indicator . '[' . $i . '][rate]" value="' . $item['rate'] . '" class="form-control"></td>
+                             ';
                              $table_row .= '<td class="taxrate">' . $this->misc_model->get_taxes_dropdown_template('' . $items_indicator . '[' . $i . '][taxname][]', $estimate_item_taxes, (isset($is_proposal) ? 'proposal' : 'estimate'), $item['id'], true, $manual) . '</td>';
                              $table_row .= '<td class="amount" align="right">' . $amount . '</td>';
                              $table_row .= '<td><a href="#" class="btn btn-danger pull-left" onclick="delete_item(this,' . $item['id'] . '); return false;"><i class="fa fa-times"></i></a></td>';
@@ -262,4 +264,34 @@
         </table>
     </div>
     <div id="removed-items"></div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Supplier Item List</h4>
+    </div>
+      <table class="table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Supplier</th>
+                <th>Item</th>
+                <th>Rate</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody id="dynamicTableBody">
+            <tr>
+                <td colspan="5" class="text-center">No selected any item yet</td>
+            </tr>
+        </tbody>
+    </table>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div> -->
+    </div>
+  </div>
 </div>

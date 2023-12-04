@@ -54,4 +54,14 @@ class Supplier_items_model extends App_Model
         return $this->db->where('id', $id)
             ->delete(db_prefix() . 'supplier_items');
     }
+
+    public function byItemID($id = '')
+    {
+        $this->db->select('supplier_items.*, suppliers.vat_number, suppliers.company, items.description');
+        $this->db->join('suppliers', 'suppliers.supplierid = supplier_items.supplier_id');
+        $this->db->join('items', 'items.id = supplier_items.item_id');
+        $this->db->where('item_id', $id);
+
+        return $this->db->get(db_prefix() . 'supplier_items')->result();
+    }
 }
