@@ -1082,4 +1082,9 @@ class Clients extends AdminController
 
         echo json_encode($viewData);
     }
+
+    public function clientJson($id) {
+        $clients = $this->clients_model->get($id);
+        echo json_encode($clients);
+    }
 }

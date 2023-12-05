@@ -86,4 +86,9 @@ class Suppliers extends AdminController
             redirect(admin_url('suppliers/create/' . $supplier_id));
         }
     }
+
+    public function supplierJson($id) {
+        $supplier = $this->suppliers_model->get($id);
+        echo json_encode($supplier);
+    }
 }

@@ -22,6 +22,46 @@ function app_init_admin_sidebar_menu_items()
         'badge'    => [],
     ]);
 
+    $CI->app_menu->add_sidebar_menu_item('receivable', [
+        'name'     => _l('Receivable'),
+        'href'     => admin_url('receivable'),
+        'position' => 5,
+        'icon'     => 'fa-regular fa-user',
+        'badge'    => [],
+    ]);
+
+    $CI->app_menu->add_sidebar_menu_item('receivable', [
+        'name'     => _l('Receivable Report'),
+        'href'     => admin_url('receivable/report'),
+        'position' => 5,
+        'icon'     => 'fa-regular fa-user',
+        'badge'    => [],
+    ]);
+
+    $CI->app_menu->add_sidebar_menu_item('payable', [
+        'name'     => _l('Payable'),
+        'href'     => admin_url('payable'),
+        'position' => 5,
+        'icon'     => 'fa-regular fa-user',
+        'badge'    => [],
+    ]);
+
+    $CI->app_menu->add_sidebar_menu_item('payable', [
+        'name'     => _l('Payable Report'),
+        'href'     => admin_url('payable/report'),
+        'position' => 5,
+        'icon'     => 'fa-regular fa-user',
+        'badge'    => [],
+    ]);
+
+    $CI->app_menu->add_sidebar_menu_item('pdc', [
+        'name'     => _l('PDC'),
+        'href'     => admin_url('pdc'),
+        'position' => 5,
+        'icon'     => 'fa-regular fa-user',
+        'badge'    => [],
+    ]);
+
     if (
         has_permission('customers', '', 'view')
         || (have_assigned_customers()
