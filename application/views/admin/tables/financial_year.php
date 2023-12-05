@@ -33,8 +33,8 @@ foreach ($rResult as $aRow) {
             $_data = $aRow[$aColumns[$i]];
         }
 
-        if ($aColumns[$i] == "name") {
-            $_data = ' <a href="' . admin_url('financial_year/create/' . $aRow['id']) . '">' . $aRow['name'] . '</a>';
+        if ($aColumns[$i] == "year_name") {
+            $_data = ' <a href="' . admin_url('financial_year/create/' . $aRow['id']) . '">' . $aRow['year_name'] . '</a>';
 
             $_data .= '<div class="row-options">';
             $_data .= '<a href="' . admin_url('financial_year/create/' . $aRow['id']) . '">' . _l('view') . '</a>';

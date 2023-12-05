@@ -22,7 +22,6 @@
                             _l('Company Name'),
                             _l('Customer Mobile'),
                             _l('Date'),
-                            _l('Paid'),
                         ];
                      
                         render_datatable($table_data, 'receivable');

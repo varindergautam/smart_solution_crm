@@ -147,8 +147,9 @@
                         dataType: "json",
                         success: function(response) {
                             $('#company_name').val(response.company);
-                            // $('#supplier_name').val(response.vat);
+                            $('#supplier_name').val(response.name);
                             $('#supplier_mobile').val(response.phone_number);
+                            $('#supplier_email').val(response.email);
                             $('#supplier_city').val(response.city);
 
                         },

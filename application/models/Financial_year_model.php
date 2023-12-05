@@ -30,14 +30,14 @@ class Financial_year_model extends App_Model
     {
         $data = hooks()->apply_filters('before_create_financial_year', $data);
 
-        $this->db->where('name', $data['name']);
+        $this->db->where('year_name', $data['year_name']);
         $name = $this->db->get(db_prefix() . 'financial_year')->row();
 
         // if ($name) {
         //     die('financial_year already exists');
         // }
 
-        $data['datecreated'] = date('Y-m-d H:i:s');
+        $data['created_at'] = date('Y-m-d H:i:s');
 
         $this->db->insert(db_prefix() . 'financial_year', $data);
         $id = $this->db->insert_id();

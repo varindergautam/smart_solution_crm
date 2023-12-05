@@ -38,7 +38,7 @@ class Brand_model extends App_Model
         //     die('Brand already exists');
         // }
 
-        $data['datecreated'] = date('Y-m-d H:i:s');
+        $data['created_at'] = date('Y-m-d H:i:s');
 
         $this->db->insert(db_prefix() . 'brand', $data);
         $id = $this->db->insert_id();

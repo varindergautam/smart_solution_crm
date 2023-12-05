@@ -16,15 +16,15 @@
                         </div>
                         <div class="tab-content tw-mt-5">
                             <div role="tabpanel" class="tab-pane active" id="tab_staff_profile">
-                                <?php $value = (isset($member) ? $member->month : ''); ?>
+                                <?php $value = (isset($month) ? $month : ''); ?>
                                 <?php echo render_input('month', 'Month', $value, 'month'); ?>
 
                                 <div class="form-group select-placeholder">
                                     <label for="type" class="control-label"><?php echo _l('Type'); ?></label>
                                     <select name="type" data-live-search="true" id="type" class="form-control selectpicker" data-none-selected-text="<?php echo _l('dropdown_non_selected_tex'); ?>">
                                         <option value="">Select Type</option>
-                                        <option value="in" <?php echo isset($member) && $member->month == 'in' ? 'selected' : ''; ?>>In</option>
-                                        <option value="out" <?php echo isset($member) && $member->month == 'out' ? 'selected' : ''; ?>>Out</option>
+                                        <option value="in" <?php echo isset($type) && $type == 'in' ? 'selected' : ''; ?>>In</option>
+                                        <option value="out" <?php echo isset($type) && $month == 'out' ? 'selected' : ''; ?>>Out</option>
                                     </select>
                                 </div>
                             </div>
@@ -39,7 +39,7 @@
             <?php echo form_close(); ?>
 
             <?php
-            if (isset($member->month) || isset($member->type)) {
+            if (isset($month) || isset($type)) {
             ?>
                 <div class="col-md-12" id="small-table">
                     <div class="panel_s">
@@ -47,9 +47,9 @@
                             <?php
                             $table_data = [
                                 _l('ID'),
-                                _l('Type'),
-                                _l('Cheque Date'),
                                 _l('Cheque Number'),
+                                _l('Cheque Date'),
+                                _l('Type'),
                                 _l('Date'),
                                 _l('Paid Status'),
                             ];
@@ -67,7 +67,7 @@
 <?php init_tail(); ?>
 <script>
     $(function() {
-        initDataTable('.table-receivable', window.location.href);
+        initDataTable('.table-pdc', window.location.href);
     });
 </script>
 </body>

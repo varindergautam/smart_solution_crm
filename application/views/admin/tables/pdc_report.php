@@ -9,9 +9,9 @@ $custom_fields = get_custom_fields('pdc', [
 ]);
 $aColumns = [
     'id',
+    'cheque_number',
+    'cheque_date',
     'type',
-    db_prefix() . 'pdc.cheque_date',
-    db_prefix() . 'pdc.cheque_number',
     db_prefix() . 'pdc.created_at',
     'paid_status'
 ];
@@ -26,7 +26,7 @@ if (isset($month) && $month != '') {
 }
 
 if (isset($type) && $type != '') {
-    array_push($where,  'AND ', 'type=' . $type);
+    array_push($where,  'AND ', "type='$type'");
 }
 
 $sIndexColumn = 'id';
@@ -46,15 +46,17 @@ foreach ($rResult as $aRow) {
             $_data = $aRow[$aColumns[$i]];
         }
 
-        if ($aColumns[$i] == "type") {
+        // if ($aColumns[$i] == "cheque_number") {
 
-            $_data = ' <a href="' . admin_url('pdc/create/' . $aRow['id']) . '">' . $aRow['type'] . '</a>';
+        //     $_data = ' <a href="' . admin_url('pdc/create/' . $aRow['id']) . '">' . $aRow['cheque_number'] . '</a>';
 
-            $_data .= '<div class="row-options">';
-            $_data .= '<a href="' . admin_url('pdc/create/' . $aRow['id']) . '">' . _l('view') . '</a>';
+        //     $_data .= '<div class="row-options">';
+        //     $_data .= '<a href="' . admin_url('pdc/create/' . $aRow['id']) . '">' . _l('view') . '</a>';
 
-            $_data .= '</div>';
-        } elseif ($aColumns[$i] == 'paid_status') {
+        //     $_data .= '</div>';
+        // } else
+        
+        if ($aColumns[$i] == 'paid_status') {
             $checked = '';
             if ($aRow['paid_status'] == 1) {
                 $checked = 'checked';

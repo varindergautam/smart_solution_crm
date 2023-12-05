@@ -35,11 +35,11 @@
 
                                 <div class="form-group">
                                     <div class="form-group select-placeholder">
-                                        <label for="type" class="control-label"><?php echo _l('type'); ?></label>
-                                        <select name="type_id" data-live-search="true" id="type" class="form-control selectpicker" data-none-selected-text="<?php echo _l('dropdown_non_selected_tex'); ?>">
+                                        <label for="type" class="control-label"><?php echo _l('Type'); ?></label>
+                                        <select name="type" data-live-search="true" id="type" class="form-control selectpicker" data-none-selected-text="<?php echo _l('dropdown_non_selected_tex'); ?>">
                                             <option value=""><?php echo _l('system_default_string'); ?></option>
-                                            <option value="income">Income</option>
-                                            <option value="expense">Expense</option>
+                                            <option value="income" <?php echo isset($member) && $member->type == 'income' ? 'selected' : '' ?>>Income</option>
+                                            <option value="expense" <?php echo isset($member) && $member->type == 'expense' ? 'selected' : '' ?>>Expense</option>
                                         </select>
                                     </div>
                                 </div>
@@ -58,6 +58,18 @@
         <div class="btn-bottom-pusher"></div>
     </div>
     <?php init_tail(); ?>
+
+    <script>
+        $(function() {
+
+            init_roles_permissions();
+
+            appValidateForm($('.staff-form'), {
+                head_name: 'required',
+                type: 'required',
+            });
+        });
+    </script>
 
     </body>
 

@@ -18,7 +18,7 @@ class Payable extends AdminController
             $this->app->get_table_data('payable');
         }
 
-        $data['title']          = _l('payables');
+        $data['title']          = _l('Payables');
         $this->load->view('admin/payable/manage', $data);
     }
 
@@ -29,11 +29,11 @@ class Payable extends AdminController
 
             if ($id == '') {
                 $id = $this->payable_model->add($data);
-                set_alert('success', _l('added_successfully', _l('payable')));
+                set_alert('success', _l('added_successfully', _l('Payable')));
                 redirect(admin_url('payable/'));
             } else {
                 $this->payable_model->add($data, $id);
-                set_alert('success', _l('updated_successfully', _l('payable')));
+                set_alert('success', _l('updated_successfully', _l('Payable')));
                 redirect(admin_url('payable/'));
             }
         }
@@ -57,23 +57,21 @@ class Payable extends AdminController
     public function delete($id)
     {
         $this->payable_model->delete($id);
-        set_alert('success', _l('deleted', _l('payable')));
+        set_alert('success', _l('deleted', _l('Payable')));
         redirect(admin_url('supplier_item/'));
     }
 
     public function report()
     {
-        if ($this->input->post()) {
-            $post = $this->input->post();
-            if ($this->input->is_ajax_request()) {
-                if (isset($_GET['month'])) {
-                    $this->app->get_table_data('payable_report', ['month' => $_GET['month']]);
-                } else {
-                    $this->app->get_table_data('payable_report');
-                }
+        $data['month'] = isset($_GET['month']) ? $_GET['month'] : NULL;
+        if ($this->input->is_ajax_request()) {
+            if (isset($_GET['month'])) {
+                $this->app->get_table_data('payable_report', ['month' => $_GET['month']]);
+            } else {
+                $this->app->get_table_data('payable_report');
             }
         }
-        $data['title']         = 'payable Report';
+        $data['title']         = 'Payable Report';
 
         $this->load->view('admin/payable/report', $data);
     }

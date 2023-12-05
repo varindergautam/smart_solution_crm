@@ -19,7 +19,7 @@ class Budget extends AdminController
             $this->app->get_table_data('budget');
         }
 
-        $data['title']          = _l('budgets');
+        $data['title']          = _l('Budgets');
         $this->load->view('admin/budget/manage', $data);
     }
 
@@ -30,11 +30,11 @@ class Budget extends AdminController
 
             if ($id == '') {
                 $id = $this->budget_model->add($data);
-                set_alert('success', _l('added_successfully', _l('budget')));
+                set_alert('success', _l('added_successfully', _l('Budget')));
                 redirect(admin_url('budget/'));
             } else {
                 $this->budget_model->add($data, $id);
-                set_alert('success', _l('updated_successfully', _l('budget')));
+                set_alert('success', _l('updated_successfully', _l('Budget')));
                 redirect(admin_url('budget/'));
             }
         }
@@ -60,7 +60,7 @@ class Budget extends AdminController
     public function delete($id)
     {
         $this->budget_model->delete($id);
-        set_alert('success', _l('deleted', _l('budget')));
+        set_alert('success', _l('deleted', _l('Budget')));
         redirect(admin_url('budget/'));
     }
 

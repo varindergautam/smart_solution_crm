@@ -17,7 +17,7 @@ class Brand extends AdminController
             $this->app->get_table_data('brand');
         }
 
-        $data['title']          = _l('brands');
+        $data['title']          = _l('Brands');
         $this->load->view('admin/brand/manage', $data);
     }
 
@@ -28,16 +28,16 @@ class Brand extends AdminController
 
             if ($id == '') {
                 $id = $this->brand_model->add($data);
-                set_alert('success', _l('added_successfully', _l('brand')));
+                set_alert('success', _l('added_successfully', _l('Brand')));
                 redirect(admin_url('brand/'));
             } else {
-                $this->brand_model->add($data, $id);
-                set_alert('success', _l('updated_successfully', _l('brand')));
+                $this->brand_model->update($data, $id);
+                set_alert('success', _l('updated_successfully', _l('Brand')));
                 redirect(admin_url('brand/'));
             }
         }
         if ($id == '') {
-            $title = _l('add_new', _l('brand'));
+            $title = _l('add_new', _l('Brand'));
         } else {
             $member = $this->brand_model->get($id);
 

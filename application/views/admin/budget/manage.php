@@ -9,7 +9,7 @@
                 <div class="tw-mb-2 sm:tw-mb-4">
                     <a href="<?php echo admin_url('budget/create'); ?>" class="btn btn-primary">
                         <i class="fa-regular fa-plus tw-mr-1"></i>
-                        <?php echo _l('Create budget'); ?>
+                        <?php echo _l('Create Budget'); ?>
                     </a>
                 </div>
 
@@ -20,6 +20,7 @@
                             _l('ID'),
                             _l('Amount'),
                             _l('Financial Year'),
+                            _l('Head'),
                             _l('Head Type'),
                             _l('Into Month'),
                             _l('Created At'),

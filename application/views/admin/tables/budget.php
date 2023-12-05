@@ -2,22 +2,23 @@
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
-$has_permission_delete = has_permission('budgets', '', 'delete');
+$has_permission_delete = has_permission('budget', '', 'delete');
 
-$custom_fields = get_custom_fields('budgets', [
+$custom_fields = get_custom_fields('budget', [
     'show_on_table' => 1,
 ]);
 $aColumns = [
     db_prefix() . 'budget.id',
     'amount',
     db_prefix() . 'financial_year.year_name',
+    db_prefix() . 'head.head_name',
     db_prefix() . 'budget.head_type',
     db_prefix() . 'budget.into_month',
     db_prefix() . 'budget.created_at',
 ];
 
 $sIndexColumn = 'id';
-$sTable = db_prefix() . 'budgets';
+$sTable = db_prefix() . 'budget';
 $join   = [
     'LEFT JOIN ' . db_prefix() . 'financial_year ON ' . db_prefix() . 'financial_year.id = ' . db_prefix() . 'budget.financial_year',
     'LEFT JOIN ' . db_prefix() . 'head ON ' . db_prefix() . 'head.id = ' . db_prefix() . 'budget.head',
@@ -40,12 +41,12 @@ foreach ($rResult as $aRow) {
         if ($aColumns[$i] == 'created_at') {
             $_data = $aRow['created_at'];
         } elseif ($aColumns[$i] == "amount") {
-            $_data = ' <a href="' . admin_url('budget/create/' . $aRow[db_prefix() . 'budgets.id']) . '">' . $aRow["amount"] . '</a>';
+            $_data = ' <a href="' . admin_url('budget/create/' . $aRow[db_prefix() . 'budget.id']) . '">' . $aRow["amount"] . '</a>';
 
             $_data .= '<div class="row-options">';
-            $_data .= '<a href="' . admin_url('budget/create/' . $aRow[db_prefix() . 'budgets.id']) . '">' . _l('view') . '</a>';
+            $_data .= '<a href="' . admin_url('budget/create/' . $aRow[db_prefix() . 'budget.id']) . '">' . _l('view') . '</a>';
             // $_data .= ' | ';
-            // $_data .= '<a href="' . admin_url('budget/delete/' . $aRow[db_prefix() . 'budgets.id']) . '" class="text-danger _delete">' . _l('delete') . '</a>';
+            // $_data .= '<a href="' . admin_url('budget/delete/' . $aRow[db_prefix() . 'budget.id']) . '" class="text-danger _delete">' . _l('delete') . '</a>';
 
             $_data .= '</div>';
         }
@@ -54,7 +55,7 @@ foreach ($rResult as $aRow) {
 
     $row['DT_RowClass'] = 'has-row-options';
 
-    $row = hooks()->apply_filters('budgets_table_row', $row, $aRow);
+    $row = hooks()->apply_filters('budget_table_row', $row, $aRow);
 
     $output['aaData'][] = $row;
 }

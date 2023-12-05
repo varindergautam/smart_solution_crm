@@ -31,14 +31,14 @@ class Head_model extends App_Model
     {
         $data = hooks()->apply_filters('before_create_head', $data);
 
-        $this->db->where('name', $data['name']);
-        $name = $this->db->get(db_prefix() . 'head')->row();
+        $this->db->where('head_name', $data['head_name']);
+        $head_name = $this->db->get(db_prefix() . 'head')->row();
 
-        // if ($name) {
+        // if ($head_name) {
         //     die('head already exists');
         // }
 
-        $data['datecreated'] = date('Y-m-d H:i:s');
+        $data['created_at'] = date('Y-m-d H:i:s');
 
         $this->db->insert(db_prefix() . 'head', $data);
         $id = $this->db->insert_id();

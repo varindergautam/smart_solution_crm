@@ -17,7 +17,7 @@ class Pdc extends AdminController
             $this->app->get_table_data('pdc');
         }
 
-        $data['title']          = _l('pdc');
+        $data['title']          = _l('PDC');
         $this->load->view('admin/pdc/manage', $data);
     }
 
@@ -28,16 +28,16 @@ class Pdc extends AdminController
 
             if ($id == '') {
                 $id = $this->pdc_model->add($data);
-                set_alert('success', _l('added_successfully', _l('pdc')));
+                set_alert('success', _l('added_successfully', _l('PDC')));
                 redirect(admin_url('pdc/'));
             } else {
                 $this->pdc_model->add($data, $id);
-                set_alert('success', _l('updated_successfully', _l('pdc')));
+                set_alert('success', _l('updated_successfully', _l('PDC')));
                 redirect(admin_url('pdc/'));
             }
         }
         if ($id == '') {
-            $title = _l('add_new', _l('pdc'));
+            $title = _l('add_new', _l('PDC'));
         } else {
             $member = $this->pdc_model->get($id);
 
@@ -56,23 +56,22 @@ class Pdc extends AdminController
     public function delete($id)
     {
         $this->pdc_model->delete($id);
-        set_alert('success', _l('deleted', _l('pdc')));
+        set_alert('success', _l('deleted', _l('PDC')));
         redirect(admin_url('supplier_item/'));
     }
 
     public function report()
     {
-        if ($this->input->post()) {
-            $post = $this->input->post();
-            if ($this->input->is_ajax_request()) {
-                if (isset($_GET['month']) || isset($_GET['type'])) {
-                    $this->app->get_table_data('pdc_report', ['month' => $_GET['month'], 'type' => $_GET['type']]);
-                } else {
-                    $this->app->get_table_data('pdc_report');
-                }
+        $data['month'] = isset($_GET['month']) ? $_GET['month'] : NULL;
+        $data['type'] = isset($_GET['type']) ? $_GET['type'] : NULL;
+        if ($this->input->is_ajax_request()) {
+            if (isset($_GET['month']) || isset($_GET['type'])) {
+                $this->app->get_table_data('pdc_report', ['month' => $_GET['month'], 'type' => $_GET['type']]);
+            } else {
+                $this->app->get_table_data('pdc_report');
             }
         }
-        $data['title']         = 'pdc Report';
+        $data['title']         = 'PDC Report';
 
         $this->load->view('admin/pdc/report', $data);
     }

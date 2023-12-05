@@ -16,7 +16,7 @@
                         </div>
                         <div class="tab-content tw-mt-5">
                             <div role="tabpanel" class="tab-pane active" id="tab_staff_profile">
-                                <?php $value = (isset($member) ? $member->month : ''); ?>
+                                <?php $value = (isset($month) ? $month : ''); ?>
                                 <?php echo render_input('month', 'Month', $value, 'month'); ?>
                             </div>
                         </div>
@@ -24,34 +24,33 @@
                 </div>
             </div>
 
-
             <div class="btn-bottom-toolbar text-right">
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
             <?php echo form_close(); ?>
 
-            <?php 
-            if(isset($member->month)) {
+            <?php
+            if (isset($month)) {
             ?>
-            <div class="col-md-12" id="small-table">
-                <div class="panel_s">
-                    <div class="panel-body panel-table-full">
-                        <?php
-                        $table_data = [
-                            _l('ID'),
-                            _l('Customer Name'),
-                            _l('Company Name'),
-                            _l('Customer Mobile'),
-                            _l('Invoice Due Date'),
-                            _l('Date'),
-                            _l('Paid'),
-                        ];
+                <div class="col-md-12" id="small-table">
+                    <div class="panel_s">
+                        <div class="panel-body panel-table-full">
+                            <?php
+                            $table_data = [
+                                _l('ID'),
+                                _l('Customer Name'),
+                                _l('Company Name'),
+                                _l('Customer Mobile'),
+                                _l('Invoice Due Date'),
+                                _l('Date'),
+                                _l('Paid'),
+                            ];
 
-                        render_datatable($table_data, 'receivable');
-                        ?>
+                            render_datatable($table_data, 'receivable');
+                            ?>
+                        </div>
                     </div>
                 </div>
-            </div>
             <?php } ?>
         </div>
     </div>

@@ -18,11 +18,11 @@
                         <?php
                         $table_data = [
                             _l('ID'),
-                            _l('Type'),
-                            _l('Cheque Date'),
                             _l('Cheque No.'),
-                            _l('Date'),
-                            _l('Paid Status'),
+                            _l('Cheque Date'),
+                            _l('Type'),
+                            _l('Created At'),
+                            // _l('Paid Status'),
                         ];
                      
                         render_datatable($table_data, 'pdc');

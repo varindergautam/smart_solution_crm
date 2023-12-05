@@ -9,7 +9,7 @@
                 <div class="tw-mb-2 sm:tw-mb-4">
                     <a href="<?php echo admin_url('head/create'); ?>" class="btn btn-primary">
                         <i class="fa-regular fa-plus tw-mr-1"></i>
-                        <?php echo _l('Create head'); ?>
+                        <?php echo _l('Create Head'); ?>
                     </a>
                 </div>
                 

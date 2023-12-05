@@ -34,8 +34,8 @@
                                     <label for="type" class="control-label"><?php echo _l('Type'); ?></label>
                                     <select name="type" data-live-search="true" id="type" class="form-control selectpicker" data-none-selected-text="<?php echo _l('dropdown_non_selected_tex'); ?>">
                                         <option value="">Select Type</option>
-                                        <option value="in">In</option>
-                                        <option value="out">Out</option>
+                                        <option value="in" <?php echo isset($member) && $member->type == 'in' ? 'selected' : '' ?>>In</option>
+                                        <option value="out" <?php echo isset($member) && $member->type == 'out' ? 'selected' : '' ?>>Out</option>
                                     </select>
                                 </div>
 

@@ -32,7 +32,7 @@
 
                                 <div class="form-group">
                                     <div class="form-group select-placeholder">
-                                        <label for="financial_year" class="control-label"><?php echo _l('financial_year'); ?></label>
+                                        <label for="financial_year" class="control-label"><?php echo _l('Financial Year'); ?></label>
                                         <select name="financial_year" data-live-search="true" id="financial_year" class="form-control selectpicker" data-none-selected-text="<?php echo _l('dropdown_non_selected_tex'); ?>">
                                             <option value=""><?php echo _l('system_default_string'); ?></option>
                                             <?php foreach ($financial_years as $financial_year) {
@@ -52,7 +52,7 @@
 
                                 <div class="form-group">
                                     <div class="form-group select-placeholder">
-                                        <label for="head" class="control-label"><?php echo _l('head'); ?></label>
+                                        <label for="head" class="control-label"><?php echo _l('Head'); ?></label>
                                         <select name="head" data-live-search="true" id="head" class="form-control selectpicker" data-none-selected-text="<?php echo _l('dropdown_non_selected_tex'); ?>">
                                             <option value=""><?php echo _l('system_default_string'); ?></option>
                                             <?php foreach ($heads as $head) {
@@ -70,15 +70,18 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <div class="form-group select-placeholder">
-                                        <label for="head_type" class="control-label"><?php echo _l('head_type'); ?></label>
+                                        <label for="head_type" class="control-label"><?php echo _l('Head Type'); ?></label>
                                         <select name="head_type" data-live-search="true" id="head_type" class="form-control selectpicker" data-none-selected-text="<?php echo _l('dropdown_non_selected_tex'); ?>">
                                             <option value=""><?php echo _l('system_default_string'); ?></option>
 
                                         </select>
                                     </div>
-                                </div>
+                                </div> -->
+
+                                <?php $value = (isset($member) ? $member->head_type : ''); ?>
+                                <?php echo render_input('head_type', 'Head Type', $value, 'text'); ?>
 
                                 <?php $value = (isset($member) ? $member->amount : ''); ?>
                                 <?php echo render_input('amount', 'Amount', $value, 'text'); ?>
@@ -100,6 +103,26 @@
         <div class="btn-bottom-pusher"></div>
     </div>
     <?php init_tail(); ?>
+
+    <script>
+        $(document).ready(function() {
+            $('#head').change(function() {
+                var selectedValue = $(this).val();
+                $.ajax({
+                    url: admin_url + 'head/headJson/' + selectedValue,
+                    type: 'GET',
+                    data: {},
+                    dataType: "json",
+                    success: function(response) {
+                        $('#head_type').val(response.type);
+                    },
+                    error: function(error) {
+                        console.error('Error fetching dynamic data:', error);
+                    }
+                });
+            });
+        });
+    </script>
 
     </body>
 

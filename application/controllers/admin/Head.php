@@ -12,12 +12,11 @@ class Head extends AdminController
 
     public function index()
     {
-        $this->head_model->get();
         if ($this->input->is_ajax_request()) {
             $this->app->get_table_data('head');
         }
 
-        $data['title']          = _l('heads');
+        $data['title']          = _l('Heads');
         $this->load->view('admin/head/manage', $data);
     }
 
@@ -28,11 +27,11 @@ class Head extends AdminController
 
             if ($id == '') {
                 $id = $this->head_model->add($data);
-                set_alert('success', _l('added_successfully', _l('head')));
+                set_alert('success', _l('added_successfully', _l('Head')));
                 redirect(admin_url('head/'));
             } else {
-                $this->head_model->add($data, $id);
-                set_alert('success', _l('updated_successfully', _l('head')));
+                $this->head_model->update($data, $id);
+                set_alert('success', _l('updated_successfully', _l('Head')));
                 redirect(admin_url('head/'));
             }
         }
@@ -56,7 +55,7 @@ class Head extends AdminController
     public function delete($id)
     {
         $this->head_model->delete($id);
-        set_alert('success', _l('deleted', _l('head')));
+        set_alert('success', _l('deleted', _l('Head')));
         redirect(admin_url('head/'));
     }
 
@@ -65,5 +64,10 @@ class Head extends AdminController
         if ($this->input->is_ajax_request()) {
             $this->head_model->change_status($id, $status);
         }
+    }
+
+    public function headJson($id) {
+        $clients = $this->head_model->get($id);
+        echo json_encode($clients);
     }
 }

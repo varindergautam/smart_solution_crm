@@ -9,11 +9,11 @@ $custom_fields = get_custom_fields('pdc', [
 ]);
 $aColumns = [
     'id',
+    'cheque_number',
+    'cheque_date',
     'type',
-    db_prefix() . 'pdc.cheque_date',
-    db_prefix() . 'pdc.cheque_number',
     db_prefix() . 'pdc.created_at',
-    'paid_status'
+    // 'paid_status'
 ];
 
 $where  = [];
@@ -36,27 +36,28 @@ foreach ($rResult as $aRow) {
             $_data = $aRow[$aColumns[$i]];
         }
 
-        if ($aColumns[$i] == "type") {
+        if ($aColumns[$i] == "cheque_number") {
 
-            $_data = ' <a href="' . admin_url('pdc/create/' . $aRow['id']) . '">' . $aRow['type'] . '</a>';
+            $_data = ' <a href="' . admin_url('pdc/create/' . $aRow['id']) . '">' . $aRow['cheque_number'] . '</a>';
 
             $_data .= '<div class="row-options">';
             $_data .= '<a href="' . admin_url('pdc/create/' . $aRow['id']) . '">' . _l('view') . '</a>';
 
             $_data .= '</div>';
-        } elseif ($aColumns[$i] == 'paid_status') {
-            $checked = '';
-            if ($aRow['paid_status'] == 1) {
-                $checked = 'checked';
-            }
+        } 
+        // elseif ($aColumns[$i] == 'paid_status') {
+        //     $checked = '';
+        //     if ($aRow['paid_status'] == 1) {
+        //         $checked = 'checked';
+        //     }
 
-            $_data = '<div class="onoffswitch">
-                <input type="checkbox"  data-switch-url="' . admin_url() . 'pdc/change_paid_status" name="onoffswitch" class="onoffswitch-checkbox" id="c_' . $aRow['id'] . '" data-id="' . $aRow['id'] . '" ' . $checked . '>
-                <label class="onoffswitch-label" for="c_' . $aRow['id'] . '"></label>
-            </div>';
+        //     $_data = '<div class="onoffswitch">
+        //         <input type="checkbox"  data-switch-url="' . admin_url() . 'pdc/change_paid_status" name="onoffswitch" class="onoffswitch-checkbox" id="c_' . $aRow['id'] . '" data-id="' . $aRow['id'] . '" ' . $checked . '>
+        //         <label class="onoffswitch-label" for="c_' . $aRow['id'] . '"></label>
+        //     </div>';
 
-            $_data .= '<span class="">' . ($checked == 'checked' ? 'Paid' : 'Un-Paid') . '</span>';
-        }
+        //     $_data .= '<span class="">' . ($checked == 'checked' ? 'Paid' : 'Un-Paid') . '</span>';
+        // }
         $row[] = $_data;
     }
 

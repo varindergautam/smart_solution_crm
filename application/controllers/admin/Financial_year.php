@@ -17,7 +17,7 @@ class Financial_year extends AdminController
             $this->app->get_table_data('financial_year');
         }
 
-        $data['title']          = _l('financial_years');
+        $data['title']          = _l('Financial Years');
         $this->load->view('admin/financial_year/manage', $data);
     }
 
@@ -28,11 +28,11 @@ class Financial_year extends AdminController
 
             if ($id == '') {
                 $id = $this->financial_year_model->add($data);
-                set_alert('success', _l('added_successfully', _l('financial year')));
+                set_alert('success', _l('added_successfully', _l('Financial Year')));
                 redirect(admin_url('financial_year/'));
             } else {
-                $this->financial_year_model->add($data, $id);
-                set_alert('success', _l('updated_successfully', _l('financial year')));
+                $this->financial_year_model->update($data, $id);
+                set_alert('success', _l('updated_successfully', _l('Financial Year')));
                 redirect(admin_url('financial_year/'));
             }
         }
@@ -56,7 +56,7 @@ class Financial_year extends AdminController
     public function delete($id)
     {
         $this->financial_year_model->delete($id);
-        set_alert('success', _l('deleted', _l('financial year')));
+        set_alert('success', _l('deleted', _l('Financial Year')));
         redirect(admin_url('financial_year/'));
     }
 

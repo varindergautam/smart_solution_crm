@@ -16,7 +16,7 @@
                         </div>
                         <div class="tab-content tw-mt-5">
                             <div role="tabpanel" class="tab-pane active" id="tab_staff_profile">
-                                <?php $value = (isset($member) ? $member->month : ''); ?>
+                                <?php $value = (isset($month) ? $month : ''); ?>
                                 <?php echo render_input('month', 'Month', $value, 'month'); ?>
                             </div>
                         </div>
@@ -31,7 +31,7 @@
             <?php echo form_close(); ?>
 
             <?php 
-            if(isset($member->month)) {
+            if(isset($month)) {
             ?>
             <div class="col-md-12" id="small-table">
                 <div class="panel_s">

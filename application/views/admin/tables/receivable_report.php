@@ -44,15 +44,17 @@ foreach ($rResult as $aRow) {
             $_data = $aRow[$aColumns[$i]];
         }
 
-        if ($aColumns[$i] == "customer_name") {
+        // if ($aColumns[$i] == "customer_name") {
 
-            $_data = ' <a href="' . admin_url('receivable/create/' . $aRow['id']) . '">' . $aRow['customer_name'] . '</a>';
+        //     $_data = ' <a href="' . admin_url('receivable/create/' . $aRow['id']) . '">' . $aRow['customer_name'] . '</a>';
 
-            $_data .= '<div class="row-options">';
-            $_data .= '<a href="' . admin_url('receivable/create/' . $aRow['id']) . '">' . _l('view') . '</a>';
+        //     $_data .= '<div class="row-options">';
+        //     $_data .= '<a href="' . admin_url('receivable/create/' . $aRow['id']) . '">' . _l('view') . '</a>';
 
-            $_data .= '</div>';
-        } elseif ($aColumns[$i] == 'paid_status') {
+        //     $_data .= '</div>';
+        // } else
+        
+        if ($aColumns[$i] == 'paid_status') {
             $checked = '';
             if ($aRow['paid_status'] == 1) {
                 $checked = 'checked';

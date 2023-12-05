@@ -36,11 +36,10 @@
                             <div role="tabpanel" class="tab-pane active" id="tab_staff_profile">
 
                                 <div class="row">
-                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <div class="form-group select-placeholder">
-                                                <label for="brand" class="control-label"><?php echo _l('brand'); ?></label>
-                                                <select name="brand_id" data-live-search="true" id="brand" class="form-control selectpicker" data-none-selected-text="<?php echo _l('dropdown_non_selected_tex'); ?>">
+                                                <label for="brand" class="control-label"><?php echo _l('Brand'); ?></label>
+                                                <select name="brand_id" data-live-search="true" id="brand_id" class="form-control selectpicker" data-none-selected-text="<?php echo _l('dropdown_non_selected_tex'); ?>">
                                                     <option value=""><?php echo _l('system_default_string'); ?></option>
                                                     <?php foreach ($brands as $brand) {
                                                         $selected = '';
@@ -56,7 +55,6 @@
                                                 </select>
                                             </div>
                                         </div>
-                                    </div>
 
 
                                     <?php $value = (isset($member) ? $member->name : ''); ?>
@@ -85,18 +83,18 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <div class="form-group select-placeholder">
-                                                    <label for="brand" class="control-label"><?php echo _l('brand'); ?></label>
-                                                    <select name="brand" data-live-search="true" id="brand" class="form-control selectpicker" data-none-selected-text="<?php echo _l('dropdown_non_selected_tex'); ?>">
+                                                    <label for="currency" class="control-label"><?php echo _l('Currency'); ?></label>
+                                                    <select name="currency" data-live-search="true" id="currency" class="form-control selectpicker" data-none-selected-text="<?php echo _l('dropdown_non_selected_tex'); ?>">
                                                         <option value=""><?php echo _l('system_default_string'); ?></option>
-                                                        <?php foreach ($currencies as $brand) {
+                                                        <?php foreach ($currencies as $currency) {
                                                             $selected = '';
                                                             if (isset($member)) {
-                                                                if ($member->brand == $brand['id']) {
+                                                                if ($member->currency == $currency['id']) {
                                                                     $selected = 'selected';
                                                                 }
                                                             } ?>
-                                                            <option value="<?php echo $brand['id']; ?>" <?php echo $selected; ?>>
-                                                                <?php echo ucfirst($brand['name']); ?></option>
+                                                            <option value="<?php echo $currency['id']; ?>" <?php echo $selected; ?>>
+                                                                <?php echo ucfirst($currency['name']); ?></option>
                                                         <?php
                                                         } ?>
                                                     </select>
@@ -187,6 +185,7 @@
 
                 appValidateForm($('.staff-form'), {
                     name: 'required',
+                    brand_id: 'required',
                     email: 'required',
                     vat_number: 'required',
                     company: 'required',

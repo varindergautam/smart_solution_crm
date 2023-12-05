@@ -14,6 +14,14 @@ function app_init_admin_sidebar_menu_items()
         'badge'    => [],
     ]);
 
+    $CI->app_menu->add_sidebar_menu_item('brand', [
+        'name'     => _l('Brand'),
+        'href'     => admin_url('brand'),
+        'position' => 5,
+        'icon'     => 'fa-regular fa-user',
+        'badge'    => [],
+    ]);
+
     $CI->app_menu->add_sidebar_menu_item('suppliers', [
         'name'     => _l('Suppliers'),
         'href'     => admin_url('suppliers'),
@@ -22,7 +30,9 @@ function app_init_admin_sidebar_menu_items()
         'badge'    => [],
     ]);
 
-    $CI->app_menu->add_sidebar_menu_item('receivable report', [
+    
+
+    $CI->app_menu->add_sidebar_menu_item('receivable', [
         'name'     => _l('Receivable'),
         'href'     => admin_url('receivable'),
         'position' => 5,
@@ -30,15 +40,7 @@ function app_init_admin_sidebar_menu_items()
         'badge'    => [],
     ]);
 
-    $CI->app_menu->add_sidebar_menu_item('receivable', [
-        'name'     => _l('Receivable Report'),
-        'href'     => admin_url('receivable/report'),
-        'position' => 5,
-        'icon'     => 'fa-regular fa-user',
-        'badge'    => [],
-    ]);
-
-    $CI->app_menu->add_sidebar_menu_item('payable report', [
+    $CI->app_menu->add_sidebar_menu_item('payable', [
         'name'     => _l('Payable'),
         'href'     => admin_url('payable'),
         'position' => 5,
@@ -46,19 +48,71 @@ function app_init_admin_sidebar_menu_items()
         'badge'    => [],
     ]);
 
-    $CI->app_menu->add_sidebar_menu_item('payable', [
-        'name'     => _l('Payable Report'),
-        'href'     => admin_url('payable/report'),
-        'position' => 5,
-        'icon'     => 'fa-regular fa-user',
-        'badge'    => [],
-    ]);
+    
 
     $CI->app_menu->add_sidebar_menu_item('pdc', [
         'name'     => _l('PDC'),
         'href'     => admin_url('pdc'),
         'position' => 5,
         'icon'     => 'fa-regular fa-user',
+        'badge'    => [],
+    ]);
+
+    
+
+    $CI->app_menu->add_sidebar_menu_item('financial year', [
+        'name'     => _l('Financial Year'),
+        'href'     => admin_url('financial_year'),
+        'position' => 5,
+        'icon'     => 'fa-regular fa-user',
+        'badge'    => [],
+    ]);
+
+    $CI->app_menu->add_sidebar_menu_item('head', [
+        'name'     => _l('Head'),
+        'href'     => admin_url('head'),
+        'position' => 5,
+        'icon'     => 'fa-regular fa-user',
+        'badge'    => [],
+    ]);
+
+    $CI->app_menu->add_sidebar_menu_item('budget', [
+        'name'     => _l('Budget'),
+        'href'     => admin_url('budget'),
+        'position' => 5,
+        'icon'     => 'fa-regular fa-user',
+        'badge'    => [],
+    ]);
+
+    $CI->app_menu->add_sidebar_menu_item('report', [
+        'collapse' => true,
+        'name'     => _l('Reports'),
+        'position' => 10,
+        'icon'     => 'fa-solid fa-receipt',
+        'badge'    => [],
+    ]);
+
+    $CI->app_menu->add_sidebar_children_item('report', [
+        'slug'     => 'receivable',
+        'name'     => _l('Receivable'),
+        'href'     => admin_url('receivable/report'),
+        'position' => 5,
+        'badge'    => [],
+    ]);
+
+    $CI->app_menu->add_sidebar_children_item('report', [
+        'slug'     => 'payable',
+        'name'     => _l('Payable'),
+        'href'     => admin_url('payable/report'),
+        'position' => 5,
+        'badge'    => [],
+    ]);
+
+    $CI->app_menu->add_sidebar_children_item('report', [
+        'slug'     => 'pdc',
+        'name'     => _l('PDC'),
+        'href'     => admin_url('pdc/report'),
+        'position' => 5,
         'badge'    => [],
     ]);
 
