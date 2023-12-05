@@ -69,6 +69,8 @@ foreach ($rResult as $aRow) {
             $_data = $aRow['company'];
         } elseif ($aColumns[$i] == 'supplierid') {
             $_data = $aRow['supplierid'];
+        } elseif ($aColumns[$i] == 'phone_number') {
+            $_data = ($aRow['phone_number'] ? '<a href="tel:' . $aRow['phone_number'] . '">' . $aRow['phone_number'] . '</a>' : '');
         } else {
             if (strpos($aColumns[$i], 'date_picker_') !== false) {
                 $_data = (strpos($_data, ' ') !== false ? _dt($_data) : _d($_data));

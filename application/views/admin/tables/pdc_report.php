@@ -18,6 +18,16 @@ $aColumns = [
 
 $where  = [];
 // $where['type IS NOT NULL'] = NULL;
+if (isset($month) && $month != '') {
+    $month = $this->ci->db->escape_str($month);
+    $month = explode('-', $month);
+    $month = end($month);
+    array_push($where,  'AND ', 'MONTH(cheque_date)=' . $month);
+}
+
+if (isset($type) && $type != '') {
+    array_push($where,  'AND ', 'type=' . $type);
+}
 
 $sIndexColumn = 'id';
 $sTable = db_prefix() . 'pdc';

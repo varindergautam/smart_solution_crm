@@ -10,44 +10,56 @@
                     <div class="panel-body ">
                         <div class="horizontal-tabs">
                             <h4>
-                                Pdc Report
+                                PDC Report
                             </h4>
                             <hr>
                         </div>
                         <div class="tab-content tw-mt-5">
                             <div role="tabpanel" class="tab-pane active" id="tab_staff_profile">
-                                <?php $value = (isset($member) ? $member->customer_name : ''); ?>
+                                <?php $value = (isset($member) ? $member->month : ''); ?>
                                 <?php echo render_input('month', 'Month', $value, 'month'); ?>
+
+                                <div class="form-group select-placeholder">
+                                    <label for="type" class="control-label"><?php echo _l('Type'); ?></label>
+                                    <select name="type" data-live-search="true" id="type" class="form-control selectpicker" data-none-selected-text="<?php echo _l('dropdown_non_selected_tex'); ?>">
+                                        <option value="">Select Type</option>
+                                        <option value="in" <?php echo isset($member) && $member->month == 'in' ? 'selected' : ''; ?>>In</option>
+                                        <option value="out" <?php echo isset($member) && $member->month == 'out' ? 'selected' : ''; ?>>Out</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-
             <div class="btn-bottom-toolbar text-right">
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
             <?php echo form_close(); ?>
 
-            <div class="col-md-12" id="small-table">
-                <div class="panel_s">
-                    <div class="panel-body panel-table-full">
-                        <?php
-                        $table_data = [
-                            _l('ID'),
-                            _l('Customer Name'),
-                            _l('Company Name'),
-                            _l('Customer Mobile'),
-                            _l('Date'),
-                            _l('Paid Status'),
-                        ];
+            <?php
+            if (isset($member->month) || isset($member->type)) {
+            ?>
+                <div class="col-md-12" id="small-table">
+                    <div class="panel_s">
+                        <div class="panel-body panel-table-full">
+                            <?php
+                            $table_data = [
+                                _l('ID'),
+                                _l('Type'),
+                                _l('Cheque Date'),
+                                _l('Cheque Number'),
+                                _l('Date'),
+                                _l('Paid Status'),
+                            ];
 
-                        render_datatable($table_data, 'receivable');
-                        ?>
+                            render_datatable($table_data, 'pdc');
+                            ?>
+                        </div>
                     </div>
                 </div>
-            </div>
+            <?php } ?>
         </div>
     </div>
 </div>

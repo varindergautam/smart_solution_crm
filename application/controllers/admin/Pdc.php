@@ -65,15 +65,15 @@ class Pdc extends AdminController
         if ($this->input->post()) {
             $post = $this->input->post();
             if ($this->input->is_ajax_request()) {
-                if(isset($_GET['month'])){
-                    $this->app->get_table_data('pdc_report', ['month' => $_GET['month']]);
+                if (isset($_GET['month']) || isset($_GET['type'])) {
+                    $this->app->get_table_data('pdc_report', ['month' => $_GET['month'], 'type' => $_GET['type']]);
                 } else {
                     $this->app->get_table_data('pdc_report');
                 }
             }
         }
         $data['title']         = 'pdc Report';
-        
+
         $this->load->view('admin/pdc/report', $data);
     }
 

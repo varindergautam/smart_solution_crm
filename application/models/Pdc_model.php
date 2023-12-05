@@ -49,19 +49,19 @@ class Pdc_model extends App_Model
     {
         $status = hooks()->apply_filters('before_staff_status_change', $status, $id);
 
-        $this->db->where('receivable_id', $id);
+        $this->db->where('id', $id);
         $this->db->update(db_prefix() . 'pdc', [
             'paid_status' => $status,
         ]);
 
-        $this->db->where('id', $id);
+        $this->db->where('pdc_id', $id);
         $this->db->update(db_prefix() . 'receivable', [
-            'pdc_id' => $status,
+            'paid_status' => $status,
         ]);
 
-        $this->db->where('id', $id);
+        $this->db->where('pdc_id', $id);
         $this->db->update(db_prefix() . 'payable', [
-            'pdc_id' => $status,
+            'paid_status' => $status,
         ]);
 
         log_activity('Pdc Paid Status Changed [SupplierID: ' . $id . ' - Paid Status(Active/Inactive): ' . $status . ']');

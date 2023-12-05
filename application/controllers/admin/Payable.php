@@ -66,7 +66,7 @@ class Payable extends AdminController
         if ($this->input->post()) {
             $post = $this->input->post();
             if ($this->input->is_ajax_request()) {
-                if(isset($_GET['month'])){
+                if (isset($_GET['month'])) {
                     $this->app->get_table_data('payable_report', ['month' => $_GET['month']]);
                 } else {
                     $this->app->get_table_data('payable_report');
@@ -74,7 +74,7 @@ class Payable extends AdminController
             }
         }
         $data['title']         = 'payable Report';
-        
+
         $this->load->view('admin/payable/report', $data);
     }
 
