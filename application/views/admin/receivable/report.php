@@ -41,6 +41,7 @@
                             _l('Customer Mobile'),
                             _l('Invoice Due Date'),
                             _l('Date'),
+                            _l('Paid'),
                         ];
 
                         render_datatable($table_data, 'receivable');

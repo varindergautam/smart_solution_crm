@@ -10,7 +10,7 @@
                     <div class="panel-body ">
                         <div class="horizontal-tabs">
                             <h4>
-                                Receivable Report
+                                Pdc Report
                             </h4>
                             <hr>
                         </div>
@@ -39,8 +39,8 @@
                             _l('Customer Name'),
                             _l('Company Name'),
                             _l('Customer Mobile'),
-                            _l('Invoice Due Date'),
                             _l('Date'),
+                            _l('Paid Status'),
                         ];
 
                         render_datatable($table_data, 'receivable');

@@ -35,6 +35,10 @@
                         <div class="tab-content tw-mt-5">
                             <div role="tabpanel" class="tab-pane active" id="tab_staff_profile">
 
+                                <?php $value = (isset($member) ? $member->name : ''); ?>
+                                <?php $attrs = (isset($member) ? [] : ['autofocus' => true]); ?>
+                                <?php echo render_input('name', 'Name', $value, 'text', $attrs); ?>
+
                                 <?php $value = (isset($member) ? $member->company : ''); ?>
                                 <?php $attrs = (isset($member) ? [] : ['autofocus' => true]); ?>
                                 <?php echo render_input('company', 'Company', $value, 'text', $attrs); ?>
@@ -42,6 +46,10 @@
                                 <?php $value = (isset($member) ? $member->vat_number : ''); ?>
                                 <?php $attrs = (isset($member) ? [] : ['autofocus' => true]); ?>
                                 <?php echo render_input('vat_number', 'VAT Number', $value, 'text', $attrs); ?>
+
+                                <?php $value = (isset($member) ? $member->email : ''); ?>
+                                <?php $attrs = (isset($member) ? [] : ['autofocus' => true]); ?>
+                                <?php echo render_input('email', 'Email', $value, 'email', $attrs); ?>
 
                                 <?php $value = (isset($member) ? $member->phone_number : ''); ?>
                                 <?php echo render_input('phone_number', 'Phone', $value); ?>
@@ -153,6 +161,8 @@
             init_roles_permissions();
 
             appValidateForm($('.staff-form'), {
+                name: 'required',
+                email: 'required',
                 vat_number: 'required',
                 company: 'required',
                 phonenumber: {

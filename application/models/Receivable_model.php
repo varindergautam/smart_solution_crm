@@ -98,4 +98,21 @@ class Receivable_model extends App_Model
             return $query->result();
         }
     }
+
+    public function change_paid_status($id, $status)
+    {
+        $status = hooks()->apply_filters('before_staff_status_change', $status, $id);
+
+        $this->db->where('id', $id);
+        $this->db->update(db_prefix() . 'receivable', [
+            'paid_status' => $status,
+        ]);
+
+        $this->db->where('receivable_id', $id);
+        $this->db->update(db_prefix() . 'pdc', [
+            'paid_status' => $status,
+        ]);
+
+        log_activity('Receivable Paid Status Changed [SupplierID: ' . $id . ' - Paid Status(Active/Inactive): ' . $status . ']');
+    }
 }

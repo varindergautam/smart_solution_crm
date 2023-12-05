@@ -15,6 +15,7 @@ $aColumns = [
     db_prefix() . 'receivable.customer_mobile',
     db_prefix() . 'receivable.invoice_due_date',
     db_prefix() . 'receivable.created_at',
+    'paid_status'
 ];
 
 $where  = [];
@@ -51,6 +52,18 @@ foreach ($rResult as $aRow) {
             $_data .= '<a href="' . admin_url('receivable/create/' . $aRow['id']) . '">' . _l('view') . '</a>';
 
             $_data .= '</div>';
+        } elseif ($aColumns[$i] == 'paid_status') {
+            $checked = '';
+            if ($aRow['paid_status'] == 1) {
+                $checked = 'checked';
+            }
+
+            $_data = '<div class="onoffswitch">
+                <input type="checkbox"  data-switch-url="' . admin_url() . 'receivable/change_paid_status" name="onoffswitch" class="onoffswitch-checkbox" id="c_' . $aRow['id'] . '" data-id="' . $aRow['id'] . '" ' . $checked . '>
+                <label class="onoffswitch-label" for="c_' . $aRow['id'] . '"></label>
+            </div>';
+
+            $_data .= '<span class="">' . ($checked == 'checked' ? 'Paid' : 'Un-Paid') . '</span>';
         }
         $row[] = $_data;
     }

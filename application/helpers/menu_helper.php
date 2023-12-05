@@ -22,7 +22,7 @@ function app_init_admin_sidebar_menu_items()
         'badge'    => [],
     ]);
 
-    $CI->app_menu->add_sidebar_menu_item('receivable', [
+    $CI->app_menu->add_sidebar_menu_item('receivable report', [
         'name'     => _l('Receivable'),
         'href'     => admin_url('receivable'),
         'position' => 5,
@@ -38,7 +38,7 @@ function app_init_admin_sidebar_menu_items()
         'badge'    => [],
     ]);
 
-    $CI->app_menu->add_sidebar_menu_item('payable', [
+    $CI->app_menu->add_sidebar_menu_item('payable report', [
         'name'     => _l('Payable'),
         'href'     => admin_url('payable'),
         'position' => 5,

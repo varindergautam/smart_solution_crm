@@ -77,4 +77,11 @@ class Payable extends AdminController
         
         $this->load->view('admin/payable/report', $data);
     }
+
+    public function change_paid_status($id, $status)
+    {
+        if ($this->input->is_ajax_request()) {
+            $this->payable_model->change_paid_status($id, $status);
+        }
+    }
 }

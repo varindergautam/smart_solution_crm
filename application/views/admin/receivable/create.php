@@ -100,7 +100,7 @@
                                     <?php echo render_input('amount', 'Amount', $value, 'text'); ?>
 
                                     <?php $value = (isset($member) ? $member->bank_number : ''); ?>
-                                    <?php echo render_input('bank_number', 'Bank Number', $value, 'text'); ?>
+                                    <?php echo render_input('bank_number', 'Bank Name', $value, 'text'); ?>
                                 </div>
 
                             </div>

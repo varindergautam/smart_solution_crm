@@ -22,6 +22,7 @@
                             _l('Cheque Date'),
                             _l('Cheque No.'),
                             _l('Date'),
+                            _l('Paid Status'),
                         ];
                      
                         render_datatable($table_data, 'pdc');

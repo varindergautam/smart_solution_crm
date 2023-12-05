@@ -66,7 +66,7 @@ class Receivable extends AdminController
         if ($this->input->post()) {
             $post = $this->input->post();
             if ($this->input->is_ajax_request()) {
-                if(isset($_GET['month'])){
+                if (isset($_GET['month'])) {
                     $this->app->get_table_data('receivable_report', ['month' => $_GET['month']]);
                 } else {
                     $this->app->get_table_data('receivable_report');
@@ -74,7 +74,14 @@ class Receivable extends AdminController
             }
         }
         $data['title']         = 'Receivable Report';
-        
+
         $this->load->view('admin/receivable/report', $data);
+    }
+
+    public function change_paid_status($id, $status)
+    {
+        if ($this->input->is_ajax_request()) {
+            $this->receivable_model->change_paid_status($id, $status);
+        }
     }
 }

@@ -17,6 +17,8 @@
                         <?php
                         $table_data = [
                             _l('ID'),
+                            _l('Name'),
+                            _l('Email'),
                             _l('Vat Number'),
                             _l('Company'),
                             _l('Phone Number'),

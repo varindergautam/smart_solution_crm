@@ -44,7 +44,7 @@ class Payable_model extends App_Model
         $payable['remarks'] = $data['remarks'];
         $payable['pdc'] = $data['pdc'];
 
-        if($data['pdc']) {
+        if ($data['pdc']) {
             $pdc['cheque_number'] = $data['cheque_number'];
             $pdc['cheque_date'] = $data['cheque_date'];
             $pdc['amount'] = $data['amount'];
@@ -52,18 +52,18 @@ class Payable_model extends App_Model
         }
 
         if (isset($id) && !empty($id)) {
-            if($data['pdc']) {
+            if ($data['pdc']) {
                 $pdc['payable_id'] = $id;
             }
             $this->pdc_model->add($pdc, $data['pdcID']);
             $this->db->where("id", $id);
             return $this->db->update(db_prefix() . "payable", $payable);
         }
-       
+
         $this->db->insert(db_prefix() . 'payable', $payable);
         $lastID = $this->db->insert_id();
 
-        if($data['pdc']) {
+        if ($data['pdc']) {
             $pdc['payable_id'] = $lastID;
             $pdcId = $this->pdc_model->add($pdc);
 
@@ -77,5 +77,22 @@ class Payable_model extends App_Model
     {
         return $this->db->where('id', $id)
             ->delete(db_prefix() . 'payable');
+    }
+
+    public function change_paid_status($id, $status)
+    {
+        $status = hooks()->apply_filters('before_staff_status_change', $status, $id);
+
+        $this->db->where('id', $id);
+        $this->db->update(db_prefix() . 'payable', [
+            'paid_status' => $status,
+        ]);
+
+        $this->db->where('payable_id', $id);
+        $this->db->update(db_prefix() . 'pdc', [
+            'paid_status' => $status,
+        ]);
+
+        log_activity('payable Paid Status Changed [SupplierID: ' . $id . ' - Paid Status(Active/Inactive): ' . $status . ']');
     }
 }

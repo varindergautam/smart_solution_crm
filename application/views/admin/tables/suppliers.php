@@ -9,6 +9,8 @@ $custom_fields = get_custom_fields('suppliers', [
 ]);
 $aColumns = [
     'supplierid',
+    'name',
+    'email',
     'vat_number',
     'company',
     'phone_number',
@@ -56,8 +58,8 @@ foreach ($rResult as $aRow) {
 
             // For exporting
             $_data .= '<span class="hide">' . ($checked == 'checked' ? _l('is_active_export') : _l('is_not_active_export')) . '</span>';
-        } elseif ($aColumns[$i] == 'vat_number') {
-            $_data = ' <a href="' . admin_url('suppliers/create/' . $aRow['supplierid']) . '">' . $aRow['vat_number'] . ' - ' . $aRow['company'] . '</a>';
+        } elseif ($aColumns[$i] == 'name') {
+            $_data = ' <a href="' . admin_url('suppliers/create/' . $aRow['supplierid']) . '">' . $aRow['name'] . '</a>';
 
             $_data .= '<div class="row-options">';
             $_data .= '<a href="' . admin_url('suppliers/create/' . $aRow['supplierid']) . '">' . _l('view') . '</a>';
@@ -65,8 +67,7 @@ foreach ($rResult as $aRow) {
             $_data .= '</div>';
         } elseif ($aColumns[$i] == 'company') {
             $_data = $aRow['company'];
-        }
-        elseif ($aColumns[$i] == 'supplierid') {
+        } elseif ($aColumns[$i] == 'supplierid') {
             $_data = $aRow['supplierid'];
         } else {
             if (strpos($aColumns[$i], 'date_picker_') !== false) {
