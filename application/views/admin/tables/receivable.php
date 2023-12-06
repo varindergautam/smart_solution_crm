@@ -9,7 +9,7 @@ $custom_fields = get_custom_fields('receivable', [
 ]);
 $aColumns = [
     db_prefix() . 'receivable.id',
-    'customer_name',
+    'company_name',
     'invoice_number',
     'invoice_date',
     db_prefix() . 'receivable.invoice_due_date',
@@ -42,12 +42,12 @@ foreach ($rResult as $aRow) {
             $_data = $aRow[$aColumns[$i]];
         }
 
-        if ($aColumns[$i] == "customer_name") {
+        if ($aColumns[$i] == "company_name") {
 
-            $_data = ' <a href="' . admin_url('receivable/create/' . $aRow[db_prefix() . 'receivable.id']) . '">' . $aRow['customer_name']. '</a>';
+            $_data = ' <a href="' . admin_url('receivable/create/' . $aRow[db_prefix() . 'receivable.id']) . '">' . $aRow['company_name']. '</a>';
 
             $_data .= '<div class="row-options">';
-            $_data .= '<a href="' . admin_url('receivable/create/' . $aRow[db_prefix() . 'receivable.id']) . '">' . _l('view') . '</a>';
+            $_data .= '<a href="' . admin_url('receivable/create/' . $aRow[db_prefix() . 'receivable.id']) . '">' . _l('edit') . '</a>';
 
             $_data .= '</div>';
         }

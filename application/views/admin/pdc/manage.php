@@ -5,26 +5,28 @@
         <div class="row">
             <div class="col-md-12">
                 <?php if (has_permission('pdc', '', 'create')) { ?>
-                    <?php } ?>
+                <?php } ?>
                 <div class="tw-mb-2 sm:tw-mb-4">
                     <a href="<?php echo admin_url('pdc/create'); ?>" class="btn btn-primary">
                         <i class="fa-regular fa-plus tw-mr-1"></i>
                         <?php echo _l('Create PDC'); ?>
                     </a>
                 </div>
-                
+
                 <div class="panel_s">
                     <div class="panel-body panel-table-full">
                         <?php
                         $table_data = [
                             _l('ID'),
-                            _l('Cheque No.'),
+                            _l('Particular'),
+                            _l('Date of PDC'),
+                            _l('Cheque Number'),
+                            _l('Bank'),
                             _l('Cheque Date'),
-                            _l('Type'),
-                            _l('Created At'),
-                            // _l('Paid Status'),
+                            _l('Cheque Amount'),
+                            _l('Remark'),
                         ];
-                     
+
                         render_datatable($table_data, 'pdc');
                         ?>
                     </div>
@@ -39,8 +41,7 @@
         <?php echo form_open(admin_url('pdc/delete', ['delete_pdc_form'])); ?>
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title"><?php echo _l('delete_pdc'); ?></h4>
             </div>
             <div class="modal-body">
@@ -63,18 +64,18 @@
 
 <?php init_tail(); ?>
 <script>
-$(function() {
+    $(function() {
 
-    initDataTable('.table-pdc', window.location.href);
-});
+        initDataTable('.table-pdc', window.location.href);
+    });
 
-function delete_pdc_member(id) {
-    $('#delete_pdc').modal('show');
-    $('#transfer_data_to').find('option').prop('disabled', false);
-    $('#transfer_data_to').find('option[value="' + id + '"]').prop('disabled', true);
-    $('#delete_pdc .delete_id input').val(id);
-    $('#transfer_data_to').selectpicker('refresh');
-}
+    function delete_pdc_member(id) {
+        $('#delete_pdc').modal('show');
+        $('#transfer_data_to').find('option').prop('disabled', false);
+        $('#transfer_data_to').find('option[value="' + id + '"]').prop('disabled', true);
+        $('#delete_pdc .delete_id input').val(id);
+        $('#transfer_data_to').selectpicker('refresh');
+    }
 </script>
 </body>
 

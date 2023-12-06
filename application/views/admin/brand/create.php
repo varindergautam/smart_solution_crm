@@ -47,7 +47,16 @@
         <div class="btn-bottom-pusher"></div>
     </div>
     <?php init_tail(); ?>
+    <script>
+        $(function() {
 
+            init_roles_permissions();
+
+            appValidateForm($('.staff-form'), {
+                name: 'required',
+            });
+        });
+    </script>
     </body>
 
     </html>

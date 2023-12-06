@@ -10,7 +10,7 @@ $custom_fields = get_custom_fields('receivable', [
 
 $aColumns = [
     db_prefix() . 'receivable.id',
-    'customer_name',
+    'company_name',
     'invoice_number',
     'invoice_date',
     db_prefix() . 'receivable.invoice_due_date',

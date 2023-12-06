@@ -25,7 +25,7 @@ class Receivable extends AdminController
     {
         if ($this->input->post()) {
             $data = $this->input->post();
-
+            
             if ($id == '') {
                 $id = $this->receivable_model->add($data);
                 set_alert('success', _l('added_successfully', _l('Receivable')));

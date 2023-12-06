@@ -10,7 +10,7 @@ $custom_fields = get_custom_fields('payable', [
 
 $aColumns = [
     db_prefix() . 'payable.id',
-    db_prefix() . 'payable.supplier_name',
+    db_prefix() . 'payable.company_name',
     'invoice_number',
     'invoice_date',
     db_prefix() . 'payable.invoice_due_date',

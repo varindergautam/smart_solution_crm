@@ -9,11 +9,13 @@ $custom_fields = get_custom_fields('pdc', [
 ]);
 $aColumns = [
     'id',
+    'particular',
+    'date',
     'cheque_number',
+    'bank_number',
     'cheque_date',
-    'type',
-    db_prefix() . 'pdc.created_at',
-    // 'paid_status'
+    'amount',
+    'remark',
 ];
 
 $where  = [];

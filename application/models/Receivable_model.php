@@ -50,6 +50,7 @@ class Receivable_model extends App_Model
             $pdc['cheque_date'] = $data['cheque_date'];
             $pdc['amount'] = $data['amount'];
             $pdc['bank_number'] = $data['bank_number'];
+            $pdc['type'] = 'receivable';
         }
 
         if (isset($id) && !empty($id)) {

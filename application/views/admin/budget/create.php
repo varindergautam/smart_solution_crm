@@ -70,18 +70,8 @@
                                     </div>
                                 </div>
 
-                                <!-- <div class="form-group">
-                                    <div class="form-group select-placeholder">
-                                        <label for="head_type" class="control-label"><?php echo _l('Head Type'); ?></label>
-                                        <select name="head_type" data-live-search="true" id="head_type" class="form-control selectpicker" data-none-selected-text="<?php echo _l('dropdown_non_selected_tex'); ?>">
-                                            <option value=""><?php echo _l('system_default_string'); ?></option>
-
-                                        </select>
-                                    </div>
-                                </div> -->
-
                                 <?php $value = (isset($member) ? $member->head_type : ''); ?>
-                                <?php echo render_input('head_type', 'Head Type', $value, 'text'); ?>
+                                <?php echo render_input('head_type', 'Head Type', $value, 'text', ['readonly' => 'readonly']); ?>
 
                                 <?php $value = (isset($member) ? $member->amount : ''); ?>
                                 <?php echo render_input('amount', 'Amount', $value, 'text'); ?>
@@ -105,6 +95,18 @@
     <?php init_tail(); ?>
 
     <script>
+        $(function() {
+
+            init_roles_permissions();
+
+            appValidateForm($('.staff-form'), {
+                financial_year: 'required',
+                head: 'required',
+                amount: 'required',
+                into_month: 'required',
+            });
+        });
+
         $(document).ready(function() {
             $('#head').change(function() {
                 var selectedValue = $(this).val();

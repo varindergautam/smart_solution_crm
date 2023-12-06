@@ -88,8 +88,8 @@
                                     <input class="form-check-input" type="checkbox" value="1" id="pdc" name="pdc" <?php echo isset($member) && $member->pdc == 1 ? 'checked' : ''; ?>>
                                 </div>
 
-                                <div class="pdc_section" style="<?php echo isset($member->pdc) && $member->pdc == 1 ? 'display:block' : 'display:none';?>">
-                                        <input type="hidden" value="<?php echo isset($member) ? $member->pdcID : ''; ?>" name="pdcID">
+                                <div class="pdc_section" style="<?php echo isset($member->pdc) && $member->pdc == 1 ? 'display:block' : 'display:none'; ?>">
+                                    <input type="hidden" value="<?php echo isset($member) ? $member->pdcID : ''; ?>" name="pdcID">
                                     <?php $value = (isset($member) ? $member->cheque_number : ''); ?>
                                     <?php echo render_input('cheque_number', 'Cheque Number', $value, 'text'); ?>
 
@@ -124,17 +124,30 @@
 
             appValidateForm($('.staff-form'), {
                 supplier_id: 'required',
+                invoice_amount: 'required',
+                invoice_due_date: 'required',
             });
 
 
             $(document).ready(function() {
 
-                $('#pdc').change(function () {
+                $('#pdc').change(function() {
                     var isChecked = $('#pdc').prop('checked');
                     if (isChecked) {
                         $('.pdc_section').show();
+                        appValidateForm($('.staff-form'), {
+                            amount: 'required',
+                            supplier_id: 'required',
+                            invoice_amount: 'required',
+                            invoice_due_date: 'required',
+                        });
                     } else {
                         $('.pdc_section').hide();
+                        appValidateForm($('.staff-form'), {
+                            supplier_id: 'required',
+                            invoice_amount: 'required',
+                            invoice_due_date: 'required',
+                        });
                     }
                 });
 

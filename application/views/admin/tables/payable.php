@@ -8,19 +8,29 @@ $custom_fields = get_custom_fields('payable', [
     'show_on_table' => 1,
 ]);
 $aColumns = [
-    'id',
-    'supplier_name',
+    db_prefix() . 'payable.id',
     db_prefix() . 'payable.company_name',
-    db_prefix() . 'payable.supplier_mobile',
-    db_prefix() . 'payable.created_at',
+    'invoice_number',
+    'invoice_date',
+    db_prefix() . 'payable.invoice_due_date',
+    db_prefix() . 'payable.invoice_amount',
+    db_prefix() . 'pdc.date',
+    db_prefix() . 'pdc.cheque_number',
+    db_prefix() . 'pdc.bank_number',
+    db_prefix() . 'pdc.amount',
+    db_prefix() . 'payable.remarks',
+    db_prefix() . 'payable.paid_status'
 ];
+
+$join   = [
+    'LEFT JOIN ' . db_prefix() . 'pdc ON ' . db_prefix() . 'pdc.payable_id = ' . db_prefix() . 'payable.id',
+];
+
 
 $sIndexColumn = 'id';
 $sTable = db_prefix() . 'payable';
-// $join   = [
-//     'LEFT JOIN ' . db_prefix() . 'payable ON ' . db_prefix() . 'payable.supplierid = ' . db_prefix() . 'payable.supplier_id',
-// ];
-$result = data_tables_init($aColumns, $sIndexColumn, $sTable, [], []);
+
+$result = data_tables_init($aColumns, $sIndexColumn, $sTable, $join, []);
 
 
 $output  = $result['output'];
@@ -36,12 +46,12 @@ foreach ($rResult as $aRow) {
             $_data = $aRow[$aColumns[$i]];
         }
 
-        if ($aColumns[$i] == "supplier_name") {
+        if ($aColumns[$i] == db_prefix() . 'payable.company_name') {
 
-            $_data = ' <a href="' . admin_url('payable/create/' . $aRow['id']) . '">' . $aRow['supplier_name']. '</a>';
+            $_data = ' <a href="' . admin_url('payable/create/' . $aRow[db_prefix() . 'payable.id']) . '">' . $aRow[db_prefix() . 'payable.company_name']. '</a>';
 
             $_data .= '<div class="row-options">';
-            $_data .= '<a href="' . admin_url('payable/create/' . $aRow['id']) . '">' . _l('edit') . '</a>';
+            $_data .= '<a href="' . admin_url('payable/create/' . $aRow[db_prefix() . 'payable.id']) . '">' . _l('edit') . '</a>';
 
             $_data .= '</div>';
         }

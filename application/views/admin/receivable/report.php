@@ -38,7 +38,7 @@
                             <?php
                             $table_data = [
                                 _l('ID'),
-                                _l('Customer Name'),
+                                _l('Company Name'),
                                 _l('Invoice No.'),
                                 _l('Invoice Date'),
                                 _l('Invoice Due Date'),

@@ -76,6 +76,21 @@
     </div>
     <?php init_tail(); ?>
 
+    <script>
+        $(function() {
+
+            init_roles_permissions();
+
+            appValidateForm($('.staff-form'), {
+                type: 'required',
+                particular: 'required',
+                cheque_date: 'required',
+                amount: 'required',
+            });
+
+        });
+    </script>
+
     </body>
 
     </html>

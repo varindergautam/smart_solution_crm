@@ -49,7 +49,7 @@
                                 </div>
 
                                 <?php $value = (isset($member) ? $member->customer_name : ''); ?>
-                                <?php //echo render_input('customer_name', 'Customer Name', $value, ['readonly' => 'readonly']); ?>
+                                <?php echo render_input('customer_name', 'Customer Name', $value); ?>
 
                                 <?php $value = (isset($member) ? $member->company_name : ''); ?>
                                 <?php echo render_input('company_name', 'Company', $value, 'text', ['readonly' => 'readonly']); ?>
@@ -58,7 +58,7 @@
                                 <?php echo render_input('customer_mobile', 'Customer Mobile', $value, 'text', ['readonly' => 'readonly']); ?>
 
                                 <?php $value = (isset($member) ? $member->customer_email : ''); ?>
-                                <?php //echo render_input('customer_email', 'Customer Email', $value, 'text', ['readonly' => 'readonly']); ?>
+                                <?php echo render_input('customer_email', 'Customer Email', $value, 'text'); ?>
 
                                 <?php $value = (isset($member) ? $member->customer_city : ''); ?>
                                 <?php echo render_input('customer_city', 'Customer City', $value, 'text', ['readonly' => 'readonly']); ?>
@@ -88,8 +88,8 @@
                                     <input class="form-check-input" type="checkbox" value="1" id="pdc" name="pdc" <?php echo isset($member) && $member->pdc == 1 ? 'checked' : ''; ?>>
                                 </div>
 
-                                <div class="pdc_section" style="<?php echo isset($member->pdc) && $member->pdc == 1 ? 'display:block' : 'display:none';?>">
-                                        <input type="hidden" value="<?php echo isset($member) ? $member->pdcID : ''; ?>" name="pdcID">
+                                <div class="pdc_section" style="<?php echo isset($member->pdc) && $member->pdc == 1 ? 'display:block' : 'display:none'; ?>">
+                                    <input type="hidden" value="<?php echo isset($member) ? $member->pdcID : ''; ?>" name="pdcID">
                                     <?php $value = (isset($member) ? $member->cheque_number : ''); ?>
                                     <?php echo render_input('cheque_number', 'Cheque Number', $value, 'text'); ?>
 
@@ -124,17 +124,29 @@
 
             appValidateForm($('.staff-form'), {
                 customer_id: 'required',
+                invoice_amount: 'required',
+                invoice_due_date: 'required',
             });
-
 
             $(document).ready(function() {
 
-                $('#pdc').change(function () {
+                $('#pdc').change(function() {
                     var isChecked = $('#pdc').prop('checked');
                     if (isChecked) {
                         $('.pdc_section').show();
+                        appValidateForm($('.staff-form'), {
+                            amount: 'required',
+                            customer_id: 'required',
+                            invoice_amount: 'required',
+                            invoice_due_date: 'required',
+                        });
                     } else {
                         $('.pdc_section').hide();
+                        appValidateForm($('.staff-form'), {
+                            customer_id: 'required',
+                            invoice_amount: 'required',
+                            invoice_due_date: 'required',
+                        });
                     }
                 });
 

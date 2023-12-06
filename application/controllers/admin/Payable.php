@@ -26,7 +26,7 @@ class Payable extends AdminController
     {
         if ($this->input->post()) {
             $data = $this->input->post();
-
+            $data['type'] = 'payable';
             if ($id == '') {
                 $id = $this->payable_model->add($data);
                 set_alert('success', _l('added_successfully', _l('Payable')));
