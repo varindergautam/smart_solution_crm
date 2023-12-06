@@ -31,12 +31,39 @@ class Budget_model extends App_Model
     {
         $data = hooks()->apply_filters('before_create_budget', $data);
 
+        $total = $data['amount'] / $data['into_month'];
+
+        $monthNames = array(
+            1 => "january",
+            2 => "february",
+            3 => "march",
+            4 => "april",
+            5 => "may",
+            6 => "june",
+            7 => "july",
+            8 => "august",
+            9 => "september",
+            10 => "october",
+            11 => "november",
+            12 => "december"
+        );
+
+        $months = array();
+        for ($i = 1; $i <= $data['into_month']; $i++) {
+            $months[$monthNames[$i]] = $total;
+        }
+
+        for ($i = $data['into_month'] + 1; $i <= 12; $i++) {
+            $months[$monthNames[$i]] = null;
+        }
+
+        $data = array_merge($data, $months);
+
         $data['created_at'] = date('Y-m-d H:i:s');
 
         $this->db->insert(db_prefix() . 'budget', $data);
         $id = $this->db->insert_id();
         if ($id) {
-
             $this->db->where('id', $id);
 
             log_activity('New budget Added [ID: ' . $id . ', ' . $data['name'] . ']');
@@ -49,11 +76,40 @@ class Budget_model extends App_Model
         return false;
     }
 
+
     public function update($data, $id)
     {
         $data = hooks()->apply_filters('before_budget', $data, $id);
 
         $affectedRows = 0;
+
+        $total = $data['amount'] / $data['into_month'];
+
+        $monthNames = array(
+            1 => "january",
+            2 => "february",
+            3 => "march",
+            4 => "april",
+            5 => "may",
+            6 => "june",
+            7 => "july",
+            8 => "august",
+            9 => "september",
+            10 => "october",
+            11 => "november",
+            12 => "december"
+        );
+
+        $months = array();
+        for ($i = 1; $i <= $data['into_month']; $i++) {
+            $months[$monthNames[$i]] = $total;
+        }
+
+        for ($i = $data['into_month'] + 1; $i <= 12; $i++) {
+            $months[$monthNames[$i]] = null;
+        }
+
+        $data = array_merge($data, $months);
 
         $this->db->where('id', $id);
         $this->db->update(db_prefix() . 'budget', $data);
@@ -81,5 +137,28 @@ class Budget_model extends App_Model
         ]);
 
         log_activity('budget Status Changed [id: ' . $id . ' - Status(Active/Inactive): ' . $status . ']');
+    }
+
+    public function incomeHead($year)
+    {
+        $this->db->select('budget.*, financial_year.year_name');
+        $this->db->join('financial_year', 'financial_year.id = budget.financial_year');
+        $this->db->where('financial_year', $year);
+        $this->db->where('head_type', 'income');
+        $this->db->order_by('id', 'desc');
+
+        return $this->db->get(db_prefix() . 'budget')->result();
+    }
+
+
+    public function expenseHead($year)
+    {
+        $this->db->select('budget.*, financial_year.year_name');
+        $this->db->join('financial_year', 'financial_year.id = budget.financial_year');
+        $this->db->where('financial_year', $year);
+        $this->db->where('head_type', 'expense');
+        $this->db->order_by('id', 'desc');
+
+        return $this->db->get(db_prefix() . 'budget')->result();
     }
 }

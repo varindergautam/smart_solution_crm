@@ -33,7 +33,7 @@ class Budget extends AdminController
                 set_alert('success', _l('added_successfully', _l('Budget')));
                 redirect(admin_url('budget/'));
             } else {
-                $this->budget_model->add($data, $id);
+                $this->budget_model->update($data, $id);
                 set_alert('success', _l('updated_successfully', _l('Budget')));
                 redirect(admin_url('budget/'));
             }
@@ -69,5 +69,23 @@ class Budget extends AdminController
         if ($this->input->is_ajax_request()) {
             $this->budget_model->change_status($id, $status);
         }
+    }
+
+    public function report()
+    {
+        $data['year'] = isset($_GET['year']) ? $_GET['year'] : NULL;
+        if ($this->input->is_ajax_request()) {
+            if (isset($_GET['year'])) {
+                $this->app->get_table_data('budget_report', ['year' => $_GET['year']]);
+            } else {
+                $this->app->get_table_data('budget_report');
+            }
+        }
+        $data['title']         = 'Budget Report';
+        $data['financial_years'] = $this->financial_year_model->get();
+        $data['income_head'] = $this->budget_model->incomeHead($data['year']);
+        $data['expense_head'] = $this->budget_model->expenseHead($data['year']);
+
+        $this->load->view('admin/budget/report', $data);
     }
 }
