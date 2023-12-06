@@ -47,10 +47,13 @@
                             <?php
                             $table_data = [
                                 _l('ID'),
+                                _l('Particular'),
+                                _l('Date of PDC'),
                                 _l('Cheque Number'),
+                                _l('Bank'),
                                 _l('Cheque Date'),
-                                _l('Type'),
-                                _l('Date'),
+                                _l('Cheque Amount'),
+                                _l('Remark'),
                                 _l('Paid Status'),
                             ];
 

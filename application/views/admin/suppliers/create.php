@@ -36,26 +36,6 @@
                             <div role="tabpanel" class="tab-pane active" id="tab_staff_profile">
 
                                 <div class="row">
-                                        <div class="form-group">
-                                            <div class="form-group select-placeholder">
-                                                <label for="brand" class="control-label"><?php echo _l('Brand'); ?></label>
-                                                <select name="brand_id" data-live-search="true" id="brand_id" class="form-control selectpicker" data-none-selected-text="<?php echo _l('dropdown_non_selected_tex'); ?>">
-                                                    <option value=""><?php echo _l('system_default_string'); ?></option>
-                                                    <?php foreach ($brands as $brand) {
-                                                        $selected = '';
-                                                        if (isset($member)) {
-                                                            if ($member->brand_id == $brand['id']) {
-                                                                $selected = 'selected';
-                                                            }
-                                                        } ?>
-                                                        <option value="<?php echo $brand['id']; ?>" <?php echo $selected; ?>>
-                                                            <?php echo ucfirst($brand['name']); ?></option>
-                                                    <?php
-                                                    } ?>
-                                                </select>
-                                            </div>
-                                        </div>
-
 
                                     <?php $value = (isset($member) ? $member->name : ''); ?>
                                     <?php $attrs = (isset($member) ? [] : ['autofocus' => true]); ?>
@@ -78,6 +58,32 @@
 
                                     <?php $value = (isset($member) ? $member->website : ''); ?>
                                     <?php echo render_input('website', 'Website', $value); ?>
+
+                                    <?php
+                                    $selectedBrand = [];
+                                    if (isset($member->brand_id)) {
+                                        $saveBrands = explode(',', $member->brand_id);
+                                        foreach ($saveBrands as $brand) {
+                                            array_push($selectedBrand, $brand);
+                                        }
+                                    }
+                                    ?>
+
+                                    <?php echo render_select('brand_id[]', $brands, ['id', 'name'], 'Brand', $selectedBrand, ['multiple' => true, 'data-actions-box' => true], [], '', '', false);
+                                    ?>
+
+                                    <?php
+                                    $selectedGroup = [];
+                                    if (isset($member->group_id)) {
+                                        $saveGroups = explode(',', $member->group_id);
+                                        foreach ($saveGroups as $group) {
+                                            array_push($selectedGroup, $group);
+                                        }
+                                    }
+                                    ?>
+
+                                    <?php echo render_select('group_id[]', $groups, ['id', 'name'], 'Group', $selectedGroup, ['multiple' => true, 'data-actions-box' => true], [], '', '', false);
+                                    ?>
 
                                     <div class="row">
                                         <div class="col-md-6">

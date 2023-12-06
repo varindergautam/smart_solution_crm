@@ -9,10 +9,13 @@ $custom_fields = get_custom_fields('pdc', [
 ]);
 $aColumns = [
     'id',
+    'particular',
+    'date',
     'cheque_number',
+    'bank_number',
     'cheque_date',
-    'type',
-    db_prefix() . 'pdc.created_at',
+    'amount',
+    'remark',
     'paid_status'
 ];
 
@@ -22,7 +25,7 @@ if (isset($month) && $month != '') {
     $month = $this->ci->db->escape_str($month);
     $month = explode('-', $month);
     $month = end($month);
-    array_push($where,  'AND ', 'MONTH(cheque_date)=' . $month);
+    array_push($where,  'AND ', 'MONTH(date)=' . $month);
 }
 
 if (isset($type) && $type != '') {

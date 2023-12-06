@@ -9,12 +9,22 @@ $custom_fields = get_custom_fields('payable', [
 ]);
 
 $aColumns = [
-    'id',
-    db_prefix() . 'payable.company_name',
-    db_prefix() . 'payable.supplier_mobile',
+    db_prefix() . 'payable.id',
+    db_prefix() . 'payable.supplier_name',
+    'invoice_number',
+    'invoice_date',
     db_prefix() . 'payable.invoice_due_date',
-    db_prefix() . 'payable.created_at',
-    'paid_status'
+    db_prefix() . 'payable.invoice_amount',
+    db_prefix() . 'pdc.date',
+    db_prefix() . 'pdc.cheque_number',
+    db_prefix() . 'pdc.bank_number',
+    db_prefix() . 'pdc.amount',
+    db_prefix() . 'payable.remarks',
+    db_prefix() . 'payable.paid_status'
+];
+
+$join   = [
+    'LEFT JOIN ' . db_prefix() . 'pdc ON ' . db_prefix() . 'pdc.payable_id = ' . db_prefix() . 'payable.id',
 ];
 
 $where  = [];
@@ -26,9 +36,9 @@ if (isset($month) && $month != '') {
 }
 
 
-$sIndexColumn = 'id';
+$sIndexColumn ='id';
 $sTable = db_prefix() . 'payable';
-$result = data_tables_init($aColumns, $sIndexColumn, $sTable, [], $where);
+$result = data_tables_init($aColumns, $sIndexColumn, $sTable, $join , $where);
 
 $output  = $result['output'];
 $rResult = $result['rResult'];
@@ -45,21 +55,21 @@ foreach ($rResult as $aRow) {
 
         if ($aColumns[$i] == "company_name") {
 
-            $_data = ' <a href="' . admin_url('payable/create/' . $aRow['id']) . '">' . $aRow['company_name'] . '</a>';
+            $_data = ' <a href="' . admin_url('payable/create/' . $aRow[db_prefix() . 'payable.id']) . '">' . $aRow['company_name'] . '</a>';
 
             $_data .= '<div class="row-options">';
-            $_data .= '<a href="' . admin_url('payable/create/' . $aRow['id']) . '">' . _l('view') . '</a>';
+            $_data .= '<a href="' . admin_url('payable/create/' . $aRow[db_prefix() . 'payable.id']) . '">' . _l('view') . '</a>';
 
             $_data .= '</div>';
-        } elseif ($aColumns[$i] == 'paid_status') {
+        } elseif ($aColumns[$i] == db_prefix() . 'payable.paid_status') {
             $checked = '';
-            if ($aRow['paid_status'] == 1) {
+            if ($aRow[db_prefix() . 'payable.paid_status'] == 1) {
                 $checked = 'checked';
             }
 
             $_data = '<div class="onoffswitch">
-                <input type="checkbox"  data-switch-url="' . admin_url() . 'payable/change_paid_status" name="onoffswitch" class="onoffswitch-checkbox" id="c_' . $aRow['id'] . '" data-id="' . $aRow['id'] . '" ' . $checked . '>
-                <label class="onoffswitch-label" for="c_' . $aRow['id'] . '"></label>
+                <input type="checkbox"  data-switch-url="' . admin_url() . 'payable/change_paid_status" name="onoffswitch" class="onoffswitch-checkbox" id="c_' . $aRow[db_prefix() . 'payable.id'] . '" data-id="' . $aRow[db_prefix() . 'payable.id'] . '" ' . $checked . '>
+                <label class="onoffswitch-label" for="c_' . $aRow[db_prefix() . 'payable.id'] . '"></label>
             </div>';
 
             $_data .= '<span class="">' . ($checked == 'checked' ? 'Paid' : 'Un-Paid') . '</span>';

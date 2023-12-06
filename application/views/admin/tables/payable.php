@@ -41,7 +41,7 @@ foreach ($rResult as $aRow) {
             $_data = ' <a href="' . admin_url('payable/create/' . $aRow['id']) . '">' . $aRow['supplier_name']. '</a>';
 
             $_data .= '<div class="row-options">';
-            $_data .= '<a href="' . admin_url('payable/create/' . $aRow['id']) . '">' . _l('view') . '</a>';
+            $_data .= '<a href="' . admin_url('payable/create/' . $aRow['id']) . '">' . _l('edit') . '</a>';
 
             $_data .= '</div>';
         }

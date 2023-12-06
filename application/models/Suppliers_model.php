@@ -31,6 +31,8 @@ class Suppliers_model extends App_Model
 
     public function add($data)
     {
+        $data['brand_id'] = implode(',',$data['brand_id']);
+        $data['group_id'] = implode(',',$data['group_id']);
         // First check for all cases if the email exists.
         $data = hooks()->apply_filters('before_create_supplier_member', $data);
 
@@ -61,6 +63,8 @@ class Suppliers_model extends App_Model
 
     public function update($data, $id)
     {
+        $data['brand_id'] = implode(',',$data['brand_id']);
+        $data['group_id'] = implode(',',$data['group_id']);
         $data = hooks()->apply_filters('before_update_suppliers_member', $data, $id);
 
         $affectedRows = 0;

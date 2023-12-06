@@ -44,7 +44,7 @@ foreach ($rResult as $aRow) {
             $_data = ' <a href="' . admin_url('budget/create/' . $aRow[db_prefix() . 'budget.id']) . '">' . $aRow["amount"] . '</a>';
 
             $_data .= '<div class="row-options">';
-            $_data .= '<a href="' . admin_url('budget/create/' . $aRow[db_prefix() . 'budget.id']) . '">' . _l('view') . '</a>';
+            $_data .= '<a href="' . admin_url('budget/create/' . $aRow[db_prefix() . 'budget.id']) . '">' . _l('edit') . '</a>';
             // $_data .= ' | ';
             // $_data .= '<a href="' . admin_url('budget/delete/' . $aRow[db_prefix() . 'budget.id']) . '" class="text-danger _delete">' . _l('delete') . '</a>';
 

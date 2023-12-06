@@ -42,9 +42,9 @@
                                 <?php $value = (isset($member) ? $member->date : date('Y-m-d')); ?>
                                 <?php echo render_input('date', 'Entry Date', $value, 'date'); ?>
 
-
-                                <?php $value = (isset($member) ? $member->remark : ''); ?>
-                                <?php echo render_input('remark', 'Remarks', $value, 'text'); ?>
+                                <?php $value = (isset($member) ? $member->particular : ''); ?>
+                                <?php echo render_input('particular', 'Particular', $value, 'text'); ?>
+                                
 
                                 <?php $value = (isset($member) ? $member->cheque_number : ''); ?>
                                 <?php echo render_input('cheque_number', 'Cheque Number', $value, 'text'); ?>
@@ -57,6 +57,9 @@
 
                                 <?php $value = (isset($member) ? $member->bank_number : ''); ?>
                                 <?php echo render_input('bank_number', 'Bank Number', $value, 'text'); ?>
+
+                                <?php $value = (isset($member) ? $member->remark : ''); ?>
+                                <?php echo render_input('remark', 'Remarks', $value, 'text'); ?>
 
                             </div>
                         </div>

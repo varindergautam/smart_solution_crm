@@ -37,7 +37,7 @@ foreach ($rResult as $aRow) {
             $_data = ' <a href="' . admin_url('brand/create/' . $aRow['id']) . '">' . $aRow['name'] . '</a>';
 
             $_data .= '<div class="row-options">';
-            $_data .= '<a href="' . admin_url('brand/create/' . $aRow['id']) . '">' . _l('view') . '</a>';
+            $_data .= '<a href="' . admin_url('brand/create/' . $aRow['id']) . '">' . _l('edit') . '</a>';
             $_data .= '</div>';
         } 
         // elseif ($aColumns[$i] == 'status') {

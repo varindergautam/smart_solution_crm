@@ -424,6 +424,64 @@ function validate_proposal_form() {
         currency: 'required',
     });
 }
+
+$(document).ready(function () {
+        
+        $('#item_select').change(function () {
+            var selectedValue = $(this).val();
+            $.ajax({
+                url: admin_url+'/estimates/supplier_items/'+selectedValue, // Replace with your actual API endpoint
+                type: 'GET',
+                data: {},
+                dataType: "json",  
+                success: function (dynamicData) {
+                    
+                    if (Array.isArray(dynamicData) && dynamicData.length > 0) {
+                        // Update the content of the table body
+                        updateTable(dynamicData);
+            
+                    } else {
+                        console.error('Error: Invalid or empty response received:', dynamicData);
+                    }
+                    
+                    // Show the modal
+                    // $('#dynamicModal').modal('show');
+                },
+                error: function (error) {
+                    console.error('Error fetching dynamic data:', error);
+                }
+            });
+        });
+
+        function updateTable(dynamicData) {
+            // Clear existing rows
+            $('#dynamicTableBody').empty();
+
+            // Append new rows based on the dynamic data
+            dynamicData.forEach(function (rowData) {
+                var row = {
+                    "supplier_item_id": rowData.id,
+                    "supplier_id": rowData.supplier_id,
+                    "item_id": rowData.item_id,
+                    "rate": rowData.rate,
+                    "date": rowData.date
+                };
+
+                var jsonString = JSON.stringify(row).replace(/"/g, '&quot;');
+
+                var htmlRow  = '<tr>';
+                htmlRow  += '<td><input type="radio" name="supplier_item_data_checkbox" class="supplier_item_data_checkbox" value="' + jsonString + '"></td>';
+                htmlRow  += '<td>' + rowData.company + '</td>';
+                htmlRow  += '<td>' + rowData.description + '</td>';
+                htmlRow  += '<td>' + rowData.rate + '</td>';
+                htmlRow += '<td>' + rowData.date + '</td>';
+                htmlRow  += '</tr>';
+             
+                $('#dynamicTableBody').append(htmlRow );
+            });
+            
+        }
+    });
 </script>
 </body>
 

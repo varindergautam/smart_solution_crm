@@ -62,7 +62,7 @@ foreach ($rResult as $aRow) {
             $_data = ' <a href="' . admin_url('suppliers/create/' . $aRow['supplierid']) . '">' . $aRow['name'] . '</a>';
 
             $_data .= '<div class="row-options">';
-            $_data .= '<a href="' . admin_url('suppliers/create/' . $aRow['supplierid']) . '">' . _l('view') . '</a>';
+            $_data .= '<a href="' . admin_url('suppliers/create/' . $aRow['supplierid']) . '">' . _l('edit') . '</a>';
 
             $_data .= '</div>';
         } elseif ($aColumns[$i] == 'company') {

@@ -49,19 +49,19 @@
                                 </div>
 
                                 <?php $value = (isset($member) ? $member->supplier_name : ''); ?>
-                                <?php echo render_input('supplier_name', 'Supplier Name', $value); ?>
+                                <?php echo render_input('supplier_name', 'Supplier Name', $value, 'text', ['readonly' => 'readonly']); ?>
 
                                 <?php $value = (isset($member) ? $member->company_name : ''); ?>
-                                <?php echo render_input('company_name', 'Company', $value, 'text'); ?>
+                                <?php echo render_input('company_name', 'Company', $value, 'text', ['readonly' => 'readonly']); ?>
 
                                 <?php $value = (isset($member) ? $member->supplier_mobile : ''); ?>
-                                <?php echo render_input('supplier_mobile', 'Supplier Mobile', $value, 'text'); ?>
+                                <?php echo render_input('supplier_mobile', 'Supplier Mobile', $value, 'text', ['readonly' => 'readonly']); ?>
 
                                 <?php $value = (isset($member) ? $member->supplier_email : ''); ?>
-                                <?php echo render_input('supplier_email', 'Supplier Email', $value, 'text'); ?>
+                                <?php echo render_input('supplier_email', 'Supplier Email', $value, 'text', ['readonly' => 'readonly']); ?>
 
                                 <?php $value = (isset($member) ? $member->supplier_city : ''); ?>
-                                <?php echo render_input('supplier_city', 'Supplier City', $value, 'text'); ?>
+                                <?php echo render_input('supplier_city', 'Supplier City', $value, 'text', ['readonly' => 'readonly']); ?>
 
                                 <?php $value = (isset($member) ? $member->entry_date : date('Y-m-d')); ?>
                                 <?php echo render_input('entry_date', 'Entry Date', $value, 'date'); ?>

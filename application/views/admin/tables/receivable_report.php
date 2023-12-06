@@ -9,13 +9,22 @@ $custom_fields = get_custom_fields('receivable', [
 ]);
 
 $aColumns = [
-    'id',
+    db_prefix() . 'receivable.id',
     'customer_name',
-    db_prefix() . 'receivable.company_name',
-    db_prefix() . 'receivable.customer_mobile',
+    'invoice_number',
+    'invoice_date',
     db_prefix() . 'receivable.invoice_due_date',
-    db_prefix() . 'receivable.created_at',
-    'paid_status'
+    db_prefix() . 'receivable.invoice_amount',
+    db_prefix() . 'pdc.date',
+    db_prefix() . 'pdc.cheque_number',
+    db_prefix() . 'pdc.bank_number',
+    db_prefix() . 'pdc.amount',
+    db_prefix() . 'receivable.remarks',
+    db_prefix() . 'receivable.paid_status'
+];
+
+$join   = [
+    'LEFT JOIN ' . db_prefix() . 'pdc ON ' . db_prefix() . 'pdc.receivable_id = ' . db_prefix() . 'receivable.id',
 ];
 
 $where  = [];
@@ -27,9 +36,9 @@ if (isset($month) && $month != '') {
 }
 
 
-$sIndexColumn = 'id';
+$sIndexColumn ='id';
 $sTable = db_prefix() . 'receivable';
-$result = data_tables_init($aColumns, $sIndexColumn, $sTable, [], $where);
+$result = data_tables_init($aColumns, $sIndexColumn, $sTable, $join, $where);
 
 $output  = $result['output'];
 $rResult = $result['rResult'];
@@ -54,15 +63,15 @@ foreach ($rResult as $aRow) {
         //     $_data .= '</div>';
         // } else
         
-        if ($aColumns[$i] == 'paid_status') {
+        if ($aColumns[$i] == db_prefix() . 'receivable.paid_status') {
             $checked = '';
-            if ($aRow['paid_status'] == 1) {
+            if ($aRow[db_prefix() . 'receivable.paid_status'] == 1) {
                 $checked = 'checked';
             }
 
             $_data = '<div class="onoffswitch">
-                <input type="checkbox"  data-switch-url="' . admin_url() . 'receivable/change_paid_status" name="onoffswitch" class="onoffswitch-checkbox" id="c_' . $aRow['id'] . '" data-id="' . $aRow['id'] . '" ' . $checked . '>
-                <label class="onoffswitch-label" for="c_' . $aRow['id'] . '"></label>
+                <input type="checkbox"  data-switch-url="' . admin_url() . 'receivable/change_paid_status" name="onoffswitch" class="onoffswitch-checkbox" id="c_' . $aRow[db_prefix() . 'receivable.id'] . '" data-id="' . $aRow[db_prefix() . 'receivable.id'] . '" ' . $checked . '>
+                <label class="onoffswitch-label" for="c_' . $aRow[db_prefix() . 'receivable.id'] . '"></label>
             </div>';
 
             $_data .= '<span class="">' . ($checked == 'checked' ? 'Paid' : 'Un-Paid') . '</span>';

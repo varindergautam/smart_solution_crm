@@ -10,6 +10,7 @@ class Suppliers extends AdminController
         $this->load->model('suppliers_model');
         $this->load->model('currencies_model');
         $this->load->model('brand_model');
+        $this->load->model('invoice_items_model');
     }
 
     public function index()
@@ -55,6 +56,7 @@ class Suppliers extends AdminController
         $data['currencies'] = $this->currencies_model->get();
         $data['brands'] = $this->brand_model->get();
         $data['countries'] = get_all_countries();
+        $data['groups'] = $this->invoice_items_model->get_groups();
         $this->load->view('admin/suppliers/create', $data);
     }
 

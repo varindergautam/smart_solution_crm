@@ -49,19 +49,19 @@
                                 </div>
 
                                 <?php $value = (isset($member) ? $member->customer_name : ''); ?>
-                                <?php echo render_input('customer_name', 'Customer Name', $value); ?>
+                                <?php //echo render_input('customer_name', 'Customer Name', $value, ['readonly' => 'readonly']); ?>
 
                                 <?php $value = (isset($member) ? $member->company_name : ''); ?>
-                                <?php echo render_input('company_name', 'Company', $value, 'text'); ?>
+                                <?php echo render_input('company_name', 'Company', $value, 'text', ['readonly' => 'readonly']); ?>
 
                                 <?php $value = (isset($member) ? $member->customer_mobile : ''); ?>
-                                <?php echo render_input('customer_mobile', 'Customer Mobile', $value, 'text'); ?>
+                                <?php echo render_input('customer_mobile', 'Customer Mobile', $value, 'text', ['readonly' => 'readonly']); ?>
 
                                 <?php $value = (isset($member) ? $member->customer_email : ''); ?>
-                                <?php echo render_input('customer_email', 'Customer Email', $value, 'text'); ?>
+                                <?php //echo render_input('customer_email', 'Customer Email', $value, 'text', ['readonly' => 'readonly']); ?>
 
                                 <?php $value = (isset($member) ? $member->customer_city : ''); ?>
-                                <?php echo render_input('customer_city', 'Customer City', $value, 'text'); ?>
+                                <?php echo render_input('customer_city', 'Customer City', $value, 'text', ['readonly' => 'readonly']); ?>
 
                                 <?php $value = (isset($member) ? $member->entry_date : date('Y-m-d')); ?>
                                 <?php echo render_input('entry_date', 'Entry Date', $value, 'date'); ?>
