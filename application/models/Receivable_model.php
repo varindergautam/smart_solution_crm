@@ -15,7 +15,7 @@ class Receivable_model extends App_Model
     public function get($id = '', $where = [])
     {
         $this->db->select('receivable.*, pdc.id as pdcID, pdc.cheque_number, pdc.cheque_date, pdc.amount, pdc.bank_number ');
-        $this->db->join('pdc', 'pdc.receivable_id = receivable.id');
+        $this->db->join('pdc', 'pdc.receivable_id = receivable.id', 'left');
         $this->db->where($where);
 
         if (is_numeric($id)) {

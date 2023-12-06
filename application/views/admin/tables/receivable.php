@@ -8,16 +8,26 @@ $custom_fields = get_custom_fields('receivable', [
     'show_on_table' => 1,
 ]);
 $aColumns = [
-    'id',
+    db_prefix() . 'receivable.id',
     'customer_name',
-    db_prefix() . 'receivable.company_name',
-    db_prefix() . 'receivable.customer_mobile',
-    db_prefix() . 'receivable.created_at',
+    'invoice_number',
+    'invoice_date',
+    db_prefix() . 'receivable.invoice_due_date',
+    db_prefix() . 'receivable.invoice_amount',
+    db_prefix() . 'pdc.date',
+    db_prefix() . 'pdc.cheque_number',
+    db_prefix() . 'pdc.bank_number',
+    db_prefix() . 'pdc.amount',
+    db_prefix() . 'receivable.remarks',
+];
+
+$join   = [
+    'LEFT JOIN ' . db_prefix() . 'pdc ON ' . db_prefix() . 'pdc.receivable_id = ' . db_prefix() . 'receivable.id',
 ];
 
 $sIndexColumn = 'id';
 $sTable = db_prefix() . 'receivable';
-$result = data_tables_init($aColumns, $sIndexColumn, $sTable, [], []);
+$result = data_tables_init($aColumns, $sIndexColumn, $sTable, $join, []);
 
 $output  = $result['output'];
 $rResult = $result['rResult'];
@@ -34,10 +44,10 @@ foreach ($rResult as $aRow) {
 
         if ($aColumns[$i] == "customer_name") {
 
-            $_data = ' <a href="' . admin_url('receivable/create/' . $aRow['id']) . '">' . $aRow['customer_name']. '</a>';
+            $_data = ' <a href="' . admin_url('receivable/create/' . $aRow[db_prefix() . 'receivable.id']) . '">' . $aRow['customer_name']. '</a>';
 
             $_data .= '<div class="row-options">';
-            $_data .= '<a href="' . admin_url('receivable/create/' . $aRow['id']) . '">' . _l('view') . '</a>';
+            $_data .= '<a href="' . admin_url('receivable/create/' . $aRow[db_prefix() . 'receivable.id']) . '">' . _l('view') . '</a>';
 
             $_data .= '</div>';
         }

@@ -15,7 +15,7 @@ class Payable_model extends App_Model
     public function get($id = '', $where = [])
     {
         $this->db->select('payable.*, pdc.id as pdcID, pdc.cheque_number, pdc.cheque_date, pdc.amount, pdc.bank_number ');
-        $this->db->join('pdc', 'pdc.payable_id = payable.id');
+        $this->db->join('pdc', 'pdc.payable_id = payable.id', 'left');
         $this->db->where($where);
 
         if (is_numeric($id)) {

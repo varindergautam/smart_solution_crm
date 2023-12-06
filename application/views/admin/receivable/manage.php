@@ -19,9 +19,15 @@
                         $table_data = [
                             _l('ID'),
                             _l('Customer Name'),
-                            _l('Company Name'),
-                            _l('Customer Mobile'),
-                            _l('Date'),
+                            _l('Invoice No.'),
+                            _l('Invoice Date'),
+                            _l('Invoice Due Date'),
+                            _l('Amount Receivable'),
+                            _l('Date of PDC'),
+                            _l('Cheque Number'),
+                            _l('Bank'),
+                            _l('Cheque Amount'),
+                            _l('Remark'),
                         ];
                      
                         render_datatable($table_data, 'receivable');

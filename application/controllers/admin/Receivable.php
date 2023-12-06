@@ -42,7 +42,7 @@ class Receivable extends AdminController
             $member = $this->receivable_model->get($id);
 
             if (!$member) {
-                blank_page('receivable Not Found', 'danger');
+                blank_page('Receivable Not Found', 'danger');
             }
             $data['member']            = $member;
             $title                     = 'Update';
