@@ -11,6 +11,8 @@ class Suppliers extends AdminController
         $this->load->model('currencies_model');
         $this->load->model('brand_model');
         $this->load->model('invoice_items_model');
+        $this->load->model('supplier_brand_model');
+        $this->load->model('supplier_group_model');
     }
 
     public function index()
@@ -31,13 +33,19 @@ class Suppliers extends AdminController
           
             if ($id == '') {
                 $id = $this->suppliers_model->add($data);
+                $this->supplier_brand_model->add($data, $id);
+                $this->supplier_group_model->add($data, $id);
+
                 handle_supplier_profile_image_upload($id);
                 set_alert('success', _l('added_successfully', _l('Supplier')));
                 // redirect(admin_url('staff/member/' . $id));
                 redirect(admin_url('suppliers/'));
             } else {
+                
                 handle_supplier_profile_image_upload($id);
                 $this->suppliers_model->update($data, $id);
+                $this->supplier_brand_model->add($data, $id);
+                $this->supplier_group_model->add($data, $id);
                 set_alert('success', _l('updated_successfully', _l('Supplier')));
                 redirect(admin_url('suppliers/'));
             }
@@ -50,12 +58,15 @@ class Suppliers extends AdminController
                 blank_page('Supplier Not Found', 'danger');
             }
             $data['member']            = $member;
+            $data['already_brands'] = $this->db->get_where(db_prefix() . 'supplier_brand', ['supplier_id' => $id])->result_array();
+            $data['already_groups'] = $this->db->get_where(db_prefix() . 'supplier_group', ['supplier_id' => $id])->result_array();
             $title                     = 'Update';
         }
         $data['title']         = $title;
         $data['currencies'] = $this->currencies_model->get();
         $data['brands'] = $this->brand_model->get();
         $data['countries'] = get_all_countries();
+    
         $data['groups'] = $this->invoice_items_model->get_groups();
         $this->load->view('admin/suppliers/create', $data);
     }
@@ -94,5 +105,20 @@ class Suppliers extends AdminController
     public function supplierJson($id) {
         $supplier = $this->suppliers_model->get($id);
         echo json_encode($supplier);
+    }
+
+    public function group_report()
+    {
+        $data['group'] = isset($_GET['group']) ? $_GET['group'] : NULL;
+        if ($this->input->is_ajax_request()) {
+            if (isset($_GET['group'])) {
+                $this->app->get_table_data('group_report_table', ['group' => $_GET['group']]);
+            } else {
+                $this->app->get_table_data('group_report_table');
+            }
+        }
+        $data['title']         = 'Group Report';
+        $data['groups'] = $this->invoice_items_model->get_groups();
+        $this->load->view('admin/suppliers/group_report', $data);
     }
 }

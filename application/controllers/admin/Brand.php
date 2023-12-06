@@ -66,4 +66,19 @@ class Brand extends AdminController
             $this->brand_model->change_status($id, $status);
         }
     }
+
+    public function report()
+    {
+        $data['brand'] = isset($_GET['brand']) ? $_GET['brand'] : NULL;
+        if ($this->input->is_ajax_request()) {
+            if (isset($_GET['brand'])) {
+                $this->app->get_table_data('brand_report', ['brand' => $_GET['brand']]);
+            } else {
+                $this->app->get_table_data('brand_report');
+            }
+        }
+        $data['title']         = 'Brand Report';
+        $data['brands'] = $this->brand_model->get();
+        $this->load->view('admin/brand/report', $data);
+    }
 }

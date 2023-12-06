@@ -31,20 +31,20 @@ class Suppliers_model extends App_Model
 
     public function add($data)
     {
-        $data['brand_id'] = implode(',',$data['brand_id']);
-        $data['group_id'] = implode(',',$data['group_id']);
+        unset($data['brand_id']);
+        unset($data['group_id']);
         // First check for all cases if the email exists.
         $data = hooks()->apply_filters('before_create_supplier_member', $data);
 
         $this->db->where('phone_number', $data['phone_number']);
         $phone_number = $this->db->get(db_prefix() . 'suppliers')->row();
 
-        if ($phone_number) {
-            die('Phone already exists');
-        }
+        // if ($phone_number) {
+        //     die('Phone already exists');
+        // }
 
         $data['datecreated'] = date('Y-m-d H:i:s');
-       
+
         $this->db->insert(db_prefix() . 'suppliers', $data);
         $supplierid = $this->db->insert_id();
         if ($supplierid) {
@@ -63,8 +63,8 @@ class Suppliers_model extends App_Model
 
     public function update($data, $id)
     {
-        $data['brand_id'] = implode(',',$data['brand_id']);
-        $data['group_id'] = implode(',',$data['group_id']);
+        unset($data['group_id']);
+        unset($data['brand_id']);
         $data = hooks()->apply_filters('before_update_suppliers_member', $data, $id);
 
         $affectedRows = 0;

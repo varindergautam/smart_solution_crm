@@ -10,21 +10,28 @@
                     <div class="panel-body ">
                         <div class="horizontal-tabs">
                             <h4>
-                                PDC Report
+                                Brand Report
                             </h4>
                             <hr>
                         </div>
                         <div class="tab-content tw-mt-5">
                             <div role="tabpanel" class="tab-pane active" id="tab_staff_profile">
-                                <?php $value = (isset($month) ? $month : ''); ?>
-                                <?php echo render_input('month', 'Month', $value, 'month'); ?>
 
                                 <div class="form-group select-placeholder">
-                                    <label for="type" class="control-label"><?php echo _l('Type'); ?></label>
-                                    <select name="type" data-live-search="true" id="type" class="form-control selectpicker" data-none-selected-text="<?php echo _l('dropdown_non_selected_tex'); ?>">
+                                    <label for="brand" class="control-label"><?php echo _l('Brand'); ?></label>
+                                    <select name="brand" data-live-search="true" id="brand" class="form-control selectpicker" data-none-selected-text="<?php echo _l('dropdown_non_selected_tex'); ?>">
                                         <option value="">Select Type</option>
-                                        <option value="in" <?php echo isset($type) && $type == 'in' ? 'selected' : ''; ?>>In</option>
-                                        <option value="out" <?php echo isset($type) && $month == 'out' ? 'selected' : ''; ?>>Out</option>
+                                        <?php foreach ($brands as $b) {
+                                            $selected = '';
+                                            if (isset($brand)) {
+                                                if ($brand == $b['id']) {
+                                                    $selected = 'selected';
+                                                }
+                                            } ?>
+                                            <option value="<?php echo $b['id']; ?>" <?php echo $selected; ?>>
+                                                <?php echo ucfirst($b['name']); ?></option>
+                                        <?php
+                                        } ?>
                                     </select>
                                 </div>
                             </div>
@@ -39,7 +46,7 @@
             <?php echo form_close(); ?>
 
             <?php
-            if (isset($month) || isset($type)) {
+            if (isset($brand)) {
             ?>
                 <div class="col-md-12" id="small-table">
                     <div class="panel_s">
@@ -47,18 +54,11 @@
                             <?php
                             $table_data = [
                                 _l('ID'),
+                                _l('Brand Name'),
                                 _l('Company Name'),
-                                _l('Particular'),
-                                _l('Date of PDC'),
-                                _l('Cheque Number'),
-                                _l('Bank'),
-                                _l('Cheque Date'),
-                                _l('Cheque Amount'),
-                                _l('Remark'),
-                                _l('Paid Status'),
                             ];
 
-                            render_datatable($table_data, 'pdc');
+                            render_datatable($table_data, 'brand_report');
                             ?>
                         </div>
                     </div>
@@ -71,7 +71,7 @@
 <?php init_tail(); ?>
 <script>
     $(function() {
-        initDataTable('.table-pdc', window.location.href);
+        initDataTable('.table-brand_report', window.location.href);
     });
 </script>
 </body>

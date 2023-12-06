@@ -61,10 +61,9 @@
 
                                     <?php
                                     $selectedBrand = [];
-                                    if (isset($member->brand_id)) {
-                                        $saveBrands = explode(',', $member->brand_id);
-                                        foreach ($saveBrands as $brand) {
-                                            array_push($selectedBrand, $brand);
+                                    if (isset($already_brands)) {
+                                        foreach ($already_brands as $brand) {
+                                            array_push($selectedBrand, $brand['brand_id']);
                                         }
                                     }
                                     ?>
@@ -74,10 +73,9 @@
 
                                     <?php
                                     $selectedGroup = [];
-                                    if (isset($member->group_id)) {
-                                        $saveGroups = explode(',', $member->group_id);
-                                        foreach ($saveGroups as $group) {
-                                            array_push($selectedGroup, $group);
+                                    if (isset($already_groups)) {
+                                        foreach ($already_groups as $group) {
+                                            array_push($selectedGroup, $group['group_id']);
                                         }
                                     }
                                     ?>
