@@ -23,17 +23,17 @@ function app_init_admin_sidebar_menu_items()
     ]);
 
     $CI->app_menu->add_sidebar_children_item('suppliers', [
-        'slug'     => 'suppliers',
+        'slug'     => 'suppliers/',
         'name'     => _l('List of Supplier'),
-        'href'     => admin_url('suppliers'),
+        'href'     => admin_url('suppliers/'),
         'position' => 5,
         'badge'    => [],
     ]);
 
     $CI->app_menu->add_sidebar_children_item('suppliers', [
-        'slug'     => 'suppliers',
+        'slug'     => 'supplier_item/',
         'name'     => _l('Suppliers Item'),
-        'href'     => admin_url('supplier_item'),
+        'href'     => admin_url('supplier_item/'),
         'position' => 5,
         'badge'    => [],
     ]);
@@ -47,25 +47,33 @@ function app_init_admin_sidebar_menu_items()
     ]);
 
     $CI->app_menu->add_sidebar_children_item('budget', [
-        'slug'     => 'financial_year',
+        'slug'     => 'financial_year/',
         'name'     => _l('Financial Year'),
-        'href'     => admin_url('financial_year'),
+        'href'     => admin_url('financial_year/'),
         'position' => 5,
         'badge'    => [],
     ]);
 
     $CI->app_menu->add_sidebar_children_item('budget', [
-        'slug'     => 'head',
+        'slug'     => 'head/',
         'name'     => _l('Head'),
-        'href'     => admin_url('head'),
+        'href'     => admin_url('head/'),
         'position' => 5,
         'badge'    => [],
     ]);
 
     $CI->app_menu->add_sidebar_children_item('budget', [
-        'slug'     => 'head',
+        'slug'     => 'budget/create/',
         'name'     => _l('Add Budget'),
-        'href'     => admin_url('budget/create'),
+        'href'     => admin_url('budget/create/'),
+        'position' => 5,
+        'badge'    => [],
+    ]);
+
+    $CI->app_menu->add_sidebar_children_item('budget', [
+        'slug'     => 'budget/report/',
+        'name'     => _l('Budget Report'),
+        'href'     => admin_url('budget/report/'),
         'position' => 5,
         'badge'    => [],
     ]);
@@ -79,17 +87,17 @@ function app_init_admin_sidebar_menu_items()
     ]);
 
     $CI->app_menu->add_sidebar_children_item('receivable', [
-        'slug'     => 'receivable',
+        'slug'     => 'receivable/',
         'name'     => _l('Receivable'),
-        'href'     => admin_url('receivable'),
+        'href'     => admin_url('receivable/'),
         'position' => 5,
         'badge'    => [],
     ]);
 
     $CI->app_menu->add_sidebar_children_item('receivable', [
-        'slug'     => 'receivable/report',
+        'slug'     => 'receivable/report/',
         'name'     => _l('Receivable Report'),
-        'href'     => admin_url('receivable/report'),
+        'href'     => admin_url('receivable/report/'),
         'position' => 5,
         'badge'    => [],
     ]);
@@ -103,17 +111,17 @@ function app_init_admin_sidebar_menu_items()
     ]);
 
     $CI->app_menu->add_sidebar_children_item('payable', [
-        'slug'     => 'payable',
+        'slug'     => 'payable/',
         'name'     => _l('Payable'),
-        'href'     => admin_url('payable'),
+        'href'     => admin_url('payable/'),
         'position' => 5,
         'badge'    => [],
     ]);
 
     $CI->app_menu->add_sidebar_children_item('payable', [
-        'slug'     => 'payable/report',
+        'slug'     => 'payable/report/',
         'name'     => _l('Payable Report'),
-        'href'     => admin_url('payable/report'),
+        'href'     => admin_url('payable/report/'),
         'position' => 5,
         'badge'    => [],
     ]);
@@ -127,41 +135,41 @@ function app_init_admin_sidebar_menu_items()
     ]);
 
     $CI->app_menu->add_sidebar_children_item('pdc', [
-        'slug'     => 'pdc',
+        'slug'     => 'pdc/',
         'name'     => _l('PDC'),
-        'href'     => admin_url('pdc'),
+        'href'     => admin_url('pdc/'),
         'position' => 5,
         'badge'    => [],
     ]);
 
     $CI->app_menu->add_sidebar_children_item('pdc', [
-        'slug'     => 'pdc/report',
+        'slug'     => 'pdc/report/',
         'name'     => _l('PDC Report'),
-        'href'     => admin_url('pdc/report'),
+        'href'     => admin_url('pdc/report/'),
         'position' => 5,
         'badge'    => [],
     ]);
 
     $CI->app_menu->add_sidebar_children_item('sales', [
-        'slug'     => 'brand',
+        'slug'     => 'brand/',
         'name'     => _l('Brand'),
-        'href'     => admin_url('brand'),
+        'href'     => admin_url('brand/'),
         'position' => 5,
         'badge'    => [],
     ]);
 
     $CI->app_menu->add_sidebar_children_item('sales', [
-        'slug'     => 'brand/report',
+        'slug'     => 'brand/report/',
         'name'     => _l('Brand Report'),
-        'href'     => admin_url('brand/report'),
+        'href'     => admin_url('brand/report/'),
         'position' => 5,
         'badge'    => [],
     ]);
 
     $CI->app_menu->add_sidebar_children_item('sales', [
-        'slug'     => 'suppliers/group_report',
+        'slug'     => 'suppliers/group_report/',
         'name'     => _l('Group Report'),
-        'href'     => admin_url('suppliers/group_report'),
+        'href'     => admin_url('suppliers/group_report/'),
         'position' => 5,
         'badge'    => [],
     ]);

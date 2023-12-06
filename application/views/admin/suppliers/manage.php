@@ -22,8 +22,9 @@
                             _l('Vat Number'),
                             _l('Company'),
                             _l('Phone Number'),
+                            _l('Brands'),
+                            _l('Groups'),
                             _l('Created At'),
-                            // _l('Active'),
                         ];
                      
                         render_datatable($table_data, 'suppliers');

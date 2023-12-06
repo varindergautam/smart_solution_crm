@@ -49,6 +49,7 @@
                                 _l('ID'),
                                 _l('Company Name'),
                                 _l('Particular'),
+                                _l('Type'),
                                 _l('Date of PDC'),
                                 _l('Cheque Number'),
                                 _l('Bank'),

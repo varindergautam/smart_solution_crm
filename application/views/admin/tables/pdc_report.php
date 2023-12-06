@@ -11,6 +11,7 @@ $aColumns = [
     db_prefix() . 'pdc.id',
     db_prefix() . 'receivable.company_name',
     'particular',
+    'type',
     'date',
     'cheque_number',
     'bank_number',

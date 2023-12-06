@@ -14,8 +14,9 @@ $aColumns = [
     'vat_number',
     'company',
     'phone_number',
+    'currency',
+    'default_language',
     'datecreated',
-    // 'active',
 ];
 $sIndexColumn = 'supplierid';
 $sTable       = db_prefix() . 'suppliers';
@@ -33,8 +34,27 @@ $result = data_tables_init($aColumns, $sIndexColumn, $sTable, [], $where, [
 
 $output  = $result['output'];
 $rResult = $result['rResult'];
-
+$CI = &get_instance();
+$CI->load->database();
 foreach ($rResult as $aRow) {
+    $brandNames = $CI->db->select('b.name')
+        ->from('tblsupplier_brand sb')
+        ->join('brand b', 'b.id = sb.brand_id')
+        ->where('sb.supplier_id', $aRow['supplierid'])
+        ->get()
+        ->result_array();
+    $brandNames = array_column($brandNames, 'name');
+    $brandNamesImploded = (!empty($brandNames)) ? implode(', ', $brandNames) : '';
+
+    $groupNames = $CI->db->select('b.name')
+        ->from('tblsupplier_brand sb')
+        ->join('items_groups b', 'b.id = sb.brand_id')
+        ->where('sb.supplier_id', $aRow['supplierid'])
+        ->get()
+        ->result_array();
+    $groupNames = array_column($groupNames, 'name');
+    $groupNamesImploded = (!empty($groupNames)) ? implode(', ', $groupNames) : '';
+
     $row = [];
     for ($i = 0; $i < count($aColumns); $i++) {
         if (strpos($aColumns[$i], 'as') !== false && !isset($aRow[$aColumns[$i]])) {
@@ -71,6 +91,10 @@ foreach ($rResult as $aRow) {
             $_data = $aRow['supplierid'];
         } elseif ($aColumns[$i] == 'phone_number') {
             $_data = ($aRow['phone_number'] ? '<a href="tel:' . $aRow['phone_number'] . '">' . $aRow['phone_number'] . '</a>' : '');
+        } elseif ($aColumns[$i] == 'currency') {
+            $_data = $brandNamesImploded;
+        } elseif ($aColumns[$i] == 'default_language') {
+            $_data = $groupNamesImploded;
         } else {
             if (strpos($aColumns[$i], 'date_picker_') !== false) {
                 $_data = (strpos($_data, ' ') !== false ? _dt($_data) : _d($_data));
