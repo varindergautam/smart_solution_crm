@@ -10,7 +10,7 @@
                     <div class="panel-body ">
                         <div class="horizontal-tabs">
                             <h4>
-                                group Report
+                                Group Report
                             </h4>
                             <hr>
                         </div>
@@ -18,7 +18,7 @@
                             <div role="tabpanel" class="tab-pane active" id="tab_staff_profile">
 
                                 <div class="form-group select-placeholder">
-                                    <label for="group" class="control-label"><?php echo _l('group'); ?></label>
+                                    <label for="group" class="control-label"><?php echo _l('Group'); ?></label>
                                     <select name="group" data-live-search="true" id="group" class="form-control selectpicker" data-none-selected-text="<?php echo _l('dropdown_non_selected_tex'); ?>">
                                         <option value="">Select Type</option>
                                         <?php foreach ($groups as $b) {

@@ -150,6 +150,22 @@ function app_init_admin_sidebar_menu_items()
         'badge'    => [],
     ]);
 
+    $CI->app_menu->add_sidebar_children_item('sales', [
+        'slug'     => 'brand/report',
+        'name'     => _l('Brand Report'),
+        'href'     => admin_url('brand/report'),
+        'position' => 5,
+        'badge'    => [],
+    ]);
+
+    $CI->app_menu->add_sidebar_children_item('sales', [
+        'slug'     => 'suppliers/group_report',
+        'name'     => _l('Group Report'),
+        'href'     => admin_url('suppliers/group_report'),
+        'position' => 5,
+        'badge'    => [],
+    ]);
+
 
     if (
         has_permission('customers', '', 'view')
