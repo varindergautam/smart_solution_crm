@@ -42,7 +42,7 @@
                                                 }
                                             } ?>
                                             <option value="<?php echo $suppliers_member['supplierid']; ?>" <?php echo $selected; ?>>
-                                                <?php echo ucfirst($suppliers_member['vat_number']) . ' - ' . ucfirst($suppliers_member['company']); ?></option>
+                                                <?php echo ucfirst($suppliers_member['company']); ?></option>
                                         <?php
                                         } ?>
                                     </select>

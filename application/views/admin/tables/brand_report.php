@@ -12,7 +12,7 @@ $aColumns = [
     db_prefix() . 'brand.name',
     db_prefix() . 'suppliers.company',
     db_prefix() . 'suppliers.name',
-    db_prefix() . 'suppliers.Email',
+    db_prefix() . 'suppliers.email',
     db_prefix() . 'suppliers.phone_number',
 ];
 

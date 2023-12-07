@@ -63,7 +63,7 @@ class Receivable_model extends App_Model
         $month = date('m', strtotime($data['invoice_due_date']));
         $receivable[$monthName[$month]] = $data['invoice_amount'];
 
-        if ($data['pdc']) {
+        if (isset($data['pdc']) && $data['pdc']) {
             $pdc['cheque_number'] = $data['cheque_number'];
             $pdc['cheque_date'] = $data['cheque_date'];
             $pdc['amount'] = $data['amount'];
@@ -72,10 +72,10 @@ class Receivable_model extends App_Model
         }
 
         if (isset($id) && !empty($id)) {
-            if ($data['pdc']) {
+            if (isset($data['pdc']) && $data['pdc']) {
                 $pdc['receivable_id'] = $id;
+                $this->pdc_model->add($pdc, $data['pdcID']);
             }
-            $this->pdc_model->add($pdc, $data['pdcID']);
             $this->db->where("id", $id);
             return $this->db->update(db_prefix() . "receivable", $receivable);
         }
@@ -135,10 +135,10 @@ class Receivable_model extends App_Model
         log_activity('Receivable Paid Status Changed [SupplierID: ' . $id . ' - Paid Status(Active/Inactive): ' . $status . ']');
     }
 
-    public function summarize_report($data)
+    public function summarize_report($month)
     {
-        if (isset($data['month'])) {
-            $month = explode('-', $data['month']);
+        if (isset($month)) {
+            $month = explode('-', $month);
             $month = end($month);
             $this->db->select('receivable.*, pdc.id as pdcID, pdc.cheque_number, pdc.cheque_date, pdc.amount, pdc.bank_number ');
             $this->db->join('pdc', 'pdc.receivable_id = receivable.id', 'left');

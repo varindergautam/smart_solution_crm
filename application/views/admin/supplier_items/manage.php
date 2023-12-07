@@ -18,7 +18,10 @@
                         <?php
                         $table_data = [
                             _l('ID'),
-                            _l('Supplier'),
+                            _l('Supplier Name'),
+                            _l('Supplier Company Name'),
+                            _l('Supplier Email'),
+                            _l('Supplier Phone No.'),
                             _l('Item'),
                             _l('Rate'),
                             _l('Date'),

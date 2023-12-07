@@ -14,7 +14,7 @@ $aColumns = [
     'invoice_date',
     db_prefix() . 'receivable.invoice_due_date',
     db_prefix() . 'receivable.invoice_amount',
-    db_prefix() . 'pdc.date',
+    db_prefix() . 'pdc.cheque_date',
     db_prefix() . 'pdc.cheque_number',
     db_prefix() . 'pdc.bank_number',
     db_prefix() . 'pdc.amount',

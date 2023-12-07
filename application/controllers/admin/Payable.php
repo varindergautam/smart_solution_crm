@@ -87,7 +87,7 @@ class Payable extends AdminController
     {
         $data['month'] = isset($_GET['month']) ? $_GET['month'] : NULL;
         $data['title']         = 'Payable Summarize Report';
-        $data['reports'] = $this->payable_model->summarize_report($data['year']);
+        $data['reports'] = $this->payable_model->summarize_report($data['month']);
 
         $this->load->view('admin/payable/summarize_report', $data);
     }

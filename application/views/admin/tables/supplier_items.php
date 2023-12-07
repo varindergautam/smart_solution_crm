@@ -9,7 +9,10 @@ $custom_fields = get_custom_fields('supplier_items', [
 ]);
 $aColumns = [
     db_prefix() . 'supplier_items.id',
-    'vat_number',
+    'name',
+    'company',
+    'email',
+    'phone_number',
     db_prefix() . 'items.description',
     db_prefix() . 'supplier_items.rate',
     db_prefix() . 'supplier_items.date',

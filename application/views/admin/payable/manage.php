@@ -23,12 +23,11 @@
                             _l('Invoice Date'),
                             _l('Invoice Due Date'),
                             _l('Amount Receivable'),
-                            _l('Date of PDC'),
+                            _l('Cheque Date PDC'),
                             _l('Cheque Number'),
                             _l('Bank'),
                             _l('Cheque Amount'),
                             _l('Remark'),
-                            _l('Paid'),
                         ];
                      
                         render_datatable($table_data, 'payable');

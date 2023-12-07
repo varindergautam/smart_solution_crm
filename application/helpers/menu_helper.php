@@ -38,6 +38,22 @@ function app_init_admin_sidebar_menu_items()
         'badge'    => [],
     ]);
 
+    $CI->app_menu->add_sidebar_children_item('suppliers', [
+        'slug'     => 'supplier_item/item_wise_report/',
+        'name'     => _l('Item Wise Supplier'),
+        'href'     => admin_url('supplier_item/item_wise_report/'),
+        'position' => 5,
+        'badge'    => [],
+    ]);
+    
+    $CI->app_menu->add_sidebar_children_item('suppliers', [
+        'slug'     => 'supplier_item/supplier_wise_report/',
+        'name'     => _l('Supplier Wise Item'),
+        'href'     => admin_url('supplier_item/supplier_wise_report/'),
+        'position' => 5,
+        'badge'    => [],
+    ]);
+
     $CI->app_menu->add_sidebar_menu_item('budget', [
         'collapse' => true,
         'name'     => _l('Budget'),
@@ -102,6 +118,14 @@ function app_init_admin_sidebar_menu_items()
         'badge'    => [],
     ]);
 
+    $CI->app_menu->add_sidebar_children_item('receivable', [
+        'slug'     => 'receivable/summarize_report/',
+        'name'     => _l('Summarize Report'),
+        'href'     => admin_url('receivable/summarize_report/'),
+        'position' => 5,
+        'badge'    => [],
+    ]);
+
     $CI->app_menu->add_sidebar_menu_item('payable', [
         'collapse' => true,
         'name'     => _l('Payable'),
@@ -122,6 +146,14 @@ function app_init_admin_sidebar_menu_items()
         'slug'     => 'payable/report/',
         'name'     => _l('Payable Report'),
         'href'     => admin_url('payable/report/'),
+        'position' => 5,
+        'badge'    => [],
+    ]);
+
+    $CI->app_menu->add_sidebar_children_item('payable', [
+        'slug'     => 'payable/summarize_report/',
+        'name'     => _l('Summarize Report'),
+        'href'     => admin_url('payable/summarize_report/'),
         'position' => 5,
         'badge'    => [],
     ]);

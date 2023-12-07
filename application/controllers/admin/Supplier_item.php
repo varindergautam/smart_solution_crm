@@ -60,4 +60,32 @@ class Supplier_item extends AdminController
         set_alert('success', _l('deleted', _l('Supplier Item')));
         redirect(admin_url('supplier_item/'));
     }
+
+    public function item_wise_report() {
+        $data['item'] = isset($_GET['item']) ? $_GET['item'] : NULL;
+        $data['title']         = 'Item Wise Report';
+        $data['item_members'] = $this->invoice_items_model->get('', ['active' => 1]);
+        if ($this->input->is_ajax_request()) {
+            if (isset($_GET['item'])) {
+                $this->app->get_table_data('item_wise_supplier_report_table', ['item' => $_GET['item']]);
+            } else {
+                $this->app->get_table_data('item_wise_supplier_report_table');
+            }
+        }
+        $this->load->view('admin/supplier_items/item_wise_supplier_report', $data);
+    }
+
+    public function supplier_wise_report() {
+        $data['supplier'] = isset($_GET['supplier']) ? $_GET['supplier'] : NULL;
+        $data['title']         = 'Supplier Wise Report';
+        $data['suppliers_members'] = $this->suppliers_model->get('', ['active' => 1]);
+        if ($this->input->is_ajax_request()) {
+            if (isset($_GET['supplier'])) {
+                $this->app->get_table_data('supplier_wise_item_report_table', ['supplier' => $_GET['supplier']]);
+            } else {
+                $this->app->get_table_data('supplier_wise_item_report_table');
+            }
+        }
+        $this->load->view('admin/supplier_items/supplier_wise_item_report', $data);
+    }
 }

@@ -34,31 +34,33 @@ class Supplier_brand_model extends App_Model
         $currentBrandIds = array_column($currentBrands, 'brand_id');
 
         // Check if a brand was unselected and remove the association
-        $removedBrands = array_diff($currentBrandIds, $data['brand_id']);
-        if (!empty($removedBrands)) {
-            foreach ($removedBrands as $removedBrandId) {
-                $this->db->where('brand_id', $removedBrandId);
-                $this->db->where('supplier_id', $supplierId);
-                $this->db->delete(db_prefix() . 'supplier_brand');
-                log_activity('Supplier brand removed [Brand: ' . $removedBrandId . ', Supplier: ' . $supplierId . ']');
-                hooks()->do_action('supplier_brand_removed', $removedBrandId);
-            }
-        }
-
-        // Add the selected brands
-        if (count($data['brand_id']) > 0) {
-            foreach ($data['brand_id'] as $key => $brand_id) {
-                // Check if the brand is not already associated with the supplier
-                if (!in_array($brand_id, $currentBrandIds)) {
-                    $insert['brand_id'] = $brand_id;
-                    $insert['supplier_id'] = $supplierId;
-
-                    $this->db->insert(db_prefix() . 'supplier_brand', $insert);
-                    log_activity('New supplier brand added [Brand: ' . $brand_id . ', Supplier: ' . $supplierId . ']');
-                    hooks()->do_action('supplier_brand_created', $brand_id);
+        if (isset($data['brand_id'])) {
+            $removedBrands = array_diff($currentBrandIds, $data['brand_id']);
+            if (!empty($removedBrands)) {
+                foreach ($removedBrands as $removedBrandId) {
+                    $this->db->where('brand_id', $removedBrandId);
+                    $this->db->where('supplier_id', $supplierId);
+                    $this->db->delete(db_prefix() . 'supplier_brand');
+                    log_activity('Supplier brand removed [Brand: ' . $removedBrandId . ', Supplier: ' . $supplierId . ']');
+                    hooks()->do_action('supplier_brand_removed', $removedBrandId);
                 }
             }
-            return true;
+
+            // Add the selected brands
+            if (count($data['brand_id']) > 0) {
+                foreach ($data['brand_id'] as $key => $brand_id) {
+                    // Check if the brand is not already associated with the supplier
+                    if (!in_array($brand_id, $currentBrandIds)) {
+                        $insert['brand_id'] = $brand_id;
+                        $insert['supplier_id'] = $supplierId;
+
+                        $this->db->insert(db_prefix() . 'supplier_brand', $insert);
+                        log_activity('New supplier brand added [Brand: ' . $brand_id . ', Supplier: ' . $supplierId . ']');
+                        hooks()->do_action('supplier_brand_created', $brand_id);
+                    }
+                }
+                return true;
+            }
         }
 
         return false;

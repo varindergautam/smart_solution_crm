@@ -14,12 +14,11 @@ $aColumns = [
     'invoice_date',
     db_prefix() . 'payable.invoice_due_date',
     db_prefix() . 'payable.invoice_amount',
-    db_prefix() . 'pdc.date',
+    db_prefix() . 'pdc.cheque_date',
     db_prefix() . 'pdc.cheque_number',
     db_prefix() . 'pdc.bank_number',
     db_prefix() . 'pdc.amount',
     db_prefix() . 'payable.remarks',
-    db_prefix() . 'payable.paid_status'
 ];
 
 $join   = [
