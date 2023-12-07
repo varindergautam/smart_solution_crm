@@ -114,4 +114,18 @@ class Payable_model extends App_Model
 
         log_activity('payable Paid Status Changed [SupplierID: ' . $id . ' - Paid Status(Active/Inactive): ' . $status . ']');
     }
+
+    public function summarize_report($data)
+    {
+        if (isset($data['month'])) {
+            $month = explode('-', $data['month']);
+            $month = end($month);
+            $this->db->select('payable.*, pdc.id as pdcID, pdc.cheque_number, pdc.cheque_date, pdc.amount, pdc.bank_number ');
+            $this->db->join('pdc', 'pdc.payable_id = payable.id', 'left');
+            $this->db->where('MONTH(invoice_due_date)', $month);
+            $this->db->order_by('id', 'desc');
+
+            return $this->db->get(db_prefix() . 'payable')->result();
+        }
+    }
 }

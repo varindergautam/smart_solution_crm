@@ -14,6 +14,8 @@ $aColumns = [
     'vat_number',
     'company',
     'phone_number',
+    'phone_number_1',
+    'phone_number_2',
     'currency',
     'default_language',
     'datecreated',
