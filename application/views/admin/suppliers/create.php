@@ -54,7 +54,13 @@
                                     <?php echo render_input('email', 'Email', $value, 'email', $attrs); ?>
 
                                     <?php $value = (isset($member) ? $member->phone_number : ''); ?>
-                                    <?php echo render_input('phone_number', 'Phone', $value); ?>
+                                    <?php echo render_input('phone_number', 'Phone 1', $value); ?>
+
+                                    <?php $value = (isset($member) ? $member->phone_number_1 : ''); ?>
+                                    <?php echo render_input('phone_number_1', 'Phone 2', $value); ?>
+
+                                    <?php $value = (isset($member) ? $member->phone_number_2 : ''); ?>
+                                    <?php echo render_input('phone_number_2', 'Phone 3', $value); ?>
 
                                     <?php $value = (isset($member) ? $member->website : ''); ?>
                                     <?php echo render_input('website', 'Website', $value); ?>

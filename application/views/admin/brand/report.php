@@ -56,6 +56,9 @@
                                 _l('ID'),
                                 _l('Brand Name'),
                                 _l('Company Name'),
+                                _l('Supplier Name'),
+                                _l('Supplier Email'),
+                                _l('Supplier Phone No.'),
                             ];
 
                             render_datatable($table_data, 'brand_report');

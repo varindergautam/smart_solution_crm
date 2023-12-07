@@ -10,30 +10,14 @@
                     <div class="panel-body ">
                         <div class="horizontal-tabs">
                             <h4>
-                                Group Report
+                                Receivable Summarize Report
                             </h4>
                             <hr>
                         </div>
                         <div class="tab-content tw-mt-5">
                             <div role="tabpanel" class="tab-pane active" id="tab_staff_profile">
-
-                                <div class="form-group select-placeholder">
-                                    <label for="group" class="control-label"><?php echo _l('Group'); ?></label>
-                                    <select name="group" data-live-search="true" id="group" class="form-control selectpicker" data-none-selected-text="<?php echo _l('dropdown_non_selected_tex'); ?>">
-                                        <option value="">Select Type</option>
-                                        <?php foreach ($groups as $b) {
-                                            $selected = '';
-                                            if (isset($group)) {
-                                                if ($group == $b['id']) {
-                                                    $selected = 'selected';
-                                                }
-                                            } ?>
-                                            <option value="<?php echo $b['id']; ?>" <?php echo $selected; ?>>
-                                                <?php echo ucfirst($b['name']); ?></option>
-                                        <?php
-                                        } ?>
-                                    </select>
-                                </div>
+                                <?php $value = (isset($month) ? $month : ''); ?>
+                                <?php echo render_input('month', 'Month', $value, 'month'); ?>
                             </div>
                         </div>
                     </div>
@@ -46,7 +30,7 @@
             <?php echo form_close(); ?>
 
             <?php
-            if (isset($group)) {
+            if (isset($month)) {
             ?>
                 <div class="col-md-12" id="small-table">
                     <div class="panel_s">
@@ -54,14 +38,20 @@
                             <?php
                             $table_data = [
                                 _l('ID'),
-                                _l('Group Name'),
                                 _l('Company Name'),
-                                _l('Supplier Name'),
-                                _l('Supplier Email'),
-                                _l('Supplier Phone No.'),
+                                _l('Invoice No.'),
+                                _l('Invoice Date'),
+                                _l('Invoice Due Date'),
+                                _l('Amount Receivable'),
+                                _l('Date of PDC'),
+                                _l('Cheque Number'),
+                                _l('Bank'),
+                                _l('Cheque Amount'),
+                                _l('Remark'),
+                                _l('Paid'),
                             ];
 
-                            render_datatable($table_data, 'group_report_table');
+                            render_datatable($table_data, 'receivable');
                             ?>
                         </div>
                     </div>
@@ -74,7 +64,7 @@
 <?php init_tail(); ?>
 <script>
     $(function() {
-        initDataTable('.table-group_report_table', window.location.href);
+        initDataTable('.table-receivable', window.location.href);
     });
 </script>
 </body>

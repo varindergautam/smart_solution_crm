@@ -30,6 +30,21 @@ class Payable_model extends App_Model
 
     public function add($data, $id = NULL)
     {
+        $monthName = array(
+            "01" => "january",
+            "02" => "february",
+            "03" => "march",
+            "04" => "april",
+            "05" => "may",
+            "06" => "june",
+            "07" => "july",
+            "08" => "august",
+            "09" => "september",
+            "10" => "october",
+            "11" => "november",
+            "12" => "december"
+        );
+
         $payable['supplier_id'] = $data['supplier_id'];
         $payable['supplier_name'] = $data['supplier_name'];
         $payable['company_name'] = $data['company_name'];
@@ -42,7 +57,10 @@ class Payable_model extends App_Model
         $payable['invoice_amount'] = $data['invoice_amount'];
         $payable['invoice_due_date'] = $data['invoice_due_date'];
         $payable['remarks'] = $data['remarks'];
-        $payable['pdc'] = $data['pdc'];
+        $payable['pdc'] = isset($data['pdc']) ? $data['pdc'] : NULL;
+
+        $month = date('m', strtotime($data['invoice_due_date']));
+        $payable[$monthName[$month]] = $data['invoice_amount'];
 
         if ($data['pdc']) {
             $pdc['cheque_number'] = $data['cheque_number'];
@@ -95,5 +113,19 @@ class Payable_model extends App_Model
         ]);
 
         log_activity('payable Paid Status Changed [SupplierID: ' . $id . ' - Paid Status(Active/Inactive): ' . $status . ']');
+    }
+
+    public function summarize_report($data)
+    {
+        if (isset($data['month'])) {
+            $month = explode('-', $data['month']);
+            $month = end($month);
+            $this->db->select('payable.*, pdc.id as pdcID, pdc.cheque_number, pdc.cheque_date, pdc.amount, pdc.bank_number ');
+            $this->db->join('pdc', 'pdc.payable_id = payable.id', 'left');
+            $this->db->where('MONTH(invoice_due_date)', $month);
+            $this->db->order_by('id', 'desc');
+
+            return $this->db->get(db_prefix() . 'payable')->result();
+        }
     }
 }
