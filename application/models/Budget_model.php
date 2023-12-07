@@ -50,7 +50,7 @@ class Budget_model extends App_Model
 
         $months = array();
         for ($i = 1; $i <= $data['into_month']; $i++) {
-            $months[$monthNames[$i]] = $total;
+            $months[$monthNames[$i]] = number_format($total, 2);
         }
 
         for ($i = $data['into_month'] + 1; $i <= 12; $i++) {
@@ -106,7 +106,7 @@ class Budget_model extends App_Model
         }
 
         for ($i = $data['into_month'] + 1; $i <= 12; $i++) {
-            $months[$monthNames[$i]] = null;
+            $months[$monthNames[$i]] = 0;
         }
 
         $data = array_merge($data, $months);
@@ -141,11 +141,11 @@ class Budget_model extends App_Model
 
     public function incomeHead($year)
     {
-        $this->db->select('budget.*, financial_year.year_name');
+        $this->db->select('budget.*, financial_year.year_name, head.head_name');
         $this->db->join('financial_year', 'financial_year.id = budget.financial_year');
+        $this->db->join('head', 'head.id = budget.head');
         $this->db->where('financial_year', $year);
         $this->db->where('head_type', 'income');
-        $this->db->order_by('id', 'desc');
 
         return $this->db->get(db_prefix() . 'budget')->result();
     }
@@ -153,11 +153,11 @@ class Budget_model extends App_Model
 
     public function expenseHead($year)
     {
-        $this->db->select('budget.*, financial_year.year_name');
+        $this->db->select('budget.*, financial_year.year_name, head.head_name');
         $this->db->join('financial_year', 'financial_year.id = budget.financial_year');
+        $this->db->join('head', 'head.id = budget.head');
         $this->db->where('financial_year', $year);
         $this->db->where('head_type', 'expense');
-        $this->db->order_by('id', 'desc');
 
         return $this->db->get(db_prefix() . 'budget')->result();
     }
