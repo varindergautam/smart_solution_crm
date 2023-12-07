@@ -13,6 +13,9 @@ $aColumns = [
     db_prefix() . 'supplier_group.id',
     db_prefix() . 'items_groups.name',
     db_prefix() . 'suppliers.company',
+    db_prefix() . 'suppliers.name',
+    db_prefix() . 'suppliers.Email',
+    db_prefix() . 'suppliers.phone_number',
 ];
 
 $where = [];
