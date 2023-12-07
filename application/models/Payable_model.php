@@ -30,6 +30,21 @@ class Payable_model extends App_Model
 
     public function add($data, $id = NULL)
     {
+        $monthName = array(
+            "01" => "january",
+            "02" => "february",
+            "03" => "march",
+            "04" => "april",
+            "05" => "may",
+            "06" => "june",
+            "07" => "july",
+            "08" => "august",
+            "09" => "september",
+            "10" => "october",
+            "11" => "november",
+            "12" => "december"
+        );
+
         $payable['supplier_id'] = $data['supplier_id'];
         $payable['supplier_name'] = $data['supplier_name'];
         $payable['company_name'] = $data['company_name'];
@@ -42,7 +57,10 @@ class Payable_model extends App_Model
         $payable['invoice_amount'] = $data['invoice_amount'];
         $payable['invoice_due_date'] = $data['invoice_due_date'];
         $payable['remarks'] = $data['remarks'];
-        $payable['pdc'] = $data['pdc'];
+        $payable['pdc'] = isset($data['pdc']) ? $data['pdc'] : NULL;
+
+        $month = date('m', strtotime($data['invoice_due_date']));
+        $payable[$monthName[$month]] = $data['invoice_amount'];
 
         if ($data['pdc']) {
             $pdc['cheque_number'] = $data['cheque_number'];

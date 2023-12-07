@@ -31,6 +31,21 @@ class Receivable_model extends App_Model
 
     public function add($data, $id = NULL)
     {
+        $monthName = array(
+            "01" => "january",
+            "02" => "february",
+            "03" => "march",
+            "04" => "april",
+            "05" => "may",
+            "06" => "june",
+            "07" => "july",
+            "08" => "august",
+            "09" => "september",
+            "10" => "october",
+            "11" => "november",
+            "12" => "december"
+        );
+
         $receivable['customer_id'] = $data['customer_id'];
         $receivable['customer_name'] = $data['customer_name'];
         $receivable['company_name'] = $data['company_name'];
@@ -43,7 +58,10 @@ class Receivable_model extends App_Model
         $receivable['invoice_amount'] = $data['invoice_amount'];
         $receivable['invoice_due_date'] = $data['invoice_due_date'];
         $receivable['remarks'] = $data['remarks'];
-        $receivable['pdc'] = $data['pdc'];
+        $receivable['pdc'] = isset($data['pdc']) ? $data['pdc'] : NULL;
+
+        $month = date('m', strtotime($data['invoice_due_date']));
+        $receivable[$monthName[$month]] = $data['invoice_amount'];
 
         if ($data['pdc']) {
             $pdc['cheque_number'] = $data['cheque_number'];
@@ -115,5 +133,9 @@ class Receivable_model extends App_Model
         ]);
 
         log_activity('Receivable Paid Status Changed [SupplierID: ' . $id . ' - Paid Status(Active/Inactive): ' . $status . ']');
+    }
+
+    public function summarize_report($year)
+    {
     }
 }

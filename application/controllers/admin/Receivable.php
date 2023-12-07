@@ -25,7 +25,7 @@ class Receivable extends AdminController
     {
         if ($this->input->post()) {
             $data = $this->input->post();
-            
+
             if ($id == '') {
                 $id = $this->receivable_model->add($data);
                 set_alert('success', _l('added_successfully', _l('Receivable')));
@@ -81,5 +81,14 @@ class Receivable extends AdminController
         if ($this->input->is_ajax_request()) {
             $this->receivable_model->change_paid_status($id, $status);
         }
+    }
+
+    public function summarize_report($year)
+    {
+        $data['year'] = isset($_GET['year']) ? $_GET['year'] : NULL;
+        $data['title']         = 'Receivable Summarize Report';
+        $data['reports'] = $this->receivable_model->summarize_report($data['year']);
+
+        $this->load->view('admin/receivable/summarize_report', $data);
     }
 }
