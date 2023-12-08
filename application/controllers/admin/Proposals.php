@@ -753,4 +753,12 @@ class Proposals extends AdminController
             }
         }
     }
+
+    public function report(){
+        $data['suppliers'] = $this->proposals_model->getSupplierData();
+        $data['supplier'] = isset($_GET['supplier']) ? $_GET['supplier'] : NULL;
+        $data['title']         = 'Proposal Report';
+
+        $this->load->view('admin/proposal/report', $data);
+    }
 }

@@ -291,7 +291,7 @@ class Proposals_model extends App_Model
                 foreach ($_item_taxes_names as $_item_tax) {
                     if (!in_array($_item_tax, $item['taxname'])) {
                         $this->db->where('id', $item_taxes[$i]['id'])
-                        ->delete(db_prefix() . 'item_tax');
+                            ->delete(db_prefix() . 'item_tax');
                         if ($this->db->affected_rows() > 0) {
                             $affectedRows++;
                         }
@@ -710,7 +710,7 @@ class Proposals_model extends App_Model
                     $message = 'not_proposal_proposal_declined';
                 } elseif ($status == 3) {
                     $message = 'not_proposal_proposal_accepted';
-                // Accepted
+                    // Accepted
                 } else {
                     $revert = true;
                 }
@@ -731,14 +731,14 @@ class Proposals_model extends App_Model
                 $notifiedUsers  = [];
                 foreach ($staff_proposal as $member) {
                     $notified = add_notification([
-                            'fromcompany'     => true,
-                            'touserid'        => $member['staffid'],
-                            'description'     => $message,
-                            'link'            => 'proposals/list_proposals/' . $id,
-                            'additional_data' => serialize([
-                                format_proposal_number($id),
-                            ]),
-                        ]);
+                        'fromcompany'     => true,
+                        'touserid'        => $member['staffid'],
+                        'description'     => $message,
+                        'link'            => 'proposals/list_proposals/' . $id,
+                        'additional_data' => serialize([
+                            format_proposal_number($id),
+                        ]),
+                    ]);
                     if ($notified) {
                         array_push($notifiedUsers, $member['staffid']);
                     }
@@ -1002,5 +1002,73 @@ class Proposals_model extends App_Model
         }
 
         return $kanBan->get();
+    }
+
+    public function getSupplierData()
+    {
+        $jsonColumn = 'supplier_item_data';
+
+        // Your SQL query without JSON_EXTRACT
+        $this->db->select("$jsonColumn as supplier_data");
+        $this->db->from(db_prefix() . 'itemable');
+
+        $query = $this->db->get();
+        $results = $query->result();
+
+        // Process the results and extract supplier_id
+        $supplierIds = [];
+        foreach ($results as $result) {
+            $jsonData = json_decode(json_decode($result->supplier_data));
+
+            if ($jsonData && isset($jsonData->supplier_id)) {
+                $supplierIds[] = $jsonData->supplier_id;
+            }
+        }
+
+        if (!empty($supplierIds)) {
+            $this->db->select('*');
+            $this->db->from('suppliers');
+            $this->db->where_in('supplierid', $supplierIds);
+
+            $supplierQuery = $this->db->get();
+            return $supplierQuery->result();
+        } else {
+            return [];
+        }
+    }
+
+    public function generateReport($targetSupplierId)
+    {
+        $jsonColumn = 'supplier_item_data';
+
+        // Your SQL query without JSON_EXTRACT
+        $this->db->select("$jsonColumn as supplier_data");
+        $this->db->from(db_prefix() . 'itemable');
+
+        $query = $this->db->get();
+        $results = $query->result();
+
+        // Process the results and extract supplier_id
+        $supplierIds = [];
+        foreach ($results as $result) {
+            $jsonData = json_decode($result->supplier_data);
+
+            if ($jsonData && isset($jsonData->supplier_id)) {
+                $supplierIds[] = $jsonData->supplier_id;
+            }
+        }
+
+        // Check if the target supplier_id is valid
+        if (in_array($targetSupplierId, $supplierIds)) {
+            // Retrieve data from the "supplier" table for the specific supplier_id
+            $this->db->select('*');
+            $this->db->from('suppliers');
+            $this->db->where('supplierid', $targetSupplierId);
+
+            $supplierQuery = $this->db->get();
+            return $supplierQuery->row(); // Use row() to get a single result
+        } else {
+            return null; // Supplier not found
+        }
     }
 }
