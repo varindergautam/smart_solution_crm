@@ -33,7 +33,7 @@ $rResult = $result['rResult'];
 foreach ($rResult as $aRow) {
     $row = [];
     for ($i = 0; $i < count($aColumns); $i++) {
-   
+
         if (strpos($aColumns[$i], 'as') !== false && !isset($aRow[$aColumns[$i]])) {
             $_data = $aRow[strafter($aColumns[$i], 'as ')];
         } else {
@@ -50,7 +50,11 @@ foreach ($rResult as $aRow) {
             $_data .= '<a href="' . admin_url('supplier_item/delete/' . $aRow[db_prefix() . 'supplier_items.id']) . '" class="text-danger _delete">' . _l('delete') . '</a>';
 
             $_data .= '</div>';
-        } 
+        } elseif ($aColumns[$i] == 'phone_number') {
+            $_data = ($aRow['phone_number'] ? '<a href="tel:' . $aRow['phone_number'] . '">' . $aRow['phone_number'] . '</a>' : '');
+        } elseif ($aColumns[$i] == 'email') {
+            $_data = $aRow['email'] ? '<a href="mailto:' . $aRow['email'] . '">' . $aRow['email'] . '</a>' : '';
+        }
         $row[] = $_data;
     }
 

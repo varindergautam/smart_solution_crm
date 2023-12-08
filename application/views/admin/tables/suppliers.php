@@ -93,6 +93,12 @@ foreach ($rResult as $aRow) {
             $_data = $aRow['supplierid'];
         } elseif ($aColumns[$i] == 'phone_number') {
             $_data = ($aRow['phone_number'] ? '<a href="tel:' . $aRow['phone_number'] . '">' . $aRow['phone_number'] . '</a>' : '');
+        } elseif ($aColumns[$i] == 'phone_number_1') {
+            $_data = ($aRow['phone_number_1'] ? '<a href="tel:' . $aRow['phone_number_1'] . '">' . $aRow['phone_number_1'] . '</a>' : '');
+        } elseif ($aColumns[$i] == 'phone_number_2') {
+            $_data = ($aRow['phone_number_2'] ? '<a href="tel:' . $aRow['phone_number_2'] . '">' . $aRow['phone_number_2'] . '</a>' : '');
+        } elseif ($aColumns[$i] == 'email') {
+            $_data = $aRow['email'] ? '<a href="mailto:' . $aRow['email'] . '">' . $aRow['email'] . '</a>' : '';
         } elseif ($aColumns[$i] == 'currency') {
             $_data = $brandNamesImploded;
         } elseif ($aColumns[$i] == 'default_language') {

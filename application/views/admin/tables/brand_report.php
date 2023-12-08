@@ -47,8 +47,11 @@ foreach ($rResult as $aRow) {
             $_data = $aRow[db_prefix() . 'brand.name'];
         } elseif ($aColumns[$i] == db_prefix() . 'suppliers.company') {
             $_data = $aRow[db_prefix() . 'suppliers.company'];
+        } elseif ($aColumns[$i] == db_prefix() . 'suppliers.phone_number') {
+            $_data = ($aRow[db_prefix() . 'suppliers.phone_number'] ? '<a href="tel:' . $aRow[db_prefix() . 'suppliers.phone_number'] . '">' . $aRow[db_prefix() . 'suppliers.phone_number'] . '</a>' : '');
+        } elseif ($aColumns[$i] == db_prefix() . 'suppliers.email') {
+            $_data = $aRow[db_prefix() . 'suppliers.email'] ? '<a href="mailto:' . $aRow[db_prefix() . 'suppliers.email'] . '">' . $aRow[db_prefix() . 'suppliers.email'] . '</a>' : '';
         }
-
         $row[] = $_data;
     }
 
