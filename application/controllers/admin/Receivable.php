@@ -85,9 +85,9 @@ class Receivable extends AdminController
 
     public function summarize_report()
     {
-        $data['month'] = isset($_GET['month']) ? $_GET['month'] : NULL;
+        $data['s_year'] = isset($_GET['year']) ? $_GET['year'] : NULL;
         $data['title']         = 'Receivable Summarize Report';
-        $data['reports'] = $this->receivable_model->summarize_report($data['month']);
+        $data['reports'] = $this->receivable_model->summarize_report($data['s_year']);
 
         $this->load->view('admin/receivable/summarize_report', $data);
     }

@@ -23,8 +23,21 @@
                         </div>
                         <div class="tab-content tw-mt-5">
                             <div role="tabpanel" class="tab-pane active" id="tab_staff_profile">
-                                <?php $value = (isset($month) ? $month : ''); ?>
-                                <?php echo render_input('month', 'Invoice Due Month', $value, 'month'); ?>
+                                <?php $value = (isset($s_year) ? $s_year : ''); ?>
+
+                                <label>Year</label>
+                                <select name="year" id="year" class="form-control">
+                                    <option>Select year</option>
+                                    <?php
+                                    $startYear = 2015;
+                                    $endYear = 2050;
+
+                                    for ($year = $startYear; $year <= $endYear; $year++) {
+                                        $selected = ($year == $s_year) ? 'selected' : '';
+                                        echo "<option value=\"$year\" $selected>$year</option>";
+                                    }
+                                    ?>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -37,7 +50,7 @@
             <?php echo form_close(); ?>
 
             <?php
-            if (isset($month)) {
+            if (isset($s_year)) {
             ?>
                 <div class="col-md-12" id="small-table">
                     <div class="panel_s">
