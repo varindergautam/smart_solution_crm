@@ -135,13 +135,38 @@ class Receivable_model extends App_Model
         log_activity('Receivable Paid Status Changed [SupplierID: ' . $id . ' - Paid Status(Active/Inactive): ' . $status . ']');
     }
 
+    // public function summarize_report($year)
+    // {
+    //     if (isset($year)) {
+    //         $this->db->select('receivable.*, pdc.id as pdcID, pdc.cheque_number, pdc.cheque_date, pdc.amount, pdc.bank_number ');
+    //         $this->db->join('pdc', 'pdc.receivable_id = receivable.id', 'left');
+    //         $this->db->where('YEAR(invoice_due_date)', $year);
+    //         $this->db->order_by('id', 'desc');
+
+    //         return $this->db->get(db_prefix() . 'receivable')->result();
+    //     }
+    // }
+
     public function summarize_report($year)
     {
         if (isset($year)) {
-            $this->db->select('receivable.*, pdc.id as pdcID, pdc.cheque_number, pdc.cheque_date, pdc.amount, pdc.bank_number ');
+            $this->db->select('receivable.*,
+        SUM(invoice_amount) as invoice_amount,
+        SUM(january) as january,
+        SUM(february) as february,
+        SUM(march) as march,
+        SUM(april) as april,
+        SUM(may) as may,
+        SUM(june) as june,
+        SUM(july) as july,
+        SUM(august) as august,
+        SUM(september) as september,
+        SUM(october) as october,
+        SUM(november) as november,
+        SUM(december) as december, pdc.id as pdcID, pdc.cheque_number, pdc.cheque_date, pdc.amount, pdc.bank_number');
             $this->db->join('pdc', 'pdc.receivable_id = receivable.id', 'left');
             $this->db->where('YEAR(invoice_due_date)', $year);
-            $this->db->order_by('id', 'desc');
+            $this->db->group_by('customer_id'); // Group by customer_id
 
             return $this->db->get(db_prefix() . 'receivable')->result();
         }
