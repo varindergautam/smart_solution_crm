@@ -56,7 +56,7 @@
                         <div class="panel-body panel-table-full">
                             <?php
                             $table_data = [
-                                _l('ID'),
+                                _l('S No.'),
                                 _l('Company Name'),
                                 _l('Invoice No.'),
                                 _l('Invoice Date'),

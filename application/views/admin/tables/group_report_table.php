@@ -38,7 +38,7 @@ $result = data_tables_init($aColumns, $sIndexColumn, $sTable, $join, $where);
 $output  = $result['output'];
 $rResult = $result['rResult'];
 
-foreach ($rResult as $aRow) {
+foreach ($rResult as $key => $aRow) {
     $row = [];
     for ($i = 0; $i < count($aColumns); $i++) {
 
@@ -49,7 +49,7 @@ foreach ($rResult as $aRow) {
         }
 
         if ($aColumns[$i] == db_prefix() . 'supplier_group.id') {
-            $_data = $aRow[db_prefix() . 'supplier_group.id'];
+            $_data = $key + 1;
         } elseif ($aColumns[$i] == db_prefix() . 'items_groups.name') {
             $_data = $aRow[db_prefix() . 'items_groups.name'];
         } elseif ($aColumns[$i] == db_prefix() . 'suppliers.company') {

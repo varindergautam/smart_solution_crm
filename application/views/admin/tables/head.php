@@ -23,7 +23,7 @@ $result = data_tables_init($aColumns, $sIndexColumn, $sTable, [], $where);
 $output  = $result['output'];
 $rResult = $result['rResult'];
 
-foreach ($rResult as $aRow) {
+foreach ($rResult as $key => $aRow) {
     $row = [];
     for ($i = 0; $i < count($aColumns); $i++) {
 
@@ -39,6 +39,8 @@ foreach ($rResult as $aRow) {
             $_data .= '<div class="row-options">';
             $_data .= '<a href="' . admin_url('head/create/' . $aRow['id']) . '">' . _l('view') . '</a>';
             $_data .= '</div>';
+        } elseif ($aColumns[$i] == 'id') {
+            $_data = $key + 1;
         }
         $row[] = $_data;
     }

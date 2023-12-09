@@ -48,7 +48,7 @@ $result = data_tables_init($aColumns, $sIndexColumn, $sTable, $join, $where);
 $output  = $result['output'];
 $rResult = $result['rResult'];
 
-foreach ($rResult as $aRow) {
+foreach ($rResult as $key => $aRow) {
     $row = [];
     for ($i = 0; $i < count($aColumns); $i++) {
 
@@ -68,7 +68,9 @@ foreach ($rResult as $aRow) {
         //     $_data .= '</div>';
         // } else
         
-        if ($aColumns[$i] == db_prefix() . 'receivable.paid_status') {
+        if ($aColumns[$i] == db_prefix() . 'receivable.id') {
+            $_data = $key + 1;
+        } elseif ($aColumns[$i] == db_prefix() . 'receivable.paid_status') {
             $checked = '';
             if ($aRow[db_prefix() . 'receivable.paid_status'] == 1) {
                 $checked = 'checked';

@@ -16,7 +16,7 @@
                     <div class="panel-body panel-table-full">
                         <?php
                         $table_data = [
-                            _l('ID'),
+                            _l('S No.'),
                             _l('Name'),
                             _l('Email'),
                             _l('Vat Number'),

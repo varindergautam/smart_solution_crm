@@ -17,7 +17,7 @@
                     <div class="panel-body panel-table-full">
                         <?php
                         $table_data = [
-                            _l('ID'),
+                            _l('S No.'),
                             _l('Particular'),
                             _l('Date of PDC'),
                             _l('Cheque Number'),

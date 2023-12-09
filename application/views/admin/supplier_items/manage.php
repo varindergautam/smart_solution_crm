@@ -17,7 +17,7 @@
                     <div class="panel-body panel-table-full">
                         <?php
                         $table_data = [
-                            _l('ID'),
+                            _l('S No.'),
                             _l('Supplier Name'),
                             _l('Supplier Company Name'),
                             _l('Supplier Email'),

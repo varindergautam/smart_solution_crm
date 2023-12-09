@@ -18,7 +18,7 @@ $result = data_tables_init($aColumns, $sIndexColumn, $sTable, [], $where);
 $output  = $result['output'];
 $rResult = $result['rResult'];
 
-foreach ($rResult as $aRow) {
+foreach ($rResult as $key => $aRow) {
     $row = [];
     for ($i = 0; $i < count($aColumns); $i++) {
 
@@ -26,6 +26,10 @@ foreach ($rResult as $aRow) {
             $_data = $aRow[strafter($aColumns[$i], 'as ')];
         } else {
             $_data = $aRow[$aColumns[$i]];
+        }
+
+        if ($aColumns[$i] == 'id') {
+            $_data = $key + 1;
         }
 
         $row[] = $_data;

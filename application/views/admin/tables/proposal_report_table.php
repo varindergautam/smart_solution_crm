@@ -14,6 +14,7 @@ $aColumns = [
     db_prefix() . 'items_groups.name',
     'supplier_item_data',
     'supplier_id',
+    db_prefix() . 'suppliers.name',
 ];
 
 $join   = [
@@ -45,7 +46,7 @@ $result = data_tables_init($aColumns, $sIndexColumn, $sTable, $join, $where);
 $output  = $result['output'];
 $rResult = $result['rResult'];
 
-foreach ($rResult as $aRow) {
+foreach ($rResult as $key => $aRow) {
     $row = [];
     for ($i = 0; $i < count($aColumns); $i++) {
 
@@ -53,6 +54,10 @@ foreach ($rResult as $aRow) {
             $_data = $aRow[strafter($aColumns[$i], 'as ')];
         } else {
             $_data = $aRow[$aColumns[$i]];
+        }
+
+        if ($aColumns[$i] == db_prefix() . 'itemable.id') {
+            $_data = $key + 1;
         }
 
         if ($aColumns[$i] == db_prefix() . 'proposals.id') {
@@ -65,6 +70,10 @@ foreach ($rResult as $aRow) {
 
         if ($aColumns[$i] == 'supplier_id') {
             $_data = json_decode(json_decode($aRow['supplier_item_data']), true)['date'];
+        }
+        
+        if ($aColumns[$i] == db_prefix() . 'suppliers.name') {
+            $_data = $aRow[db_prefix() . 'suppliers.name'];
         }
         $row[] = $_data;
     }

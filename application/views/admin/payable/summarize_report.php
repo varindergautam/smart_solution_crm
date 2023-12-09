@@ -58,7 +58,7 @@
                             <table id="summarize" class="table">
                                 <thead>
                                     <tr>
-                                        <th>Id</th>
+                                        <th>S No.</th>
                                         <th>Company Name</th>
                                         <th>Invoice No.</th>
                                         <th>Invoice Due Date</th>
@@ -93,7 +93,7 @@
                                     $reportNovemberTotal = 0;
                                     $reportDecemberTotal = 0;
 
-                                    foreach ($reports as $report) {
+                                    foreach ($reports as $key => $report) {
                                         $reportAmountTotal += $report->invoice_amount;
                                         $reportJanuaryTotal += $report->january;
                                         $reportFebruaryTotal += $report->february;
@@ -109,7 +109,7 @@
                                         $reportDecemberTotal += $report->december;
                                     ?>
                                         <tr>
-                                            <td><?php echo $report->id; ?></td>
+                                            <td><?php echo $key + 1; ?></td>
                                             <td><?php echo $report->company_name; ?></td>
                                             <td><?php echo $report->invoice_number; ?></td>
                                             <td><?php echo $report->invoice_due_date; ?></td>

@@ -17,7 +17,7 @@
                     <div class="panel-body panel-table-full">
                         <?php
                         $table_data = [
-                            _l('ID'),
+                            _l('S No.'),
                             _l('Year Name'),
                             _l('Date'),
                         ];

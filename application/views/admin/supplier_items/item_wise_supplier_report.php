@@ -53,7 +53,7 @@
                         <div class="panel-body panel-table-full">
                             <?php
                             $table_data = [
-                                _l('ID'),
+                                _l('S No.'),
                                 _l('Item Name'),
                                 _l('Item Rate'),
                                 _l('Brand'),

@@ -3,7 +3,8 @@
 
 <div id="wrapper">
     <style>
-        table tfoot tr td, .difference td {
+        table tfoot tr td,
+        .difference td {
             color: red !important;
             font-weight: bolder !important;
         }
@@ -63,7 +64,7 @@
                             <table class="table income" id="income">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
+                                        <th>S No.</th>
                                         <th>Year</th>
                                         <th>Month</th>
                                         <th>Head Name</th>
@@ -99,7 +100,7 @@
                                     $incomeOctoberTotal = 0;
                                     $incomeNovemberTotal = 0;
                                     $incomeDecemberTotal = 0;
-                                    foreach ($income_head as $income) {
+                                    foreach ($income_head as $key => $income) {
                                         $incomeAmountTotal += $income->amount;
                                         $incomeJanuaryTotal += $income->january;
                                         $incomeFebruaryTotal += $income->february;
@@ -117,7 +118,7 @@
                                     ?>
 
                                         <tr>
-                                            <td><?php echo $income->id; ?></td>
+                                            <td><?php echo $key + 1; ?></td>
                                             <td><?php echo $income->year_name; ?></td>
                                             <td><?php echo $income->into_month; ?></td>
                                             <td><?php echo $income->head_name; ?></td>
@@ -181,7 +182,7 @@
                             <table class="table table-budget" id="expense">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
+                                        <th>S No.</th>
                                         <th>Year</th>
                                         <th>Month</th>
                                         <th>Head Name</th>
@@ -398,18 +399,18 @@
                 </div>
 
 
-    <?php
+            <?php
             }
-    ?>
+            ?>
 
+        </div>
     </div>
-</div>
 </div>
 
 <?php init_tail(); ?>
 
 <script>
-$(document).ready(function() {
+    $(document).ready(function() {
         $('#expense').DataTable({
             "scrollX": true,
             "scrollY": "300px",
@@ -430,7 +431,9 @@ $(document).ready(function() {
             "scrollX": true,
             "scrollY": "300px",
             "scrollCollapse": true,
-            order: [[1, 'asc']],
+            order: [
+                [1, 'asc']
+            ],
             "dom": 'lBfrtip',
         });
         $('#balance_wrapper').removeClass('table-loading');

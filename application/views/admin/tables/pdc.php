@@ -28,7 +28,7 @@ $result = data_tables_init($aColumns, $sIndexColumn, $sTable, [], $where);
 $output  = $result['output'];
 $rResult = $result['rResult'];
 
-foreach ($rResult as $aRow) {
+foreach ($rResult as $key => $aRow) {
     $row = [];
     for ($i = 0; $i < count($aColumns); $i++) {
 
@@ -38,7 +38,9 @@ foreach ($rResult as $aRow) {
             $_data = $aRow[$aColumns[$i]];
         }
 
-        if ($aColumns[$i] == "cheque_number") {
+        if ($aColumns[$i] == 'id') {
+            $_data = $key + 1;
+        } elseif ($aColumns[$i] == "cheque_number") {
 
             $_data = ' <a href="' . admin_url('pdc/create/' . $aRow['id']) . '">' . $aRow['cheque_number'] . '</a>';
 

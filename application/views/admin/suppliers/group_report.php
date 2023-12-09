@@ -53,7 +53,7 @@
                         <div class="panel-body panel-table-full">
                             <?php
                             $table_data = [
-                                _l('ID'),
+                                _l('S No.'),
                                 _l('Group Name'),
                                 _l('Company Name'),
                                 _l('Supplier Name'),

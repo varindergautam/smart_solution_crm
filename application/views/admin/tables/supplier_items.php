@@ -30,7 +30,7 @@ $result = data_tables_init($aColumns, $sIndexColumn, $sTable, $join, []);
 $output  = $result['output'];
 $rResult = $result['rResult'];
 
-foreach ($rResult as $aRow) {
+foreach ($rResult as $key => $aRow) {
     $row = [];
     for ($i = 0; $i < count($aColumns); $i++) {
 
@@ -39,7 +39,9 @@ foreach ($rResult as $aRow) {
         } else {
             $_data = $aRow[$aColumns[$i]];
         }
-        if ($aColumns[$i] == 'date') {
+        if ($aColumns[$i] == db_prefix() . 'supplier_items.id') {
+            $_data = $key + 1;
+        } elseif ($aColumns[$i] == 'date') {
             $_data = $aRow['date'];
         } elseif ($aColumns[$i] == "vat_number") {
             $_data = ' <a href="' . admin_url('supplier_item/create/' . $aRow[db_prefix() . 'supplier_items.id']) . '">' . $aRow["vat_number"] . '</a>';

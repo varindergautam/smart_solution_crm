@@ -58,7 +58,7 @@
                             <table id="summarize" class="table">
                                 <thead>
                                     <tr>
-                                        <th>Id</th>
+                                        <th>S No.</th>
                                         <th>Company Name</th>
                                         <th>Invoice No.</th>
                                         <th>Invoice Due Date</th>

@@ -35,7 +35,7 @@ $result = data_tables_init($aColumns, $sIndexColumn, $sTable, $join, []);
 $output  = $result['output'];
 $rResult = $result['rResult'];
 
-foreach ($rResult as $aRow) {
+foreach ($rResult as $key => $aRow) {
     $row = [];
     for ($i = 0; $i < count($aColumns); $i++) {
 
@@ -45,9 +45,11 @@ foreach ($rResult as $aRow) {
             $_data = $aRow[$aColumns[$i]];
         }
 
-        if ($aColumns[$i] == db_prefix() . 'payable.company_name') {
+        if ($aColumns[$i] == db_prefix() . 'payable.id') {
+            $_data = $key + 1;
+        } elseif ($aColumns[$i] == db_prefix() . 'payable.company_name') {
 
-            $_data = ' <a href="' . admin_url('payable/create/' . $aRow[db_prefix() . 'payable.id']) . '">' . $aRow[db_prefix() . 'payable.company_name']. '</a>';
+            $_data = ' <a href="' . admin_url('payable/create/' . $aRow[db_prefix() . 'payable.id']) . '">' . $aRow[db_prefix() . 'payable.company_name'] . '</a>';
 
             $_data .= '<div class="row-options">';
             $_data .= '<a href="' . admin_url('payable/create/' . $aRow[db_prefix() . 'payable.id']) . '">' . _l('edit') . '</a>';

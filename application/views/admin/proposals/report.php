@@ -40,7 +40,7 @@
                                                 }
                                             } ?>
                                             <option value="<?php echo $sup['supplierid']; ?>" <?php echo $selected; ?>>
-                                                <?php echo ucfirst($sup['company']); ?></option>
+                                                <?php echo ucfirst($sup['name']); ?></option>
                                         <?php
                                         } } ?>
                                     </select>
@@ -64,13 +64,14 @@
                         <div class="panel-body panel-table-full">
                             <?php
                             $table_data = [
-                                _l('ID'),
+                                _l('S No.'),
                                 _l('Proposal No.'),
                                 _l('Proposal Date'),
                                 _l('Item'),
                                 _l('Group'),
                                 _l('Amount'),
                                 _l('Date'),
+                                _l('Supplier Name'),
                             ];
 
                             render_datatable($table_data, 'proposal');
@@ -114,7 +115,7 @@
 
                         // Add options based on the response
                         $.each(response, function(index, supplier) {
-                            htmlRow += '<option value="' + supplier.supplierid + '">' + supplier.company + '</option>';
+                            htmlRow += '<option value="' + supplier.supplierid + '">' + supplier.name + '</option>';
                         });
                         $('#supplier').append(htmlRow);
                     },

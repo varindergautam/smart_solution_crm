@@ -47,7 +47,7 @@ $rResult = $result['rResult'];
 $CI = &get_instance();
 $CI->load->database();
 
-foreach ($rResult as $aRow) {
+foreach ($rResult as $key => $aRow) {
     $brandNames = $CI->db->select('b.name')
         ->from('tblsupplier_brand sb')
         ->join('brand b', 'b.id = sb.brand_id')
@@ -75,7 +75,7 @@ foreach ($rResult as $aRow) {
         }
 
         if ($aColumns[$i] == db_prefix() . 'supplier_items.id') {
-            $_data = $aRow[db_prefix() . 'supplier_items.id'];
+            $_data = $key + 1;
         } elseif ($aColumns[$i] == db_prefix() . 'items.name') {
             $_data = $aRow[db_prefix() . 'items.name'];
         } elseif ($aColumns[$i] == db_prefix() . 'suppliers.company') {

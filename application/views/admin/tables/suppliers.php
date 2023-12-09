@@ -38,7 +38,7 @@ $output  = $result['output'];
 $rResult = $result['rResult'];
 $CI = &get_instance();
 $CI->load->database();
-foreach ($rResult as $aRow) {
+foreach ($rResult as $key => $aRow) {
     $brandNames = $CI->db->select('b.name')
         ->from('tblsupplier_brand sb')
         ->join('brand b', 'b.id = sb.brand_id')
@@ -64,8 +64,9 @@ foreach ($rResult as $aRow) {
         } else {
             $_data = $aRow[$aColumns[$i]];
         }
-        if ($aColumns[$i] == 'datecreated') {
-
+        if ($aColumns[$i] == 'supplierid') {
+            $_data = $key + 1;
+        } elseif ($aColumns[$i] == 'datecreated') {
             $_data = $aRow['datecreated'];
         } elseif ($aColumns[$i] == 'active') {
             $checked = '';

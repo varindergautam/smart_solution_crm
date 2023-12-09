@@ -40,7 +40,6 @@ if (isset($supplier) && $supplier != '') {
     array_push($where,  'AND ', 'supplier_id=' . $supplier);
 }
 
-
 $sIndexColumn ='id';
 $sTable = db_prefix() . 'payable';
 $result = data_tables_init($aColumns, $sIndexColumn, $sTable, $join , $where);
@@ -48,7 +47,7 @@ $result = data_tables_init($aColumns, $sIndexColumn, $sTable, $join , $where);
 $output  = $result['output'];
 $rResult = $result['rResult'];
 
-foreach ($rResult as $aRow) {
+foreach ($rResult as $key => $aRow) {
     $row = [];
     for ($i = 0; $i < count($aColumns); $i++) {
 
@@ -58,7 +57,9 @@ foreach ($rResult as $aRow) {
             $_data = $aRow[$aColumns[$i]];
         }
 
-        if ($aColumns[$i] == "company_name") {
+        if ($aColumns[$i] == db_prefix() . 'payable.id') {
+            $_data = $key + 1;
+        } elseif ($aColumns[$i] == "company_name") {
 
             $_data = ' <a href="' . admin_url('payable/create/' . $aRow[db_prefix() . 'payable.id']) . '">' . $aRow['company_name'] . '</a>';
 
