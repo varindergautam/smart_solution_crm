@@ -470,7 +470,7 @@ $(document).ready(function () {
                 var jsonString = JSON.stringify(row).replace(/"/g, '&quot;');
 
                 var htmlRow  = '<tr>';
-                htmlRow  += '<td><input type="hidden" name="supplier_id"  value="' + rowData.supplier_id + '"><input type="radio" name="supplier_item_data_checkbox" class="supplier_item_data_checkbox" value="' + jsonString + '"></td>';
+                htmlRow += '<td><input type="radio" name="supplier_item_data_checkbox" class="supplier_item_data_checkbox" value="' + jsonString + '"></td>';
                 htmlRow  += '<td>' + rowData.company + '</td>';
                 htmlRow  += '<td>' + rowData.description + '</td>';
                 htmlRow  += '<td>' + rowData.rate + '</td>';

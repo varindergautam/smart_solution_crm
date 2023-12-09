@@ -754,11 +754,16 @@ class Proposals extends AdminController
         }
     }
 
+    public function getSupplierData($date) {
+        $suppliers = $this->proposals_model->getSupplierData($date);
+        echo json_encode($suppliers);
+    }
+
     public function report()
     {
-        $data['suppliers'] = $this->proposals_model->getSupplierData();
         $data['supplier'] = isset($_GET['supplier']) ? $_GET['supplier'] : NULL;
         $data['date'] = isset($_GET['date']) ? $_GET['date'] : NULL;
+        $data['suppliers'] = $this->proposals_model->getSupplierData($data['date']);
         // $report = $this->proposals_model->report($data);
         // echo "<pre>";
         // print_r($report);die;

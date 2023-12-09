@@ -1004,13 +1004,14 @@ class Proposals_model extends App_Model
         return $kanBan->get();
     }
 
-    public function getSupplierData()
+    public function getSupplierData($date)
     {
-        $this->db->select('it.*, sup.supplierid, sup.company, sup.name, sup.email');
+        $this->db->select('sup.supplierid, sup.company, sup.name, sup.email');
         $this->db->from(db_prefix() . 'itemable as it');
         $this->db->join(db_prefix() . 'suppliers as sup', 'sup.supplierid = it.supplier_id', 'left');
+        $this->db->join(db_prefix() . 'proposals as p', 'p.id = it.rel_id', 'left');
+        $this->db->where('p.date', $date);
         $this->db->group_by('it.supplier_id');
-
         $supplierQuery = $this->db->get();
         return $supplierQuery->result_array();
     }

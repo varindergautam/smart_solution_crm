@@ -23,14 +23,15 @@
                         </div>
                         <div class="tab-content tw-mt-5">
                             <div role="tabpanel" class="tab-pane active" id="tab_staff_profile">
-                            <?php $value = (isset($date) ? $date : ''); ?>
+                                <?php $value = (isset($date) ? $date : ''); ?>
                                 <?php echo render_input('date', 'Proposal Date', $value, 'date'); ?>
 
-                                <div class="form-group select-placeholder">
-                                    <label for="supplier" class="control-label"><?php echo _l('Supplier'); ?></label>
-                                    <select name="supplier" data-live-search="true" id="supplier" class="form-control selectpicker" data-none-selected-text="<?php echo _l('dropdown_non_selected_tex'); ?>">
-                                        <option value=""><?php echo _l('Select Supplier'); ?></option>
+                                <div class="form-group ">
+                                    <label >Supplier</label>
+                                    <select name="supplier" id="supplier" class="form-control " >
+                                        <option value="">Select Supplier</option>
                                         <?php 
+                                        if(isset($suppliers)){
                                         foreach ($suppliers as $sup) {
                                             $selected = '';
                                             if (isset($supplier)) {
@@ -41,7 +42,7 @@
                                             <option value="<?php echo $sup['supplierid']; ?>" <?php echo $selected; ?>>
                                                 <?php echo ucfirst($sup['company']); ?></option>
                                         <?php
-                                        } ?>
+                                        } } ?>
                                     </select>
                                 </div>
                             </div>
@@ -61,7 +62,7 @@
                 <div class="col-md-12" id="small-table">
                     <div class="panel_s">
                         <div class="panel-body panel-table-full">
-                        <?php
+                            <?php
                             $table_data = [
                                 _l('ID'),
                                 _l('Proposal No.'),
@@ -87,8 +88,43 @@
     $(function() {
 
         $(function() {
-        initDataTable('.table-proposal', window.location.href);
-    });
+            initDataTable('.table-proposal', window.location.href);
+
+            $('#date').change(function() {
+                var selectedValue = $(this).val();
+                console.log(selectedValue);
+
+                $.ajax({
+                    url: admin_url + 'proposals/getSupplierData/' + selectedValue,
+                    type: 'GET',
+                    data: {},
+                    dataType: "json",
+                    success: function(response) {
+                        // Assuming response is an array of supplier data
+                        //var supplierSelect = $('#supplier');
+
+                        // Clear existing options
+                        $('#supplier').empty();
+
+                        // Add default option
+                        //supplierSelect.append('<option value="">Select Supplier</option>');
+
+
+                        var htmlRow = '<option value="">Select Supplier</option>';
+
+                        // Add options based on the response
+                        $.each(response, function(index, supplier) {
+                            htmlRow += '<option value="' + supplier.supplierid + '">' + supplier.company + '</option>';
+                        });
+                        $('#supplier').append(htmlRow);
+                    },
+
+                    error: function(error) {
+                        console.error('Error fetching dynamic data:', error);
+                    }
+                });
+            });
+        });
 
     });
 </script>
