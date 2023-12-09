@@ -18,6 +18,25 @@
                             <div role="tabpanel" class="tab-pane active" id="tab_staff_profile">
                                 <?php $value = (isset($month) ? $month : ''); ?>
                                 <?php echo render_input('month', 'Month', $value, 'month'); ?>
+
+                                <div class="form-group select-placeholder">
+                                    <label for="supplier" class="control-label"><?php echo _l('Supplier'); ?></label>
+                                    <select name="supplier" data-live-search="true" id="supplier" class="form-control selectpicker" data-none-selected-text="<?php echo _l('dropdown_non_selected_tex'); ?>">
+                                        <option value=""><?php echo _l('Select Supplier'); ?></option>
+                                        <?php 
+                                        foreach ($suppliers as $sup) {
+                                            $selected = '';
+                                            if (isset($supplier)) {
+                                                if ($supplier == $sup['supplierid']) {
+                                                    $selected = 'selected';
+                                                }
+                                            } ?>
+                                            <option value="<?php echo $sup['supplierid']; ?>" <?php echo $selected; ?>>
+                                                <?php echo ucfirst($sup['company']); ?></option>
+                                        <?php
+                                        } ?>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -31,7 +50,7 @@
             <?php echo form_close(); ?>
 
             <?php
-            if (isset($month)) {
+            if (isset($month) || isset($supplier)) {
             ?>
                 <div class="col-md-12" id="small-table">
                     <div class="panel_s">

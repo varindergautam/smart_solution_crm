@@ -151,4 +151,14 @@ class Payable_model extends App_Model
             return $this->db->get(db_prefix() . 'payable')->result();
         }
     }
+
+    public function suppliers() {
+        $this->db->select('r.*, c.supplierid, c.company, c.name, c.phone_number, c.email');
+        $this->db->from(db_prefix() . 'payable as r');
+        $this->db->join(db_prefix() . 'suppliers as c', 'c.supplierid = r.supplier_id', 'left');
+        $this->db->group_by('r.supplier_id');
+
+        $supplierQuery = $this->db->get();
+        return $supplierQuery->result_array();
+    }
 }

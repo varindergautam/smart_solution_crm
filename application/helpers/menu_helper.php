@@ -183,6 +183,14 @@ function app_init_admin_sidebar_menu_items()
     ]);
 
     $CI->app_menu->add_sidebar_children_item('sales', [
+        'slug'     => 'proposals/report',
+        'name'     => _l('Proposal Report'),
+        'href'     => admin_url('proposals/report'),
+        'position' => 5,
+        'badge'    => [],
+    ]);
+
+    $CI->app_menu->add_sidebar_children_item('sales', [
         'slug'     => 'brand/',
         'name'     => _l('Brand'),
         'href'     => admin_url('brand/'),

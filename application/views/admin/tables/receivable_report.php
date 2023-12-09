@@ -25,6 +25,7 @@ $aColumns = [
 
 $join   = [
     'LEFT JOIN ' . db_prefix() . 'pdc ON ' . db_prefix() . 'pdc.receivable_id = ' . db_prefix() . 'receivable.id',
+    'LEFT JOIN ' . db_prefix() . 'clients ON ' . db_prefix() . 'clients.userid = ' . db_prefix() . 'receivable.customer_id',
 ];
 
 $where  = [];
@@ -33,6 +34,10 @@ if (isset($month) && $month != '') {
     $month = explode('-', $month);
     $month = end($month);
     array_push($where,  'AND ', 'MONTH(invoice_due_date)=' . $month);
+}
+
+if (isset($customer) && $customer != '') {
+    array_push($where,  'AND ', 'customer_id=' . $customer);
 }
 
 

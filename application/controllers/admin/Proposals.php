@@ -710,12 +710,12 @@ class Proposals extends AdminController
         $page   = $this->input->get('page');
 
         $proposals = (new ProposalsPipeline($status))
-        ->search($this->input->get('search'))
-        ->sortBy(
-            $this->input->get('sort_by'),
-            $this->input->get('sort')
-        )
-        ->page($page)->get();
+            ->search($this->input->get('search'))
+            ->sortBy(
+                $this->input->get('sort_by'),
+                $this->input->get('sort')
+            )
+            ->page($page)->get();
 
         foreach ($proposals as $proposal) {
             $this->load->view('admin/proposals/pipeline/_kanban_card', [
@@ -754,11 +754,24 @@ class Proposals extends AdminController
         }
     }
 
-    public function report(){
+    public function report()
+    {
         $data['suppliers'] = $this->proposals_model->getSupplierData();
         $data['supplier'] = isset($_GET['supplier']) ? $_GET['supplier'] : NULL;
+        $data['date'] = isset($_GET['date']) ? $_GET['date'] : NULL;
+        // $report = $this->proposals_model->report($data);
+        // echo "<pre>";
+        // print_r($report);die;
         $data['title']         = 'Proposal Report';
 
-        $this->load->view('admin/proposal/report', $data);
+        if ($this->input->is_ajax_request()) {
+            if (isset($_GET['supplier']) || isset($_GET['date'])) {
+                $this->app->get_table_data('proposal_report_table', ['supplier' => $data['supplier'], 'date' => $data['date']]);
+            } else {
+                $this->app->get_table_data('proposal_report_table');
+            }
+        }
+
+        $this->load->view('admin/proposals/report', $data);
     }
 }

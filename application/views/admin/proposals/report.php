@@ -1,6 +1,13 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
 <?php init_head(); ?>
 <div id="wrapper">
+    <style>
+        table tfoot tr td {
+            color: red !important;
+            font-weight: bolder !important;
+        }
+    </style>
+
     <div class="content">
         <div class="row">
             <?php echo form_open_multipart($this->uri->uri_string(), ['class' => 'staff-form', 'autocomplete' => 'off', 'method' => 'get']); ?>
@@ -10,28 +17,28 @@
                     <div class="panel-body ">
                         <div class="horizontal-tabs">
                             <h4>
-                                Receivable Report
+                                Proposal Report
                             </h4>
                             <hr>
                         </div>
                         <div class="tab-content tw-mt-5">
                             <div role="tabpanel" class="tab-pane active" id="tab_staff_profile">
-                                <?php $value = (isset($month) ? $month : ''); ?>
-                                <?php echo render_input('month', 'Month', $value, 'month'); ?>
+                            <?php $value = (isset($date) ? $date : ''); ?>
+                                <?php echo render_input('date', 'Proposal Date', $value, 'date'); ?>
 
                                 <div class="form-group select-placeholder">
-                                    <label for="customer" class="control-label"><?php echo _l('Customer'); ?></label>
-                                    <select name="customer" data-live-search="true" id="customer" class="form-control selectpicker" data-none-selected-text="<?php echo _l('dropdown_non_selected_tex'); ?>">
-                                        <option value=""><?php echo _l('Select Customer'); ?></option>
+                                    <label for="supplier" class="control-label"><?php echo _l('Supplier'); ?></label>
+                                    <select name="supplier" data-live-search="true" id="supplier" class="form-control selectpicker" data-none-selected-text="<?php echo _l('dropdown_non_selected_tex'); ?>">
+                                        <option value=""><?php echo _l('Select Supplier'); ?></option>
                                         <?php 
-                                        foreach ($customers as $sup) {
+                                        foreach ($suppliers as $sup) {
                                             $selected = '';
-                                            if (isset($customer)) {
-                                                if ($customer == $sup['userid']) {
+                                            if (isset($supplier)) {
+                                                if ($supplier == $sup['supplierid']) {
                                                     $selected = 'selected';
                                                 }
                                             } ?>
-                                            <option value="<?php echo $sup['userid']; ?>" <?php echo $selected; ?>>
+                                            <option value="<?php echo $sup['supplierid']; ?>" <?php echo $selected; ?>>
                                                 <?php echo ucfirst($sup['company']); ?></option>
                                         <?php
                                         } ?>
@@ -49,28 +56,23 @@
             <?php echo form_close(); ?>
 
             <?php
-            if (isset($month) || isset($customer)) {
+            if (isset($supplier) || $date) {
             ?>
                 <div class="col-md-12" id="small-table">
                     <div class="panel_s">
                         <div class="panel-body panel-table-full">
-                            <?php
+                        <?php
                             $table_data = [
                                 _l('ID'),
-                                _l('Company Name'),
-                                _l('Invoice No.'),
-                                _l('Invoice Date'),
-                                _l('Invoice Due Date'),
-                                _l('Amount Receivable'),
-                                _l('Date of PDC'),
-                                _l('Cheque Number'),
-                                _l('Bank'),
-                                _l('Cheque Amount'),
-                                _l('Remark'),
-                                _l('Paid'),
+                                _l('Proposal No.'),
+                                _l('Proposal Date'),
+                                _l('Item'),
+                                _l('Group'),
+                                _l('Amount'),
+                                _l('Date'),
                             ];
 
-                            render_datatable($table_data, 'receivable');
+                            render_datatable($table_data, 'proposal');
                             ?>
                         </div>
                     </div>
@@ -83,7 +85,11 @@
 <?php init_tail(); ?>
 <script>
     $(function() {
-        initDataTable('.table-receivable', window.location.href);
+
+        $(function() {
+        initDataTable('.table-proposal', window.location.href);
+    });
+
     });
 </script>
 </body>

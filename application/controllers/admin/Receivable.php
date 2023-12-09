@@ -64,14 +64,16 @@ class Receivable extends AdminController
     public function report()
     {
         $data['month'] = isset($_GET['month']) ? $_GET['month'] : NULL;
+        $data['customer'] = isset($_GET['customer']) ? $_GET['customer'] : NULL;
         if ($this->input->is_ajax_request()) {
-            if (isset($_GET['month'])) {
-                $this->app->get_table_data('receivable_report', ['month' => $_GET['month']]);
+            if (isset($_GET['month']) || isset($_GET['customer'])) {
+                $this->app->get_table_data('receivable_report', ['month' => $_GET['month'], 'customer' => $_GET['customer']]);
             } else {
                 $this->app->get_table_data('receivable_report');
             }
         }
         $data['title']         = 'Receivable Report';
+        $data['customers'] = $this->receivable_model->customers();
 
         $this->load->view('admin/receivable/report', $data);
     }

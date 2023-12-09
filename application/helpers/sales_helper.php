@@ -687,6 +687,7 @@ function add_new_sales_item_post($item, $rel_id, $rel_type)
                     'item_order'       => $item['order'],
                     'unit'             => $item['unit'],
                     'supplier_item_data'             => $item['supplier_item_data'],
+                    'supplier_id'             => $item['supplier_id'],
                 ]);
 
     $id = $CI->db->insert_id();

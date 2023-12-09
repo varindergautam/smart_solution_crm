@@ -171,4 +171,14 @@ class Receivable_model extends App_Model
             return $this->db->get(db_prefix() . 'receivable')->result();
         }
     }
+
+    public function customers() {
+        $this->db->select('r.*, c.userid, c.company');
+        $this->db->from(db_prefix() . 'receivable as r');
+        $this->db->join(db_prefix() . 'clients as c', 'c.userid = r.customer_id', 'left');
+        $this->db->group_by('r.customer_id');
+
+        $supplierQuery = $this->db->get();
+        return $supplierQuery->result_array();
+    }
 }

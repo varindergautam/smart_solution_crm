@@ -64,14 +64,16 @@ class Payable extends AdminController
     public function report()
     {
         $data['month'] = isset($_GET['month']) ? $_GET['month'] : NULL;
+        $data['supplier'] = isset($_GET['supplier']) ? $_GET['supplier'] : NULL;
         if ($this->input->is_ajax_request()) {
             if (isset($_GET['month'])) {
-                $this->app->get_table_data('payable_report', ['month' => $_GET['month']]);
+                $this->app->get_table_data('payable_report', ['month' => $_GET['month'], 'supplier' => $_GET['supplier']]);
             } else {
                 $this->app->get_table_data('payable_report');
             }
         }
         $data['title']         = 'Payable Report';
+        $data['suppliers'] = $this->payable_model->suppliers();
 
         $this->load->view('admin/payable/report', $data);
     }

@@ -1006,69 +1006,24 @@ class Proposals_model extends App_Model
 
     public function getSupplierData()
     {
-        $jsonColumn = 'supplier_item_data';
+        $this->db->select('it.*, sup.supplierid, sup.company, sup.name, sup.email');
+        $this->db->from(db_prefix() . 'itemable as it');
+        $this->db->join(db_prefix() . 'suppliers as sup', 'sup.supplierid = it.supplier_id', 'left');
+        $this->db->group_by('it.supplier_id');
 
-        // Your SQL query without JSON_EXTRACT
-        $this->db->select("$jsonColumn as supplier_data");
-        $this->db->from(db_prefix() . 'itemable');
-
-        $query = $this->db->get();
-        $results = $query->result();
-
-        // Process the results and extract supplier_id
-        $supplierIds = [];
-        foreach ($results as $result) {
-            $jsonData = json_decode(json_decode($result->supplier_data));
-
-            if ($jsonData && isset($jsonData->supplier_id)) {
-                $supplierIds[] = $jsonData->supplier_id;
-            }
-        }
-
-        if (!empty($supplierIds)) {
-            $this->db->select('*');
-            $this->db->from('suppliers');
-            $this->db->where_in('supplierid', $supplierIds);
-
-            $supplierQuery = $this->db->get();
-            return $supplierQuery->result();
-        } else {
-            return [];
-        }
+        $supplierQuery = $this->db->get();
+        return $supplierQuery->result_array();
     }
 
-    public function generateReport($targetSupplierId)
-    {
-        $jsonColumn = 'supplier_item_data';
+    // public function report($data)
+    // {
+    //     $this->db->select('it.*, sup.supplierid, sup.company, sup.name, sup.email, p.date as p_date');
+    //     $this->db->from(db_prefix() . 'itemable as it');
+    //     $this->db->join(db_prefix() . 'suppliers as sup', 'sup.supplierid = it.supplier_id', 'left');
+    //     $this->db->join(db_prefix() . 'proposals as p', 'p.id = it.rel_id', 'left');
+    //     $this->db->where('p.date', $data['date']);
 
-        // Your SQL query without JSON_EXTRACT
-        $this->db->select("$jsonColumn as supplier_data");
-        $this->db->from(db_prefix() . 'itemable');
-
-        $query = $this->db->get();
-        $results = $query->result();
-
-        // Process the results and extract supplier_id
-        $supplierIds = [];
-        foreach ($results as $result) {
-            $jsonData = json_decode($result->supplier_data);
-
-            if ($jsonData && isset($jsonData->supplier_id)) {
-                $supplierIds[] = $jsonData->supplier_id;
-            }
-        }
-
-        // Check if the target supplier_id is valid
-        if (in_array($targetSupplierId, $supplierIds)) {
-            // Retrieve data from the "supplier" table for the specific supplier_id
-            $this->db->select('*');
-            $this->db->from('suppliers');
-            $this->db->where('supplierid', $targetSupplierId);
-
-            $supplierQuery = $this->db->get();
-            return $supplierQuery->row(); // Use row() to get a single result
-        } else {
-            return null; // Supplier not found
-        }
-    }
+    //     $supplierQuery = $this->db->get();
+    //     return $supplierQuery->result_array();
+    // }
 }

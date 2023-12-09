@@ -34,7 +34,7 @@ class Supplier_group_model extends App_Model
         $currentBrandIds = array_column($currentBrands, 'group_id');
 
         // Check if a brand was unselected and remove the association
-        if (isset($data['brand_id'])) {
+        if (isset($data['group_id'])) {
             $removedBrands = array_diff($currentBrandIds, $data['group_id']);
             if (!empty($removedBrands)) {
                 foreach ($removedBrands as $removedBrandId) {
