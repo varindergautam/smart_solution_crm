@@ -150,6 +150,10 @@ class Receivable_model extends App_Model
     public function summarize_report($year)
     {
         if (isset($year)) {
+            $explode = explode('-',$year);
+            $year = $explode[0];
+            $month = end($explode);
+            // print_r($month);die;
             $this->db->select('receivable.*,
         SUM(invoice_amount) as invoice_amount,
         SUM(january) as january,
@@ -166,6 +170,7 @@ class Receivable_model extends App_Model
         SUM(december) as december, pdc.id as pdcID, pdc.cheque_number, pdc.cheque_date, pdc.amount, pdc.bank_number');
             $this->db->join('pdc', 'pdc.receivable_id = receivable.id', 'left');
             $this->db->where('YEAR(invoice_due_date)', $year);
+            $this->db->where('MONTH(invoice_due_date)', $month);
             $this->db->group_by('customer_id'); // Group by customer_id
 
             return $this->db->get(db_prefix() . 'receivable')->result();

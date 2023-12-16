@@ -130,6 +130,9 @@ class Payable_model extends App_Model
     public function summarize_report($year)
     {
         if (isset($year)) {
+            $explode = explode('-',$year);
+            $year = $explode[0];
+            $month = end($explode);
             $this->db->select('payable.*,
         SUM(invoice_amount) as invoice_amount,
         SUM(january) as january,
@@ -146,6 +149,7 @@ class Payable_model extends App_Model
         SUM(december) as december, pdc.id as pdcID, pdc.cheque_number, pdc.cheque_date, pdc.amount, pdc.bank_number');
             $this->db->join('pdc', 'pdc.payable_id = payable.id', 'left');
             $this->db->where('YEAR(invoice_due_date)', $year);
+            $this->db->where('MONTH(invoice_due_date)', $month);
             $this->db->group_by('supplier_id');
 
             return $this->db->get(db_prefix() . 'payable')->result();

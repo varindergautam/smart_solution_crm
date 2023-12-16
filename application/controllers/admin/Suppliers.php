@@ -30,7 +30,6 @@ class Suppliers extends AdminController
     {
         if ($this->input->post()) {
             $data = $this->input->post();
-          
             if ($id == '') {
                 $id = $this->suppliers_model->add($data);
                 $this->supplier_brand_model->add($data, $id);
@@ -41,7 +40,7 @@ class Suppliers extends AdminController
                 // redirect(admin_url('staff/member/' . $id));
                 redirect(admin_url('suppliers/'));
             } else {
-                
+
                 handle_supplier_profile_image_upload($id);
                 $this->suppliers_model->update($data, $id);
                 $this->supplier_brand_model->add($data, $id);
@@ -66,7 +65,7 @@ class Suppliers extends AdminController
         $data['currencies'] = $this->currencies_model->get();
         $data['brands'] = $this->brand_model->get();
         $data['countries'] = get_all_countries();
-    
+
         $data['groups'] = $this->invoice_items_model->get_groups();
         $this->load->view('admin/suppliers/create', $data);
     }
@@ -102,7 +101,8 @@ class Suppliers extends AdminController
         }
     }
 
-    public function supplierJson($id) {
+    public function supplierJson($id)
+    {
         $supplier = $this->suppliers_model->get($id);
         echo json_encode($supplier);
     }
@@ -120,5 +120,14 @@ class Suppliers extends AdminController
         $data['title']         = 'Group Report';
         $data['groups'] = $this->invoice_items_model->get_groups();
         $this->load->view('admin/suppliers/group_report', $data);
+    }
+
+    public function delete($id)
+    {
+        $delete = $this->suppliers_model->delete($id);
+        if ($delete) {
+            set_alert('success', _l('Deleted successfully', _l('Supplier')));
+            redirect(admin_url('suppliers/'));
+        }
     }
 }

@@ -76,7 +76,8 @@
       _l('tax_1'),
       _l('tax_2'),
       _l('unit'),
-      _l('item_group_name'), ]);
+      _l('item_group_name'),
+        'Item Code' ]);
 
     $cf = get_custom_fields('items');
     foreach ($cf as $custom_field) {

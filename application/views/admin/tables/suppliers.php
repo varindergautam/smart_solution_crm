@@ -86,6 +86,7 @@ foreach ($rResult as $key => $aRow) {
 
             $_data .= '<div class="row-options">';
             $_data .= '<a href="' . admin_url('suppliers/create/' . $aRow['supplierid']) . '">' . _l('edit') . '</a>';
+            $_data .= '<a href="' . admin_url('suppliers/delete/' . $aRow['supplierid']) . '" class="text-danger">' . _l('delete') . '</a>';
 
             $_data .= '</div>';
         } elseif ($aColumns[$i] == 'company') {

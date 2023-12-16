@@ -97,4 +97,9 @@ class Suppliers_model extends App_Model
 
         log_activity('Supplier Status Changed [SupplierID: ' . $id . ' - Status(Active/Inactive): ' . $status . ']');
     }
+
+    public function delete($id){
+		return $this->db->where('supplierid', $id)
+        ->delete('suppliers');
+	}
 }

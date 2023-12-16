@@ -16,6 +16,7 @@ $aColumns = array_merge($aColumns, [
     't2.taxrate as taxrate_2',
     'unit',
     db_prefix() . 'items_groups.name as group_name',
+    'item_code',
     ]);
 
 $sIndexColumn = 'id';
@@ -91,6 +92,7 @@ foreach ($rResult as $aRow) {
     $row[]             = $aRow['unit'];
 
     $row[] = $aRow['group_name'];
+    $row[] = $aRow['item_code'];
 
     // Custom fields add values
     foreach ($customFieldsColumns as $customFieldColumn) {

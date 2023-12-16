@@ -24,8 +24,8 @@
                             <div role="tabpanel" class="tab-pane active" id="tab_staff_profile">
                                 <?php $value = (isset($s_year) ? $s_year : ''); ?>
 
-                                <label>Year</label>
-                                <select name="year" id="year" class="form-control">
+                                <!-- <label>Year</label> -->
+                                <!-- <select name="year" id="year" class="form-control">
                                     <option>Select year</option>
                                     <?php
                                     $startYear = 2015;
@@ -36,7 +36,10 @@
                                         echo "<option value=\"$year\" $selected>$year</option>";
                                     }
                                     ?>
-                                </select>
+                                </select> -->
+
+                                <?php $value = (isset($s_year) ? $s_year : ''); ?>
+                                <?php echo render_input('year', 'Month and Year', $value, 'month'); ?>
                             </div>
                         </div>
                     </div>
@@ -112,7 +115,7 @@
                                             <td><?php echo $key + 1; ?></td>
                                             <td><?php echo $report->company_name; ?></td>
                                             <td><?php echo $report->invoice_number; ?></td>
-                                            <td><?php echo $report->invoice_due_date; ?></td>
+                                            <td><?php echo date('F, Y', strtotime($report->invoice_due_date)); ?></td>
                                             <td><?php echo $report->invoice_amount; ?></td>
                                             <td><?php echo $report->january; ?></td>
                                             <td><?php echo $report->february; ?></td>
