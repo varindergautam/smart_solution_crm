@@ -226,4 +226,13 @@ class Suppliers extends AdminController
         header('Content-Disposition: inline; filename="' . $filename . '"');
         readfile($pdfFilePath);
     }
+
+    public function delete_catalogue($id)
+    {
+        $delete = $this->catalogue_model->delete($id);
+        if ($delete) {
+            set_alert('success', _l('Catalogue Deleted successfully'));
+            redirect(admin_url('suppliers/'));
+        }
+    }
 }

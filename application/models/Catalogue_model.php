@@ -33,4 +33,9 @@ class Catalogue_model extends App_Model
         $this->db->insert(db_prefix() . 'catalog', $data);
         return $this->db->insert_id();
     }
+
+    public function delete($id){
+		return $this->db->where('id', $id)
+        ->delete(db_prefix() . 'catalog');
+	}
 }

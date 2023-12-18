@@ -60,7 +60,12 @@ class Payable_model extends App_Model
         $payable['pdc'] = isset($data['pdc']) ? $data['pdc'] : NULL;
 
         $month = date('m', strtotime($data['invoice_due_date']));
-        $payable[$monthName[$month]] = $data['invoice_amount'];
+        $monthKey = $monthName[$month];
+
+        foreach ($monthName as $key => $value) {
+            $payable[$value] = 0;
+        }
+        $payable[$monthKey] = $data['invoice_amount'];
 
         if (isset($data['pdc']) && $data['pdc']) {
             $pdc['cheque_number'] = $data['cheque_number'];

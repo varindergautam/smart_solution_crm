@@ -61,7 +61,13 @@ class Receivable_model extends App_Model
         $receivable['pdc'] = isset($data['pdc']) ? $data['pdc'] : NULL;
 
         $month = date('m', strtotime($data['invoice_due_date']));
-        $receivable[$monthName[$month]] = $data['invoice_amount'];
+        $monthKey = $monthName[$month];
+
+        // Set all months to NULL
+        foreach ($monthName as $key => $value) {
+            $receivable[$value] = 0;
+        }
+        $receivable[$monthKey] = $data['invoice_amount'];
 
         if (isset($data['pdc']) && $data['pdc']) {
             $pdc['cheque_number'] = $data['cheque_number'];

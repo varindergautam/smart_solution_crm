@@ -100,6 +100,6 @@ class Suppliers_model extends App_Model
 
     public function delete($id){
 		return $this->db->where('supplierid', $id)
-        ->delete('suppliers');
+        ->delete(db_prefix() . 'suppliers');
 	}
 }

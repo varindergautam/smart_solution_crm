@@ -48,6 +48,7 @@
                             _l('S No.'),
                             _l('Catalogue'),
                             _l('Created At'),
+                            _l('Action'),
                         ];
 
                         render_datatable($table_data, 'catalog');

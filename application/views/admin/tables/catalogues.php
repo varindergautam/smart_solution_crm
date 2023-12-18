@@ -11,6 +11,7 @@ $aColumns = [
     db_prefix() . 'catalog.id',
     'catalogue',
     db_prefix() . 'catalog.created_at',
+   'updated_at',
 ];
 
 $sIndexColumn = 'id';
@@ -45,6 +46,10 @@ foreach ($rResult as $key => $aRow) {
             $_data = $key + 1;
         } elseif ($aColumns[$i] == 'catalogue') {
             $_data = '<a href="' . admin_url('suppliers/view_catalogue/') . $aRow['catalogue'] . '" target="_new">'. $aRow['catalogue'] . '</a>';
+        }
+
+        elseif ($aColumns[$i] == 'updated_at') {
+            $_data = '<a href="' . admin_url('suppliers/delete_catalogue/' . $aRow[db_prefix() . 'catalog.id']) . '" class="text-danger">' . _l('delete') . '</a>';
         }
         $row[] = $_data;
     }
