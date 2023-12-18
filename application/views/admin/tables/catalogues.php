@@ -43,8 +43,8 @@ foreach ($rResult as $key => $aRow) {
         }
         if ($aColumns[$i] == db_prefix() . 'catalog.id') {
             $_data = $key + 1;
-        } elseif($aColumns[$i] == 'catalogue') {
-            $_data = '<a href="'.FCPATH .'uploads/catalogue/'.$aRow['catalogue'].'">View</a>';
+        } elseif ($aColumns[$i] == 'catalogue') {
+            $_data = '<a href="' . admin_url('suppliers/view_catalogue/') . $aRow['catalogue'] . '">View</a>';
         }
         $row[] = $_data;
     }

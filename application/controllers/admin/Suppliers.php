@@ -181,7 +181,7 @@ class Suppliers extends AdminController
                 // Handle upload errors if needed
                 $upload_error = $this->upload->display_errors();
                 set_alert('danger', _l($upload_error));
-            redirect(admin_url('suppliers/'));
+                redirect(admin_url('suppliers/'));
                 // echo $upload_error;
             }
         }
@@ -208,7 +208,8 @@ class Suppliers extends AdminController
         }
     }
 
-    public function catalogues() {
+    public function catalogues()
+    {
         $data['suppliers'] = $this->suppliers_model->get();
         $data['supplier'] = isset($_GET['supplier']) ? $_GET['supplier'] : NULL;
         if ($this->input->is_ajax_request()) {
@@ -216,6 +217,17 @@ class Suppliers extends AdminController
         }
         $data['title']          = _l('Catalogue');
         $this->load->view('admin/suppliers/view_catalogue', $data);
+    }
 
+    public function view_catalogue($filename)
+    {
+        $path = APPPATH . './uploads/catalogue/';
+        $pdfFilePath = $path . $filename;
+        // $data['pdfFilePath'] = base_url($pdfFilePath);
+        
+        // header('Content-Type: image/jpeg');
+        header('Content-Type: application/pdf');
+        // echo file_get_contents($path . $filename);
+        readfile($pdfFilePath);
     }
 }

@@ -39,7 +39,36 @@
 
                                     <?php $value = (isset($member) ? $member->name : ''); ?>
                                     <?php $attrs = (isset($member) ? [] : ['autofocus' => true]); ?>
-                                    <?php echo render_input('name', 'Name', $value, 'text', $attrs); ?>
+                                    <?php echo render_input('name', 'Name 1', $value, 'text', $attrs); ?>
+
+                                    <?php $value = (isset($member) ? $member->email : ''); ?>
+                                    <?php $attrs = (isset($member) ? [] : ['autofocus' => true]); ?>
+                                    <?php echo render_input('email', 'Email 1', $value, 'email', $attrs); ?>
+
+                                    <?php $value = (isset($member) ? $member->phone_number : ''); ?>
+                                    <?php echo render_input('phone_number', 'Phone 1', $value); ?>
+
+                                    <?php $value = (isset($member) ? $member->name_1 : ''); ?>
+                                    <?php $attrs = (isset($member) ? [] : ['autofocus' => true]); ?>
+                                    <?php echo render_input('name_1', 'Name 2', $value, 'text', $attrs); ?>
+
+                                    <?php $value = (isset($member) ? $member->email_1 : ''); ?>
+                                    <?php $attrs = (isset($member) ? [] : ['autofocus' => true]); ?>
+                                    <?php echo render_input('email_1', 'Email 2', $value, 'email', $attrs); ?>
+
+                                    <?php $value = (isset($member) ? $member->phone_number_1 : ''); ?>
+                                    <?php echo render_input('phone_number_1', 'Phone 2', $value); ?>
+
+                                    <?php $value = (isset($member) ? $member->name_2 : ''); ?>
+                                    <?php $attrs = (isset($member) ? [] : ['autofocus' => true]); ?>
+                                    <?php echo render_input('name_2', 'Name 3', $value, 'text', $attrs); ?>
+
+                                    <?php $value = (isset($member) ? $member->email_3 : ''); ?>
+                                    <?php $attrs = (isset($member) ? [] : ['autofocus' => true]); ?>
+                                    <?php echo render_input('email_3', 'Email 3', $value, 'email', $attrs); ?>
+
+                                    <?php $value = (isset($member) ? $member->phone_number_2 : ''); ?>
+                                    <?php echo render_input('phone_number_2', 'Phone 3', $value); ?>
 
                                     <?php $value = (isset($member) ? $member->company : ''); ?>
                                     <?php $attrs = (isset($member) ? [] : ['autofocus' => true]); ?>
@@ -49,20 +78,6 @@
                                     <?php $attrs = (isset($member) ? [] : ['autofocus' => true]); ?>
                                     <?php echo render_input('vat_number', 'VAT Number', $value, 'text', $attrs); ?>
 
-                                    <?php $value = (isset($member) ? $member->email : ''); ?>
-                                    <?php $attrs = (isset($member) ? [] : ['autofocus' => true]); ?>
-                                    <?php echo render_input('email', 'Email', $value, 'email', $attrs); ?>
-
-                                    <?php $value = (isset($member) ? $member->phone_number : ''); ?>
-                                    <?php echo render_input('phone_number', 'Phone 1', $value); ?>
-
-                                    <?php $value = (isset($member) ? $member->phone_number_1 : ''); ?>
-                                    <?php echo render_input('phone_number_1', 'Phone 2', $value); ?>
-
-                                    <?php $value = (isset($member) ? $member->phone_number_2 : ''); ?>
-                                    <?php echo render_input('phone_number_2', 'Phone 3', $value); ?>
-
-                                    <?php $value = (isset($member) ? $member->website : ''); ?>
                                     <?php echo render_input('website', 'Website', $value); ?>
 
                                     <?php
