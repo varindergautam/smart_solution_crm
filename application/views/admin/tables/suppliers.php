@@ -9,6 +9,7 @@ $custom_fields = get_custom_fields('suppliers', [
 ]);
 $aColumns = [
     'supplierid',
+    'website',
     'name',
     'email',
     'vat_number',
@@ -105,6 +106,10 @@ foreach ($rResult as $key => $aRow) {
             $_data = $brandNamesImploded;
         } elseif ($aColumns[$i] == 'default_language') {
             $_data = $groupNamesImploded;
+        }elseif ($aColumns[$i] == 'website') {
+            $_data = '<a href="' . admin_url('suppliers/upload_catalouge/') .$aRow['supplierid'] . '" class="btn btn-primary">Upload</a>';
+
+            $_data .= '<a href="' . admin_url('suppliers/catalogues?supplier=' . $aRow['supplierid']) . '">View</a>';
         } else {
             if (strpos($aColumns[$i], 'date_picker_') !== false) {
                 $_data = (strpos($_data, ' ') !== false ? _dt($_data) : _d($_data));

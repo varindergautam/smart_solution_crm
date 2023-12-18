@@ -153,7 +153,6 @@ class Receivable_model extends App_Model
             $explode = explode('-',$year);
             $year = $explode[0];
             $month = end($explode);
-            // print_r($month);die;
             $this->db->select('receivable.*,
         SUM(invoice_amount) as invoice_amount,
         SUM(january) as january,

@@ -13,6 +13,7 @@ class Suppliers extends AdminController
         $this->load->model('invoice_items_model');
         $this->load->model('supplier_brand_model');
         $this->load->model('supplier_group_model');
+        $this->load->model('catalogue_model');
     }
 
     public function index()
@@ -129,5 +130,92 @@ class Suppliers extends AdminController
             set_alert('success', _l('Deleted successfully', _l('Supplier')));
             redirect(admin_url('suppliers/'));
         }
+    }
+
+    public function upload_catalouge($supplierId)
+    {
+        $data['supplier_id'] = $supplierId;
+        $this->load->view('admin/suppliers/catalogue', $data);
+    }
+
+    public function upload_files()
+    {
+        // Check if the form is submitted
+        // Configuring upload library
+        $config['upload_path']   = './uploads/catalogue/'; // Set your upload path
+        $config['allowed_types'] = 'pdf'; // Add allowed file types
+        // $config['max_size']      = 2048; // Set max file size in kilobytes
+
+        $this->load->library('upload', $config);
+        // Process each uploaded file
+        $uploaded_files = [];
+        $files = $_FILES['catalogue'];
+        $count = count($files['name']);
+
+
+        for ($i = 0; $i < $count; $i++) {
+            $_FILES['catalogue'] = [
+                'name'     => $files['name'][$i],
+                'type'     => $files['type'][$i],
+                'tmp_name' => $files['tmp_name'][$i],
+                'error'    => $files['error'][$i],
+                'size'     => $files['size'][$i],
+            ];
+
+            // Upload each file
+            if ($this->upload->do_upload('catalogue')) {
+                $uniqueIdentifier = uniqid();
+                // Get the original file name
+                $originalFileName = $this->upload->data('file_name');
+                // Append the unique identifier to the original file name
+                $newFileName = $uniqueIdentifier . '_' . $originalFileName;
+
+                $uploadPath = './uploads/catalogue/';
+                $newFilePath = $uploadPath . $newFileName;
+                $oldFilePath = $this->upload->data('full_path');
+                rename($oldFilePath, $newFilePath);
+
+                // Add the new file name to the uploaded files array
+                $uploaded_files[] = $newFileName;
+            } else {
+                // Handle upload errors if needed
+                $upload_error = $this->upload->display_errors();
+                set_alert('danger', _l($upload_error));
+            redirect(admin_url('suppliers/'));
+                // echo $upload_error;
+            }
+        }
+
+        $supplier_id = $this->input->post('supplier_id');
+
+        if (!empty($uploaded_files)) {
+            $this->saveFileNamesToDatabase($uploaded_files, $supplier_id);
+
+            set_alert('success', _l('Uploaded successfully', _l('Catalogue')));
+            redirect(admin_url('suppliers/'));
+        }
+    }
+
+    private function saveFileNamesToDatabase($fileNames, $supplier_id)
+    {
+        foreach ($fileNames as $fileName) {
+            $data = [
+                'catalogue' => $fileName,
+                'supplier_id' => $supplier_id,
+            ];
+
+            $this->catalogue_model->insertFile($data);
+        }
+    }
+
+    public function catalogues() {
+        $data['suppliers'] = $this->suppliers_model->get();
+        $data['supplier'] = isset($_GET['supplier']) ? $_GET['supplier'] : NULL;
+        if ($this->input->is_ajax_request()) {
+            $this->app->get_table_data('catalogues', ['supplier' => $_GET['supplier']]);
+        }
+        $data['title']          = _l('Catalogue');
+        $this->load->view('admin/suppliers/view_catalogue', $data);
+
     }
 }

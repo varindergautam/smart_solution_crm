@@ -17,6 +17,7 @@
                         <?php
                         $table_data = [
                             _l('S No.'),
+                            _l('Upload Catalogue'),
                             _l('Name'),
                             _l('Email'),
                             _l('Vat Number'),
@@ -63,7 +64,9 @@
         <?php echo form_close(); ?>
     </div>
 </div>
+
 <?php init_tail(); ?>
+
 <script>
 $(function() {
     initDataTable('.table-suppliers', window.location.href);
@@ -76,6 +79,7 @@ function delete_suppliers_member(id) {
     $('#delete_suppliers .delete_id input').val(id);
     $('#transfer_data_to').selectpicker('refresh');
 }
+
 </script>
 </body>
 
