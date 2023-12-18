@@ -221,13 +221,9 @@ class Suppliers extends AdminController
 
     public function view_catalogue($filename)
     {
-        $path = APPPATH . './uploads/catalogue/';
-        $pdfFilePath = $path . $filename;
-        // $data['pdfFilePath'] = base_url($pdfFilePath);
-        
-        // header('Content-Type: image/jpeg');
+        $pdfFilePath = base_url('uploads/catalogue/' . $filename);
         header('Content-Type: application/pdf');
-        // echo file_get_contents($path . $filename);
+        header('Content-Disposition: inline; filename="' . $filename . '"');
         readfile($pdfFilePath);
     }
 }

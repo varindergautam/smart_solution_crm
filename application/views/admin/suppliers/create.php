@@ -63,9 +63,9 @@
                                     <?php $attrs = (isset($member) ? [] : ['autofocus' => true]); ?>
                                     <?php echo render_input('name_2', 'Name 3', $value, 'text', $attrs); ?>
 
-                                    <?php $value = (isset($member) ? $member->email_3 : ''); ?>
+                                    <?php $value = (isset($member) ? $member->email_2 : ''); ?>
                                     <?php $attrs = (isset($member) ? [] : ['autofocus' => true]); ?>
-                                    <?php echo render_input('email_3', 'Email 3', $value, 'email', $attrs); ?>
+                                    <?php echo render_input('email_2', 'Email 3', $value, 'email', $attrs); ?>
 
                                     <?php $value = (isset($member) ? $member->phone_number_2 : ''); ?>
                                     <?php echo render_input('phone_number_2', 'Phone 3', $value); ?>

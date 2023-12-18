@@ -44,7 +44,7 @@ foreach ($rResult as $key => $aRow) {
         if ($aColumns[$i] == db_prefix() . 'catalog.id') {
             $_data = $key + 1;
         } elseif ($aColumns[$i] == 'catalogue') {
-            $_data = '<a href="' . admin_url('suppliers/view_catalogue/') . $aRow['catalogue'] . '">View</a>';
+            $_data = '<a href="' . admin_url('suppliers/view_catalogue/') . $aRow['catalogue'] . '" target="_new">'. $aRow['catalogue'] . '</a>';
         }
         $row[] = $_data;
     }

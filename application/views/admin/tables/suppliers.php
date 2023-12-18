@@ -16,7 +16,6 @@ $aColumns = [
     'email',
     'email_1',
     'email_2',
-    'email_3',
     'vat_number',
     'company',
     'phone_number',
@@ -116,7 +115,9 @@ foreach ($rResult as $key => $aRow) {
         } elseif ($aColumns[$i] == 'default_language') {
             $_data = $groupNamesImploded;
         } elseif ($aColumns[$i] == 'website') {
-            $_data = '<a href="' . admin_url('suppliers/upload_catalouge/') . $aRow['supplierid'] . '" class="btn btn-primary">Upload</a>';
+            $_data = '<a href="' . admin_url('suppliers/upload_catalouge/') . $aRow['supplierid'] . '" class="btn btn-primary" style="padding: 2px 5px;
+            font-size: 12px;
+            margin-right: 5px;">Upload</a>';
 
             $_data .= '<a href="' . admin_url('suppliers/catalogues?supplier=' . $aRow['supplierid']) . '">View</a>';
         } else {
