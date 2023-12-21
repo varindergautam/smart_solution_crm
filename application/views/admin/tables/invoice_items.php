@@ -58,8 +58,12 @@ $rResult = $result['rResult'];
 foreach ($rResult as $aRow) {
     $row = [];
 
+    if (has_permission('items', '', 'delete')) {
     $row[] = '<div class="checkbox"><input type="checkbox" value="' . $aRow['id'] . '"><label></label></div>';
+    }
 
+    $row[] = $aRow['item_code'];
+    
     $descriptionOutput = '';
     $descriptionOutput = '<a href="#" data-toggle="modal" data-target="#sales_item_modal" data-id="' . $aRow['id'] . '">' . $aRow['description'] . '</a>';
     $descriptionOutput .= '<div class="row-options">';
@@ -92,7 +96,7 @@ foreach ($rResult as $aRow) {
     $row[]             = $aRow['unit'];
 
     $row[] = $aRow['group_name'];
-    $row[] = $aRow['item_code'];
+    
 
     // Custom fields add values
     foreach ($customFieldsColumns as $customFieldColumn) {
