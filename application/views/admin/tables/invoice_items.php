@@ -9,6 +9,7 @@ if (has_permission('items', '', 'delete')) {
 }
 
 $aColumns = array_merge($aColumns, [
+    'item_code',
     'description',
     'long_description',
     db_prefix() . 'items.rate as rate',
@@ -16,7 +17,6 @@ $aColumns = array_merge($aColumns, [
     't2.taxrate as taxrate_2',
     'unit',
     db_prefix() . 'items_groups.name as group_name',
-    'item_code',
     ]);
 
 $sIndexColumn = 'id';

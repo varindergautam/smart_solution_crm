@@ -10,6 +10,7 @@ $custom_fields = get_custom_fields('suppliers', [
 $aColumns = [
     'supplierid',
     'website',
+    'company',
     'name',
     'name_1',
     'name_2',
@@ -17,7 +18,6 @@ $aColumns = [
     'email_1',
     'email_2',
     'vat_number',
-    'company',
     'phone_number',
     'phone_number_1',
     'phone_number_2',

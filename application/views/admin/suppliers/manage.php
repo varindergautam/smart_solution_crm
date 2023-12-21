@@ -18,6 +18,7 @@
                         $table_data = [
                             _l('S No.'),
                             _l('Upload Catalogue'),
+                            _l('Company'),
                             _l('Name 1'),
                             _l('Name 2'),
                             _l('Name 3'),
@@ -25,7 +26,6 @@
                             _l('Email 2'),
                             _l('Email 3'),
                             _l('Vat Number'),
-                            _l('Company'),
                             _l('Phone Number 1'),
                             _l('Phone Number 2'),
                             _l('Phone Number 3'),

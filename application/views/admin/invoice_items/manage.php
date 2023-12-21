@@ -70,14 +70,15 @@
     }
 
     $table_data = array_merge($table_data, [
-      _l('invoice_items_list_description'),
+        'Item Code',
+      'Item Name',
       _l('invoice_item_long_description'),
       _l('invoice_items_list_rate'),
       _l('tax_1'),
       _l('tax_2'),
       _l('unit'),
       _l('item_group_name'),
-        'Item Code' ]);
+         ]);
 
     $cf = get_custom_fields('items');
     foreach ($cf as $custom_field) {
