@@ -41,6 +41,8 @@ foreach ($rResult as $key => $aRow) {
             $_data .= '</div>';
         } elseif ($aColumns[$i] == 'id') {
             $_data = $key + 1;
+        }elseif ($aColumns[$i] == 'created_at') {
+            $_data = date_format_change($aRow['created_at']);
         }
         $row[] = $_data;
     }

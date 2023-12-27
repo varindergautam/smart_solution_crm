@@ -42,6 +42,9 @@ foreach ($rResult as $key => $aRow) {
         } elseif ($aColumns[$i] == 'id') {
             $_data = $key + 1;
         }
+        elseif ($aColumns[$i] == db_prefix() . 'financial_year.created_at') {
+            $_data = date_format_change($aRow[db_prefix() . 'financial_year.created_at']);
+        }
         // elseif ($aColumns[$i] == 'status') {
         //     $checked = '';
         //     if ($aRow['status'] == 1) {

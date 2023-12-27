@@ -9,10 +9,16 @@ $custom_fields = get_custom_fields('supplier_items', [
 ]);
 $aColumns = [
     db_prefix() . 'supplier_items.id',
-    'name',
     'company',
+    'name',
+    'name_2',
+    'name_2',
     'email',
+    'email_1',
+    'email_2',
     'phone_number',
+    'phone_number_1',
+    'phone_number_2',
     db_prefix() . 'items.description',
     db_prefix() . 'supplier_items.rate',
     db_prefix() . 'supplier_items.date',
@@ -42,7 +48,7 @@ foreach ($rResult as $key => $aRow) {
         if ($aColumns[$i] == db_prefix() . 'supplier_items.id') {
             $_data = $key + 1;
         } elseif ($aColumns[$i] == 'date') {
-            $_data = $aRow['date'];
+            $_data = date_format_change($aRow['date']);
         } elseif ($aColumns[$i] == "vat_number") {
             $_data = ' <a href="' . admin_url('supplier_item/create/' . $aRow[db_prefix() . 'supplier_items.id']) . '">' . $aRow["vat_number"] . '</a>';
 
@@ -54,8 +60,16 @@ foreach ($rResult as $key => $aRow) {
             $_data .= '</div>';
         } elseif ($aColumns[$i] == 'phone_number') {
             $_data = ($aRow['phone_number'] ? '<a href="tel:' . $aRow['phone_number'] . '">' . $aRow['phone_number'] . '</a>' : '');
+        } elseif ($aColumns[$i] == 'phone_number_1') {
+            $_data = ($aRow['phone_number_1'] ? '<a href="tel:' . $aRow['phone_number_1'] . '">' . $aRow['phone_number_1'] . '</a>' : '');
+        } elseif ($aColumns[$i] == 'phone_number_2') {
+            $_data = ($aRow['phone_number_2'] ? '<a href="tel:' . $aRow['phone_number_2'] . '">' . $aRow['phone_number_2'] . '</a>' : '');
         } elseif ($aColumns[$i] == 'email') {
             $_data = $aRow['email'] ? '<a href="mailto:' . $aRow['email'] . '">' . $aRow['email'] . '</a>' : '';
+        } elseif ($aColumns[$i] == 'email_1') {
+            $_data = $aRow['email_1'] ? '<a href="mailto:' . $aRow['email_1'] . '">' . $aRow['email_1'] . '</a>' : '';
+        } elseif ($aColumns[$i] == 'email_2') {
+            $_data = $aRow['email_2'] ? '<a href="mailto:' . $aRow['email_2'] . '">' . $aRow['email_2'] . '</a>' : '';
         }
         $row[] = $_data;
     }

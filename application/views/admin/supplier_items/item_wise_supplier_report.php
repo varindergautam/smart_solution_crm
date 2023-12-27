@@ -59,9 +59,15 @@
                                 _l('Brand'),
                                 _l('Group'),
                                 _l('Company Name'),
-                                _l('Supplier Name'),
-                                _l('Supplier Email'),
-                                _l('Supplier Phone No.'),
+                                _l('Supplier Name 1'),
+                                _l('Supplier Name 2'),
+                                _l('Supplier Name 3'),
+                                _l('Supplier Email 1'),
+                                _l('Supplier Email 2'),
+                                _l('Supplier Email 3'),
+                                _l('Supplier Phone No. 1'),
+                                _l('Supplier Phone No. 2'),
+                                _l('Supplier Phone No. 3'),
                                 _l('Date'),
                             ];
 

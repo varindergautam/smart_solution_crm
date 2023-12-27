@@ -535,3 +535,11 @@ function _maybe_system_setup_warnings()
     // Php version notice
     hooks()->add_action('before_start_render_dashboard_content', [new Message('app\services\messages\PhpVersionNotice'), 'check']);
 }
+
+function date_format_change($date) {
+    if(!empty($date) && $date != '0000-00-00') {
+        return date("d-m-Y", strtotime($date));
+    } else {
+        return '';
+    }
+}

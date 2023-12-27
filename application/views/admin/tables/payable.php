@@ -55,6 +55,12 @@ foreach ($rResult as $key => $aRow) {
             $_data .= '<a href="' . admin_url('payable/create/' . $aRow[db_prefix() . 'payable.id']) . '">' . _l('edit') . '</a>';
 
             $_data .= '</div>';
+        } elseif ($aColumns[$i] == db_prefix() . 'payable.invoice_due_date') {
+            $_data = date_format_change($aRow[db_prefix() . 'payable.invoice_due_date']);
+        } elseif ($aColumns[$i] == 'invoice_date') {
+            $_data = date_format_change($aRow['invoice_date']);
+        } elseif ($aColumns[$i] == db_prefix() . 'pdc.cheque_date') {
+            $_data = date_format_change($aRow[db_prefix() . 'pdc.cheque_date']);
         }
         $row[] = $_data;
     }

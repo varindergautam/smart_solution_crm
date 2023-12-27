@@ -41,6 +41,8 @@ foreach ($rResult as $key => $aRow) {
             $_data .= '<div class="row-options">';
             $_data .= '<a href="' . admin_url('brand/create/' . $aRow['id']) . '">' . _l('edit') . '</a>';
             $_data .= '</div>';
+        } elseif ($aColumns[$i] == db_prefix() . 'brand.created_at') {
+            $_data = date_format_change($aRow[db_prefix() . 'brand.created_at']);
         }
         // elseif ($aColumns[$i] == 'status') {
         //     $checked = '';

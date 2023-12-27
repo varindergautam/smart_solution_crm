@@ -66,7 +66,7 @@ foreach ($rResult as $key => $aRow) {
 
         //     $_data .= '</div>';
         // } else
-        
+
         if ($aColumns[$i] == db_prefix() . 'pdc.id') {
             $_data = $key + 1;
         } elseif ($aColumns[$i] == db_prefix() . 'pdc.paid_status') {
@@ -81,6 +81,8 @@ foreach ($rResult as $key => $aRow) {
             </div>';
 
             $_data .= '<span class="">' . ($checked == 'checked' ? 'Paid' : 'Un-Paid') . '</span>';
+        } elseif ($aColumns[$i] == 'cheque_date') {
+            $_data = date_format_change($aRow['cheque_date']);
         }
         $row[] = $_data;
     }

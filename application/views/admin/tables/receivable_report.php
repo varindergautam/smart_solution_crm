@@ -41,7 +41,7 @@ if (isset($customer) && $customer != '') {
 }
 
 
-$sIndexColumn ='id';
+$sIndexColumn = 'id';
 $sTable = db_prefix() . 'receivable';
 $result = data_tables_init($aColumns, $sIndexColumn, $sTable, $join, $where);
 
@@ -67,7 +67,7 @@ foreach ($rResult as $key => $aRow) {
 
         //     $_data .= '</div>';
         // } else
-        
+
         if ($aColumns[$i] == db_prefix() . 'receivable.id') {
             $_data = $key + 1;
         } elseif ($aColumns[$i] == db_prefix() . 'receivable.paid_status') {
@@ -82,6 +82,12 @@ foreach ($rResult as $key => $aRow) {
             </div>';
 
             $_data .= '<span class="">' . ($checked == 'checked' ? 'Paid' : 'Un-Paid') . '</span>';
+        } elseif ($aColumns[$i] == db_prefix() . 'receivable.invoice_due_date') {
+            $_data = date_format_change($aRow[db_prefix() . 'receivable.invoice_due_date']);
+        } elseif ($aColumns[$i] == 'invoice_date') {
+            $_data = date_format_change($aRow['invoice_date']);
+        } elseif ($aColumns[$i] == db_prefix() . 'pdc.cheque_date') {
+            $_data = date_format_change($aRow[db_prefix() . 'pdc.cheque_date']);
         }
         $row[] = $_data;
     }

@@ -72,7 +72,7 @@ foreach ($rResult as $key => $aRow) {
         if ($aColumns[$i] == 'supplierid') {
             $_data = $key + 1;
         } elseif ($aColumns[$i] == 'datecreated') {
-            $_data = $aRow['datecreated'];
+            $_data = date_format_change($aRow['datecreated']);
         } elseif ($aColumns[$i] == 'active') {
             $checked = '';
             if ($aRow['active'] == 1) {

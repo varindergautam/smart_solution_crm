@@ -79,6 +79,12 @@ foreach ($rResult as $key => $aRow) {
             </div>';
 
             $_data .= '<span class="">' . ($checked == 'checked' ? 'Paid' : 'Un-Paid') . '</span>';
+        } elseif ($aColumns[$i] == db_prefix() . 'payable.invoice_due_date') {
+            $_data = date_format_change($aRow[db_prefix() . 'payable.invoice_due_date']);
+        } elseif ($aColumns[$i] == 'invoice_date') {
+            $_data = date_format_change($aRow['invoice_date']);
+        } elseif ($aColumns[$i] == db_prefix() . 'pdc.cheque_date') {
+            $_data = date_format_change($aRow[db_prefix() . 'pdc.cheque_date']);
         }
         $row[] = $_data;
     }

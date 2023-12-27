@@ -48,7 +48,9 @@ foreach ($rResult as $key => $aRow) {
             $_data .= '<a href="' . admin_url('pdc/create/' . $aRow['id']) . '">' . _l('edit') . '</a>';
 
             $_data .= '</div>';
-        } 
+        } elseif ($aColumns[$i] == 'cheque_date') {
+            $_data = date_format_change($aRow['cheque_date']);
+        }
         // elseif ($aColumns[$i] == 'paid_status') {
         //     $checked = '';
         //     if ($aRow['paid_status'] == 1) {

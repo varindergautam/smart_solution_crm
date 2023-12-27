@@ -32,7 +32,7 @@
                                                 }
                                             } ?>
                                             <option value="<?php echo $sup['supplierid']; ?>" <?php echo $selected; ?>>
-                                                <?php echo ucfirst($sup['company']); ?></option>
+                                                <?php echo $sup['company']; ?></option>
                                         <?php
                                         } ?>
                                     </select>

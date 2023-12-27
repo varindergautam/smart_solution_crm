@@ -18,8 +18,14 @@ $aColumns = [
     db_prefix() . 'suppliers.default_language',
     db_prefix() . 'suppliers.company',
     db_prefix() . 'suppliers.name',
+    db_prefix() . 'suppliers.name_1',
+    db_prefix() . 'suppliers.name_2',
     db_prefix() . 'suppliers.email',
+    db_prefix() . 'suppliers.email_1',
+    db_prefix() . 'suppliers.email_2',
     db_prefix() . 'suppliers.phone_number',
+    db_prefix() . 'suppliers.phone_number_1',
+    db_prefix() . 'suppliers.phone_number_2',
     db_prefix() . 'supplier_items.date',
 ];
 
@@ -84,10 +90,22 @@ foreach ($rResult as $key => $aRow) {
             $_data = $brandNamesImploded;
         } elseif ($aColumns[$i] == db_prefix() . 'suppliers.default_language') {
             $_data = $groupNamesImploded;
-        } elseif ($aColumns[$i] == db_prefix() . 'suppliers.phone_number') {
+        } 
+        elseif ($aColumns[$i] == db_prefix() . 'supplier_items.date') {
+            $_data = date_format_change($aRow[db_prefix() . 'supplier_items.date']);
+        }
+        elseif ($aColumns[$i] == db_prefix() . 'suppliers.phone_number') {
             $_data = ($aRow[db_prefix() . 'suppliers.phone_number'] ? '<a href="tel:' . $aRow[db_prefix() . 'suppliers.phone_number'] . '">' . $aRow[db_prefix() . 'suppliers.phone_number'] . '</a>' : '');
+        } elseif ($aColumns[$i] == db_prefix() . 'suppliers.phone_number_1') {
+            $_data = ($aRow[db_prefix() . 'suppliers.phone_number_1'] ? '<a href="tel:' . $aRow[db_prefix() . 'suppliers.phone_number_1'] . '">' . $aRow[db_prefix() . 'suppliers.phone_number_1'] . '</a>' : '');
+        } elseif ($aColumns[$i] == db_prefix() . 'suppliers.phone_number_2') {
+            $_data = ($aRow[db_prefix() . 'suppliers.phone_number_2'] ? '<a href="tel:' . $aRow[db_prefix() . 'suppliers.phone_number_2'] . '">' . $aRow[db_prefix() . 'suppliers.phone_number_2'] . '</a>' : '');
         } elseif ($aColumns[$i] == db_prefix() . 'suppliers.email') {
             $_data = $aRow[db_prefix() . 'suppliers.email'] ? '<a href="mailto:' . $aRow[db_prefix() . 'suppliers.email'] . '">' . $aRow[db_prefix() . 'suppliers.email'] . '</a>' : '';
+        } elseif ($aColumns[$i] == db_prefix() . 'suppliers.email_1') {
+            $_data = $aRow[db_prefix() . 'suppliers.email_1'] ? '<a href="mailto:' . $aRow[db_prefix() . 'suppliers.email_1'] . '">' . $aRow[db_prefix() . 'suppliers.email_1'] . '</a>' : '';
+        } elseif ($aColumns[$i] == db_prefix() . 'suppliers.email_2') {
+            $_data = $aRow[db_prefix() . 'suppliers.email_2'] ? '<a href="mailto:' . $aRow[db_prefix() . 'suppliers.email_2'] . '">' . $aRow[db_prefix() . 'suppliers.email_2'] . '</a>' : '';
         }
         $row[] = $_data;
     }
