@@ -60,124 +60,6 @@
                 <div class="col-md-12" id="small-table">
                     <div class="panel_s">
                         <div class="panel-body panel-table-full">
-                            <h4>Income</h4>
-                            <table class="table income" id="income">
-                                <thead>
-                                    <tr>
-                                        <th>S No.</th>
-                                        <th>Year</th>
-                                        <th>Month</th>
-                                        <th>Head Name</th>
-                                        <th>Head Type</th>
-                                        <th>Total Amount</th>
-                                        <th>January</th>
-                                        <th>February</th>
-                                        <th>March</th>
-                                        <th>April</th>
-                                        <th>May</th>
-                                        <th>June</th>
-                                        <th>July</th>
-                                        <th>August</th>
-                                        <th>September</th>
-                                        <th>October</th>
-                                        <th>November</th>
-                                        <th>December</th>
-
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    $incomeAmountTotal = 0;
-                                    $incomeJanuaryTotal = 0;
-                                    $incomeFebruaryTotal = 0;
-                                    $incomeMarchTotal = 0;
-                                    $incomeAprilTotal = 0;
-                                    $incomeMayTotal = 0;
-                                    $incomeJuneTotal = 0;
-                                    $incomeJulyTotal = 0;
-                                    $incomeAugustTotal = 0;
-                                    $incomeSeptemberTotal = 0;
-                                    $incomeOctoberTotal = 0;
-                                    $incomeNovemberTotal = 0;
-                                    $incomeDecemberTotal = 0;
-                                    foreach ($income_head as $key => $income) {
-                                        $incomeAmountTotal += $income->amount;
-                                        $incomeJanuaryTotal += $income->january;
-                                        $incomeFebruaryTotal += $income->february;
-                                        $incomeMarchTotal += $income->march;
-                                        $incomeAprilTotal += $income->april;
-                                        $incomeMayTotal += $income->may;
-                                        $incomeJuneTotal += $income->june;
-                                        $incomeJulyTotal += $income->july;
-                                        $incomeAugustTotal += $income->august;
-                                        $incomeSeptemberTotal += $income->september;
-                                        $incomeOctoberTotal += $income->october;
-                                        $incomeNovemberTotal += $income->november;
-                                        $incomeDecemberTotal += $income->december;
-
-                                    ?>
-
-                                        <tr>
-                                            <td><?php echo $key + 1; ?></td>
-                                            <td><?php echo $income->year_name; ?></td>
-                                            <td><?php echo $income->into_month; ?></td>
-                                            <td><?php echo $income->head_name; ?></td>
-                                            <td><?php echo $income->head_type; ?></td>
-                                            <td><?php echo $income->amount; ?></td>
-                                            <td><?php echo $income->january; ?></td>
-                                            <td><?php echo $income->february; ?></td>
-                                            <td><?php echo $income->march; ?></td>
-                                            <td><?php echo $income->april; ?></td>
-                                            <td><?php echo $income->may; ?></td>
-                                            <td><?php echo $income->june; ?></td>
-                                            <td><?php echo $income->july; ?></td>
-                                            <td><?php echo $income->august; ?></td>
-                                            <td><?php echo $income->september; ?></td>
-                                            <td><?php echo $income->october; ?></td>
-                                            <td><?php echo $income->november; ?></td>
-                                            <td><?php echo $income->december; ?></td>
-                                        </tr>
-
-                                    <?php
-                                    }
-                                    ?>
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td><?php echo $incomeAmountTotal; ?></td>
-                                        <td><?php echo $incomeJanuaryTotal; ?></td>
-                                        <td><?php echo $incomeFebruaryTotal; ?></td>
-                                        <td><?php echo $incomeMarchTotal; ?></td>
-                                        <td><?php echo $incomeAprilTotal; ?></td>
-                                        <td><?php echo $incomeMayTotal; ?></td>
-                                        <td><?php echo $incomeJuneTotal; ?></td>
-                                        <td><?php echo $incomeJulyTotal; ?></td>
-                                        <td><?php echo $incomeAugustTotal; ?></td>
-                                        <td><?php echo $incomeSeptemberTotal; ?></td>
-                                        <td><?php echo $incomeOctoberTotal; ?></td>
-                                        <td><?php echo $incomeNovemberTotal; ?></td>
-                                        <td><?php echo $incomeDecemberTotal; ?></td>
-                                    </tr>
-                                </tfoot>
-
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            <?php } ?>
-
-
-            <?php
-            if (isset($year)) {
-            ?>
-                <div class="col-md-12" id="small-table">
-                    <div class="panel_s">
-                        <div class="panel-body panel-table-full">
                             <h4>Expense</h4>
                             <table class="table table-budget" id="expense">
                                 <thead>
@@ -291,6 +173,122 @@
                 </div>
             <?php } ?>
 
+            <?php
+            if (isset($year)) {
+            ?>
+                <div class="col-md-12" id="small-table">
+                    <div class="panel_s">
+                        <div class="panel-body panel-table-full">
+                            <h4>Income</h4>
+                            <table class="table income" id="income">
+                                <thead>
+                                    <tr>
+                                        <th>S No.</th>
+                                        <th>Year</th>
+                                        <th>Month</th>
+                                        <th>Head Name</th>
+                                        <th>Head Type</th>
+                                        <th>Total Amount</th>
+                                        <th>January</th>
+                                        <th>February</th>
+                                        <th>March</th>
+                                        <th>April</th>
+                                        <th>May</th>
+                                        <th>June</th>
+                                        <th>July</th>
+                                        <th>August</th>
+                                        <th>September</th>
+                                        <th>October</th>
+                                        <th>November</th>
+                                        <th>December</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $incomeAmountTotal = 0;
+                                    $incomeJanuaryTotal = 0;
+                                    $incomeFebruaryTotal = 0;
+                                    $incomeMarchTotal = 0;
+                                    $incomeAprilTotal = 0;
+                                    $incomeMayTotal = 0;
+                                    $incomeJuneTotal = 0;
+                                    $incomeJulyTotal = 0;
+                                    $incomeAugustTotal = 0;
+                                    $incomeSeptemberTotal = 0;
+                                    $incomeOctoberTotal = 0;
+                                    $incomeNovemberTotal = 0;
+                                    $incomeDecemberTotal = 0;
+                                    foreach ($income_head as $key => $income) {
+                                        $incomeAmountTotal += $income->amount;
+                                        $incomeJanuaryTotal += $income->january;
+                                        $incomeFebruaryTotal += $income->february;
+                                        $incomeMarchTotal += $income->march;
+                                        $incomeAprilTotal += $income->april;
+                                        $incomeMayTotal += $income->may;
+                                        $incomeJuneTotal += $income->june;
+                                        $incomeJulyTotal += $income->july;
+                                        $incomeAugustTotal += $income->august;
+                                        $incomeSeptemberTotal += $income->september;
+                                        $incomeOctoberTotal += $income->october;
+                                        $incomeNovemberTotal += $income->november;
+                                        $incomeDecemberTotal += $income->december;
+
+                                    ?>
+
+                                        <tr>
+                                            <td><?php echo $key + 1; ?></td>
+                                            <td><?php echo $income->year_name; ?></td>
+                                            <td><?php echo $income->into_month; ?></td>
+                                            <td><?php echo $income->head_name; ?></td>
+                                            <td><?php echo $income->head_type; ?></td>
+                                            <td><?php echo $income->amount; ?></td>
+                                            <td><?php echo $income->january; ?></td>
+                                            <td><?php echo $income->february; ?></td>
+                                            <td><?php echo $income->march; ?></td>
+                                            <td><?php echo $income->april; ?></td>
+                                            <td><?php echo $income->may; ?></td>
+                                            <td><?php echo $income->june; ?></td>
+                                            <td><?php echo $income->july; ?></td>
+                                            <td><?php echo $income->august; ?></td>
+                                            <td><?php echo $income->september; ?></td>
+                                            <td><?php echo $income->october; ?></td>
+                                            <td><?php echo $income->november; ?></td>
+                                            <td><?php echo $income->december; ?></td>
+                                        </tr>
+
+                                    <?php
+                                    }
+                                    ?>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><?php echo $incomeAmountTotal; ?></td>
+                                        <td><?php echo $incomeJanuaryTotal; ?></td>
+                                        <td><?php echo $incomeFebruaryTotal; ?></td>
+                                        <td><?php echo $incomeMarchTotal; ?></td>
+                                        <td><?php echo $incomeAprilTotal; ?></td>
+                                        <td><?php echo $incomeMayTotal; ?></td>
+                                        <td><?php echo $incomeJuneTotal; ?></td>
+                                        <td><?php echo $incomeJulyTotal; ?></td>
+                                        <td><?php echo $incomeAugustTotal; ?></td>
+                                        <td><?php echo $incomeSeptemberTotal; ?></td>
+                                        <td><?php echo $incomeOctoberTotal; ?></td>
+                                        <td><?php echo $incomeNovemberTotal; ?></td>
+                                        <td><?php echo $incomeDecemberTotal; ?></td>
+                                    </tr>
+                                </tfoot>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            <?php } ?>
 
             <?php
             if (isset($year)) {
@@ -309,7 +307,7 @@
                 // $differenceDecemberTotal = $incomeDecemberTotal - $expenseDecemberTotal;
 
                 $differenceAmountTotal = $expenseAmountTotal - $incomeAmountTotal;
-                $differenceJanuaryTotal = $expenseAmountTotal - $incomeJanuaryTotal;
+                $differenceJanuaryTotal = $expenseJanuaryTotal - $incomeJanuaryTotal;
                 $differenceFebruaryTotal = $expenseFebruaryTotal - $incomeFebruaryTotal;
                 $differenceMarchTotal = $expenseMarchTotal - $incomeMarchTotal;
                 $differenceAprilTotal = $expenseAprilTotal - $incomeAprilTotal;
