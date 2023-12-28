@@ -50,6 +50,8 @@ foreach ($rResult as $key => $aRow) {
             $_data .= '</div>';
         } elseif ($aColumns[$i] == 'cheque_date') {
             $_data = date_format_change($aRow['cheque_date']);
+        } elseif ($aColumns[$i] == 'date') {
+            $_data = date_format_change($aRow['date']);
         }
         // elseif ($aColumns[$i] == 'paid_status') {
         //     $checked = '';

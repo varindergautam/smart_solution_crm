@@ -75,6 +75,9 @@ foreach ($rResult as $key => $aRow) {
         if ($aColumns[$i] == db_prefix() . 'suppliers.name') {
             $_data = $aRow[db_prefix() . 'suppliers.name'];
         }
+        if ($aColumns[$i] == db_prefix() . 'proposals.date') {
+            $_data = date_format_change($aRow[db_prefix() . 'proposals.date']);
+        }
         $row[] = $_data;
     }
 

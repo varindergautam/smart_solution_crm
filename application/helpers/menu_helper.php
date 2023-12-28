@@ -87,6 +87,14 @@ function app_init_admin_sidebar_menu_items()
     ]);
 
     $CI->app_menu->add_sidebar_children_item('budget', [
+        'slug'     => 'budget/',
+        'name'     => _l('Budget List'),
+        'href'     => admin_url('budget/'),
+        'position' => 5,
+        'badge'    => [],
+    ]);
+
+    $CI->app_menu->add_sidebar_children_item('budget', [
         'slug'     => 'budget/report/',
         'name'     => _l('Budget Report'),
         'href'     => admin_url('budget/report/'),

@@ -62,7 +62,7 @@
                                 _l('Invoice No.'),
                                 _l('Invoice Date'),
                                 _l('Invoice Due Date'),
-                                _l('Amount Receivable'),
+                                _l('Amount Payable'),
                                 _l('Date of PDC'),
                                 _l('Cheque Number'),
                                 _l('Bank'),

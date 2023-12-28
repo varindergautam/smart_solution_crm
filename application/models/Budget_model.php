@@ -50,7 +50,7 @@ class Budget_model extends App_Model
 
         $months = array();
         for ($i = 1; $i <= $data['into_month']; $i++) {
-            $months[$monthNames[$i]] = number_format($total, 2);
+            $months[$monthNames[$i]] = number_format($total, 2, '.', '');
         }
 
         for ($i = $data['into_month'] + 1; $i <= 12; $i++) {

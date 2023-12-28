@@ -294,19 +294,33 @@
 
             <?php
             if (isset($year)) {
-                $differenceAmountTotal = $incomeAmountTotal - $expenseAmountTotal;
-                $differenceJanuaryTotal = $incomeJanuaryTotal - $expenseJanuaryTotal;
-                $differenceFebruaryTotal = $incomeFebruaryTotal - $expenseFebruaryTotal;
-                $differenceMarchTotal = $incomeMarchTotal - $expenseMarchTotal;
-                $differenceAprilTotal = $incomeAprilTotal - $expenseAprilTotal;
-                $differenceMayTotal = $incomeMayTotal - $expenseMayTotal;
-                $differenceJuneTotal = $incomeJuneTotal - $expenseJuneTotal;
-                $differenceJulyTotal = $incomeJulyTotal - $expenseJulyTotal;
-                $differenceAugustTotal = $incomeAugustTotal - $expenseAugustTotal;
-                $differenceSeptemberTotal = $incomeSeptemberTotal - $expenseSeptemberTotal;
-                $differenceOctoberTotal = $incomeOctoberTotal - $expenseOctoberTotal;
-                $differenceNovemberTotal = $incomeNovemberTotal - $expenseNovemberTotal;
-                $differenceDecemberTotal = $incomeDecemberTotal - $expenseDecemberTotal;
+                // $differenceAmountTotal = $incomeAmountTotal - $expenseAmountTotal;
+                // $differenceJanuaryTotal = $incomeJanuaryTotal - $expenseJanuaryTotal;
+                // $differenceFebruaryTotal = $incomeFebruaryTotal - $expenseFebruaryTotal;
+                // $differenceMarchTotal = $incomeMarchTotal - $expenseMarchTotal;
+                // $differenceAprilTotal = $incomeAprilTotal - $expenseAprilTotal;
+                // $differenceMayTotal = $incomeMayTotal - $expenseMayTotal;
+                // $differenceJuneTotal = $incomeJuneTotal - $expenseJuneTotal;
+                // $differenceJulyTotal = $incomeJulyTotal - $expenseJulyTotal;
+                // $differenceAugustTotal = $incomeAugustTotal - $expenseAugustTotal;
+                // $differenceSeptemberTotal = $incomeSeptemberTotal - $expenseSeptemberTotal;
+                // $differenceOctoberTotal = $incomeOctoberTotal - $expenseOctoberTotal;
+                // $differenceNovemberTotal = $incomeNovemberTotal - $expenseNovemberTotal;
+                // $differenceDecemberTotal = $incomeDecemberTotal - $expenseDecemberTotal;
+
+                $differenceAmountTotal = $expenseAmountTotal - $incomeAmountTotal;
+                $differenceJanuaryTotal = $expenseAmountTotal - $incomeJanuaryTotal;
+                $differenceFebruaryTotal = $expenseFebruaryTotal - $incomeFebruaryTotal;
+                $differenceMarchTotal = $expenseMarchTotal - $incomeMarchTotal;
+                $differenceAprilTotal = $expenseAprilTotal - $incomeAprilTotal;
+                $differenceMayTotal = $expenseMayTotal - $incomeMayTotal;
+                $differenceJuneTotal = $expenseJuneTotal - $incomeJuneTotal;
+                $differenceJulyTotal = $expenseJulyTotal - $incomeJulyTotal;
+                $differenceAugustTotal = $expenseAugustTotal - $incomeAugustTotal;
+                $differenceSeptemberTotal = $expenseSeptemberTotal - $incomeSeptemberTotal;
+                $differenceOctoberTotal = $expenseOctoberTotal - $incomeOctoberTotal;
+                $differenceNovemberTotal = $expenseNovemberTotal - $incomeNovemberTotal;
+                $differenceDecemberTotal = $expenseDecemberTotal - $incomeDecemberTotal;
             ?>
                 <div class="col-md-12" id="small-table">
                     <div class="panel_s">
@@ -335,25 +349,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Income</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td><?php echo $incomeAmountTotal; ?></td>
-                                        <td><?php echo $incomeJanuaryTotal; ?></td>
-                                        <td><?php echo $incomeFebruaryTotal; ?></td>
-                                        <td><?php echo $incomeMarchTotal; ?></td>
-                                        <td><?php echo $incomeAprilTotal; ?></td>
-                                        <td><?php echo $incomeMayTotal; ?></td>
-                                        <td><?php echo $incomeJuneTotal; ?></td>
-                                        <td><?php echo $incomeJulyTotal; ?></td>
-                                        <td><?php echo $incomeAugustTotal; ?></td>
-                                        <td><?php echo $incomeSeptemberTotal; ?></td>
-                                        <td><?php echo $incomeOctoberTotal; ?></td>
-                                        <td><?php echo $incomeNovemberTotal; ?></td>
-                                        <td><?php echo $incomeDecemberTotal; ?></td>
-                                    </tr>
+                                    
                                     <tr>
                                         <td>Expense</td>
                                         <td></td>
@@ -373,6 +369,27 @@
                                         <td><?php echo $expenseNovemberTotal; ?></td>
                                         <td><?php echo $expenseDecemberTotal; ?></td>
                                     </tr>
+
+                                    <tr>
+                                        <td>Income</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><?php echo $incomeAmountTotal; ?></td>
+                                        <td><?php echo $incomeJanuaryTotal; ?></td>
+                                        <td><?php echo $incomeFebruaryTotal; ?></td>
+                                        <td><?php echo $incomeMarchTotal; ?></td>
+                                        <td><?php echo $incomeAprilTotal; ?></td>
+                                        <td><?php echo $incomeMayTotal; ?></td>
+                                        <td><?php echo $incomeJuneTotal; ?></td>
+                                        <td><?php echo $incomeJulyTotal; ?></td>
+                                        <td><?php echo $incomeAugustTotal; ?></td>
+                                        <td><?php echo $incomeSeptemberTotal; ?></td>
+                                        <td><?php echo $incomeOctoberTotal; ?></td>
+                                        <td><?php echo $incomeNovemberTotal; ?></td>
+                                        <td><?php echo $incomeDecemberTotal; ?></td>
+                                    </tr>
+
                                     <tr class="difference">
                                         <td>Balance</td>
                                         <td></td>

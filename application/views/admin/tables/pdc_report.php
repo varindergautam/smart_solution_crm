@@ -83,6 +83,8 @@ foreach ($rResult as $key => $aRow) {
             $_data .= '<span class="">' . ($checked == 'checked' ? 'Paid' : 'Un-Paid') . '</span>';
         } elseif ($aColumns[$i] == 'cheque_date') {
             $_data = date_format_change($aRow['cheque_date']);
+        } elseif ($aColumns[$i] == 'date') {
+            $_data = date_format_change($aRow['date']);
         }
         $row[] = $_data;
     }

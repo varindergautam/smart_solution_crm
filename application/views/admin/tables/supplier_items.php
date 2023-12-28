@@ -47,8 +47,8 @@ foreach ($rResult as $key => $aRow) {
         }
         if ($aColumns[$i] == db_prefix() . 'supplier_items.id') {
             $_data = $key + 1;
-        } elseif ($aColumns[$i] == 'date') {
-            $_data = date_format_change($aRow['date']);
+        } elseif ($aColumns[$i] == db_prefix() . 'supplier_items.date') {
+            $_data = date_format_change($aRow[db_prefix() . 'supplier_items.date']);
         } elseif ($aColumns[$i] == "vat_number") {
             $_data = ' <a href="' . admin_url('supplier_item/create/' . $aRow[db_prefix() . 'supplier_items.id']) . '">' . $aRow["vat_number"] . '</a>';
 
