@@ -278,6 +278,28 @@ class Proposals extends AdminController
         }
 
         $proposal_number = format_proposal_number($id);
+
+        $footer = '<table width="100%" style="" class="">
+                    <tr>
+                        <td><strong>For SHAMIS MOHAMED GENERAL TRADING LLC</strong></td>
+                        <td style="text-align:right;"><strong>RECEIVER SIGNATURE & STAMP</strong></td>
+                    </tr>
+                    <tr>
+                        <td style="border-top:1px solid #ccc;" colspan="2"></td>
+                    </tr>
+                </table>
+                <table width="100%" style="" class="">
+                    <tr>
+                        <td>Created by : Sales</td>
+                        <td>Printed by : Sales</td>
+                        <td>Printed : '. date('d-M-y h:i a') .'</td>
+                        <td style="text-align:right;">Page 1 of 1</td>
+                    </tr>
+                </table>
+                ';
+                $pdf->SetY(-39);
+                // $pdf->SetY(-30);
+        $pdf->writeHTML($footer, true, false, true, false, '');
         $pdf->Output($proposal_number . '.pdf', $type);
     }
 

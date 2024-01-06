@@ -16,7 +16,7 @@ trait PDF_Signature
         $companySignature = $this->getCompanySignature();
 
         if ($companySignature) {
-            $this->MultiCell(($dimensions['wk'] / 2) - $dimensions['lm'], 0, _l('authorized_signature_text') . ' ' . $companySignature, 0, 'J', 0, 0, '', '', true, 0, true, true, 0);
+            // $this->MultiCell(($dimensions['wk'] / 2) - $dimensions['lm'], 0, _l('authorized_signature_text') . ' ' . $companySignature, 0, 'J', 0, 0, '', '', true, 0, true, true, 0);
 
             $leftColumnExists = true;
         }

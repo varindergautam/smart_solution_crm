@@ -546,14 +546,16 @@ function get_decimal_places()
 function get_items_by_type($type, $id)
 {
     $CI = &get_instance();
-    $CI->db->select();
+    $CI->db->select(db_prefix() . 'itemable.*, ' . db_prefix() . 'items.*');
     $CI->db->from(db_prefix() . 'itemable');
+    $CI->db->join(db_prefix() . 'items', db_prefix() . 'items.id = ' . db_prefix() . 'itemable.item_order', 'left');
     $CI->db->where('rel_id', $id);
     $CI->db->where('rel_type', $type);
     $CI->db->order_by('item_order', 'asc');
 
     return $CI->db->get()->result_array();
 }
+
 /**
 * Function that update total tax in sales table eq. invoice, proposal, estimates, credit note
 * @param  mixed $id
